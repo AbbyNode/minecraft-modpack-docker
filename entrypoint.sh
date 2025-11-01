@@ -31,13 +31,13 @@ if [ ! -f "${STARTSCRIPT#./}" ]; then
 
     # Make the entrypoint script executable
     chmod +x "${STARTSCRIPT#./}"
+    
+    # Automatically accept the EULA
+    echo "Accepting Minecraft EULA..."
+    echo "eula=true" > /minecraft/eula.txt
 else
     echo "Server files already exist (${STARTSCRIPT} found), skipping download."
 fi
-
-# Automatically accept the EULA
-echo "Accepting Minecraft EULA..."
-echo "eula=true" > /minecraft/eula.txt
 
 echo "Running ${STARTSCRIPT}..."
 exec /bin/bash "${STARTSCRIPT#./}"
