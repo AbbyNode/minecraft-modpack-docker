@@ -1,0 +1,72 @@
+#!/bin/bash
+set -euo pipefail
+
+# This script will run STARTSCRIPT for the first time to generate default files,
+# accept the EULA, and then modify server.properties based on default.properties.
+# Then restart STARTSCRIPT to start the server normally.
+
+source "$(dirname "$0")/common.sh"
+
+log_info "=== Starting first time server setup ==="
+
+# Download modpack if needed
+if [ ! -f "${STARTSCRIPT_PATH}" ]; then
+    log_info "Start script not found at ${STARTSCRIPT_PATH}"
+    bash "${SCRIPTS_DIR}/download.sh"
+else
+    log_info "Start script found at ${STARTSCRIPT_PATH}, skipping download..."
+fi
+
+log_info "Creating Minecraft directory at ${MINECRAFT_DIR}..."
+mkdir -p "${MINECRAFT_DIR}"
+
+log_info "Accepting Minecraft EULA..."
+echo "eula=true" > "${MINECRAFT_DIR}/eula.txt"
+
+# Run STARTSCRIPT in background to generate default files
+log_info "Running ${STARTSCRIPT_PATH} to generate default files..."
+(
+    /bin/bash "${STARTSCRIPT_PATH}" &
+) &
+STARTSCRIPT_PID=$!
+
+# Wait for server.properties to be created
+log_info "Waiting for server.properties to be created..."
+while [ ! -f "${SERVER_PROPS}" ]; do
+    sleep 5
+done
+
+# Process default.properties if it exists
+if [ -f "${DEFAULT_PROPS}" ]; then
+    log_info "default.properties found at ${DEFAULT_PROPS}"
+
+    # Process each property from default.properties
+    log_info "Configuring server.properties..."
+    while IFS='=' read -r key value || [ -n "$key" ]; do
+        # Skip comments and empty lines
+        [[ "$key" =~ ^[[:space:]]*# ]] && continue
+        [[ -z "$key" ]] && continue
+        
+        # Trim whitespace
+        key=$(echo "$key" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        
+        # Update the property if it exists in server.properties
+        if grep -q "^${key}=" "${SERVER_PROPS}"; then
+            sed -i "s|^${key}=.*|${key}=${value}|" "${SERVER_PROPS}"
+            log_info "Updated ${key}=${value}"
+        fi
+    done < "${DEFAULT_PROPS}"
+fi
+
+# Kill the initial STARTSCRIPT process
+log_info "Stopping initial ${STARTSCRIPT_PATH} process..."
+kill "${STARTSCRIPT_PID}" || true
+wait "${STARTSCRIPT_PID}" 2>/dev/null || true
+
+# Move the configured server.properties to linked location
+mv "${SERVER_PROPS}" "${LINKED_PROPS}"
+bash "${SCRIPTS_DIR}/pre-start.sh"
+
+ln -sf "${LINKED_PROPS}" "${SERVER_PROPS}"
+log_info "=== Setup Complete ==="

@@ -7,14 +7,16 @@ set -euo pipefail
 : "${MINECRAFT_DIR:=/minecraft}"
 : "${STARTSCRIPT:=startserver.sh}"
 
+DEFAULT_PROPS="${SCRIPTS_DIR}/default.properties"
+
 # If this file exists, modpack has been downloaded and extracted.
 STARTSCRIPT_PATH=${MINECRAFT_DIR}/${STARTSCRIPT}
 
-# If this file exists, server is ready for post-setup.
-READY_FOR_SETUP_FLAG="${MINECRAFT_DIR}/server.properties"
+# If this file exists, server is ready for post-setup tasks.
+SERVER_PROPS="${MINECRAFT_DIR}/server.properties"
 
 # If this file exists, first time setup is considered complete.
-SETUP_COMPLETE_FLAG="${CONFIG_DIR}/server.properties"
+LINKED_PROPS="${CONFIG_DIR}/server.properties"
 
 log_info() {
     echo "[INFO] $(date '+%Y-%m-%d %H:%M:%S') - $*"

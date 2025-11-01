@@ -9,3 +9,10 @@ done
 log_info "Setting permissions..."
 chmod -R 755 "${MINECRAFT_DIR}" 2>/dev/null || true
 chmod 644 "${MINECRAFT_DIR}"/*.json 2>/dev/null || true
+
+# Link existing server.properties
+log_info "Linking existing server.properties from config..."
+ln -sf "${LINKED_PROPS}" "${SERVER_PROPS}"
+
+log_info "Starting Minecraft server with ${STARTSCRIPT_PATH}..."
+exec /bin/bash "${STARTSCRIPT_PATH}"
