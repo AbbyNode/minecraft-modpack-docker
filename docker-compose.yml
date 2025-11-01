@@ -1,7 +1,7 @@
 services:
   minecraft:
     build: .
-    container_name: minecraft-server-atm
+    container_name: minecraft-server
     env_file:
       - .env
     ports:
@@ -24,3 +24,7 @@ services:
     restart: unless-stopped
     depends_on:
       - minecraft
+
+networks:
+  internal:
+    driver: bridge
