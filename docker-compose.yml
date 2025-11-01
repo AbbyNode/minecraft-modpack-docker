@@ -7,17 +7,16 @@ services:
     ports:
       - "25565:25565"
     volumes:
+      - ./scripts:/scripts
       - minecraft-data:/minecraft
       - ./data/world:/minecraft/world
       - ./data/mods:/minecraft/mods
       - ./data/config:/minecraft/config
       - ./data/logs:/minecraft/logs
-      - ./entrypoint.sh:/minecraft/entrypoint.sh
     working_dir: /minecraft
-    command: >
-      sh -c "apk add --no-cache bash wget unzip &&
-             chmod +x /minecraft/entrypoint.sh &&
-             /minecraft/entrypoint.sh"
+    command: >-
+      sh -c "apk add bash wget unzip &&
+            bash /scripts/entrypoint.sh"
     restart: unless-stopped
     stdin_open: true
     tty: true
