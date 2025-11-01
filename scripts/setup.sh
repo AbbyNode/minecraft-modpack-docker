@@ -3,39 +3,39 @@ set -euo pipefail
 
 source "$(dirname "$0")/common.sh"
 
+# If this file exists, first time setup is considered complete
+SETUP_COMPLETE_FLAG="${CONFIG_DIR}/server.properties"
+
+# If this file exists, server is ready for post-setup
+READY_FOR_SETUP_FLAG="${MINECRAFT_DIR}/server.properties"
 
 # Skip if already completed
-if [ -f "${SETUP_FLAG}" ]; then
+if [ -f "${SETUP_COMPLETE_FLAG}" ]; then
     log_info "Setup already completed, skipping..."
     exit 0
 fi
 
-# Wait for server files to be generated
-log_info "Waiting for server files to be generated..."
-while [ ! -f "${MINECRAFT_DIR}/server.properties" ]; do
-    sleep 5
-done
+log_info "=== Starting first time server setup ==="
 
-log_info "=== Starting Server Setup ==="
+log_info "Creating Minecraft directory at ${MINECRAFT_DIR}..."
+mkdir -p "${MINECRAFT_DIR}"
 
-# Accept EULA
 log_info "Accepting Minecraft EULA..."
 echo "eula=true" > "${MINECRAFT_DIR}/eula.txt"
 
-# Create necessary directories
-log_info "Creating directories..."
-mkdir -p "${MINECRAFT_DIR}"/{logs,backups,plugins,mods} 2>/dev/null || true
+# Link existing files 
 
-# Create default JSON files if they don't exist
-for file in ops.json whitelist.json banned-players.json banned-ips.json; do
-    if [ ! -f "${MINECRAFT_DIR}/${file}" ]; then
-        log_info "Creating ${file}..."
-        echo "[]" > "${MINECRAFT_DIR}/${file}"
+# Set proper permissions
+log_info "Setting permissions..."
+chmod -R 755 "${MINECRAFT_DIR}" 2>/dev/null || true
+chmod 644 "${MINECRAFT_DIR}"/*.json 2>/dev/null || true
+
+post_start_setup() {
+    if [ ! -f "${MINECRAFT_DIR}/server.properties" ]; then
+        log_error "server.properties not found at ${MINECRAFT_DIR}/server.properties"
+        exit 1
     fi
-done
 
-# Configure server.properties if it exists
-if [ -f "${MINECRAFT_DIR}/server.properties" ]; then
     log_info "Configuring server.properties..."
     sed -i \
         -e 's/^allow-flight=.*/allow-flight=true/' \
@@ -49,13 +49,16 @@ if [ -f "${MINECRAFT_DIR}/server.properties" ]; then
         -e 's/^view-distance=.*/view-distance=16/' \
         -e 's/^white-list=.*/white-list=true/' \
         "${MINECRAFT_DIR}/server.properties"
-fi
 
-# Set proper permissions
-log_info "Setting permissions..."
-chmod -R 755 "${MINECRAFT_DIR}" 2>/dev/null || true
-chmod 644 "${MINECRAFT_DIR}"/*.json 2>/dev/null || true
+    # Mark setup as complete
+    touch "${SETUP_COMPLETE_FLAG}"
+    log_info "=== Setup Complete ==="
+}
 
-# Mark setup as complete
-touch "${SETUP_FLAG}"
-log_info "=== Setup Complete ==="
+log_info "Waiting for server to initialize for post-start setup..."
+(
+    while [ ! -f "${READY_FOR_SETUP_FLAG}" ]; do
+        sleep 5
+    done
+    post_start_setup
+) &

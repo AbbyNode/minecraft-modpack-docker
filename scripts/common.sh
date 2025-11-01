@@ -12,9 +12,6 @@ set -euo pipefail
 : "${STARTSCRIPT:=startserver.sh}"
 : "${STARTSCRIPT_PATH:=${MINECRAFT_DIR}/${STARTSCRIPT}}"
 
-# If this file exists, first time setup is considered complete
-SETUP_FLAG="${CONFIG_DIR}/server.properties"
-
 # Logging functions
 log_info() {
     echo "[INFO] $(date '+%Y-%m-%d %H:%M:%S') - $*"
