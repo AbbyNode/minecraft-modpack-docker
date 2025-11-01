@@ -79,7 +79,7 @@ mv "${SERVER_PROPS}" "${LINKED_PROPS}"
 #region Restart
 # ========================================
 
-log_info "Waiting for world generation to complete..."
+log_info "============ Waiting for world generation to complete ============"
 WORLD_DIR="${MINECRAFT_DIR}/world"
 MAX_WAIT=300  # 5 minutes maximum wait
 ELAPSED=0
@@ -103,7 +103,7 @@ if [ $ELAPSED -ge $MAX_WAIT ]; then
 fi
 
 # Kill the initial STARTSCRIPT process
-log_info "Stopping initial ${STARTSCRIPT_PATH} process..."
+log_info "============ Stopping initial ${STARTSCRIPT_PATH} process ============"
 kill "${STARTSCRIPT_PID}" || true
 wait "${STARTSCRIPT_PID}" 2>/dev/null || true
 
