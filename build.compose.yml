@@ -4,3 +4,8 @@ services:
     build:
       context: ./minecraft-modpack
       dockerfile: Dockerfile
+  mcaselector:
+    image: eclarift/mcaselector:latest
+    build:
+      context: ./mcaselector
+      dockerfile: Dockerfile

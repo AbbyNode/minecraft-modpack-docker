@@ -1,11 +1,11 @@
 # What to do
 
+* auto delete chunks https://github.com/Querz/mcaselector/wiki/CLI-Mode
 * Borgmatic backups
 * Make server url automatic? most recent
 * Auto push backups to Athena
 * get mods distant horizons https://www.curseforge.com/minecraft/mc-mods/distant-horizons
 * unmined server alongside https://github.com/ich777/docker-unmined
-* auto delete chunks https://github.com/Querz/mcaselector/wiki/CLI-Mode
 
 
 # example links
