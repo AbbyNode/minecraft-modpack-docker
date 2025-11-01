@@ -1,6 +1,7 @@
 services:
   minecraft-modpack:
     image: eclarift/minecraft-modpack:latest
+    build: .
     container_name: minecraft-modpack
     env_file:
       - .env
