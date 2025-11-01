@@ -1,6 +1,6 @@
 services:
   minecraft:
-    build: .
+    image: eclipse-temurin:25-jre-alpine
     container_name: minecraft-server
     env_file:
       - .env
@@ -12,24 +12,16 @@ services:
       - ./data/mods:/minecraft/mods
       - ./data/config:/minecraft/config
       - ./data/logs:/minecraft/logs
+      - ./entrypoint.sh:/minecraft/entrypoint.sh
+    working_dir: /minecraft
+    command: >
+      sh -c "apk add --no-cache bash wget unzip &&
+             chmod +x /minecraft/entrypoint.sh &&
+             /minecraft/entrypoint.sh"
     restart: unless-stopped
     stdin_open: true
     tty: true
 
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared-tunnel
-    command: tunnel --no-autoupdate run
-    env_file:
-      - .env
-    restart: unless-stopped
-    depends_on:
-      - minecraft
-
 volumes:
   minecraft-data:
     driver: local
-
-networks:
-  internal:
-    driver: bridge
