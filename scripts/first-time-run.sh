@@ -9,6 +9,9 @@ source "$(dirname "$0")/common.sh"
 
 log_info "=== Starting first time server setup ==="
 
+log_info "Creating Minecraft directory at ${MINECRAFT_DIR}..."
+mkdir -p "${MINECRAFT_DIR}"
+
 # Download modpack if needed
 if [ ! -f "${STARTSCRIPT_PATH}" ]; then
     log_info "Start script not found at ${STARTSCRIPT_PATH}"
@@ -16,9 +19,6 @@ if [ ! -f "${STARTSCRIPT_PATH}" ]; then
 else
     log_info "Start script found at ${STARTSCRIPT_PATH}, skipping download..."
 fi
-
-log_info "Creating Minecraft directory at ${MINECRAFT_DIR}..."
-mkdir -p "${MINECRAFT_DIR}"
 
 log_info "Accepting Minecraft EULA..."
 echo "eula=true" > "${MINECRAFT_DIR}/eula.txt"
@@ -57,6 +57,26 @@ if [ -f "${DEFAULT_PROPS}" ]; then
             log_info "Updated ${key}=${value}"
         fi
     done < "${DEFAULT_PROPS}"
+fi
+
+log_info "Waiting for world generation to complete..."
+WORLD_DIR="${MINECRAFT_DIR}/world"
+MAX_WAIT=300  # 5 minutes maximum wait
+ELAPSED=0
+
+while [ $ELAPSED -lt $MAX_WAIT ]; do
+    if [ -f "${WORLD_DIR}/level.dat" ] && \
+       [ -f "${WORLD_DIR}/session.lock" ] && \
+       [ -z "$(find "${WORLD_DIR}" -name '*.mca.tmp' 2>/dev/null)" ]; then
+        log_info "World generation complete"
+        break
+    fi
+    sleep 5
+    ELAPSED=$((ELAPSED + 5))
+done
+
+if [ $ELAPSED -ge $MAX_WAIT ]; then
+    log_warn "World generation check timed out after ${MAX_WAIT} seconds"
 fi
 
 # Kill the initial STARTSCRIPT process
