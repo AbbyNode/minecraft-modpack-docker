@@ -8,10 +8,10 @@ set -euo pipefail
 : "${MINECRAFT_DIR:=/minecraft}"
 : "${STARTSCRIPT:=startserver.sh}"
 
-DEFAULT_PROPS="${TEMPLATES_DIR}/default.properties"
-
 # If this file exists, modpack has been downloaded and extracted.
-STARTSCRIPT_PATH=${MINECRAFT_DIR}/${STARTSCRIPT}
+STARTSCRIPT_PATH="${MINECRAFT_DIR}/${STARTSCRIPT}"
+
+DEFAULT_PROPS="${TEMPLATES_DIR}/default.properties"
 
 # If this file exists, server is ready for post-setup tasks.
 SERVER_PROPS="${MINECRAFT_DIR}/server.properties"
