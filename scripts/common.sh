@@ -7,8 +7,13 @@ set -euo pipefail
 : "${SCRIPTS_DIR:=/scripts}"
 : "${MINECRAFT_DIR:=/minecraft}"
 : "${CONFIG_DIR:=${MINECRAFT_DIR}/config}"
+
+# TODO: move
 : "${STARTSCRIPT:=startserver.sh}"
 : "${STARTSCRIPT_PATH:=${MINECRAFT_DIR}/${STARTSCRIPT}}"
+
+# If this file exists, first time setup is considered complete
+SETUP_FLAG="${CONFIG_DIR}/server.properties"
 
 # Logging functions
 log_info() {
@@ -21,13 +26,4 @@ log_error() {
 
 log_warn() {
     echo "[WARN] $(date '+%Y-%m-%d %H:%M:%S') - $*" >&2
-}
-
-# Ensure executable permissions
-ensure_executable() {
-    local file="$1"
-    if [ ! -x "$file" ]; then
-        log_warn "$file is not executable, fixing permissions..."
-        chmod +x "$file"
-    fi
 }

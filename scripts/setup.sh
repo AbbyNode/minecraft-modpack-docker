@@ -3,7 +3,6 @@ set -euo pipefail
 
 source "$(dirname "$0")/common.sh"
 
-SETUP_FLAG="${MINECRAFT_DIR}/.setup_complete"
 
 # Skip if already completed
 if [ -f "${SETUP_FLAG}" ]; then
@@ -11,22 +10,17 @@ if [ -f "${SETUP_FLAG}" ]; then
     exit 0
 fi
 
-# If called with --wait-for-server, wait for server files to generate
-if [ "${1:-}" = "--wait-for-server" ]; then
-    log_info "Waiting for server files to be generated..."
-    while [ ! -f "${MINECRAFT_DIR}/server.properties" ]; do
-        sleep 5
-    done
-    sleep 10  # Give it time to finish initialization
-fi
+# Wait for server files to be generated
+log_info "Waiting for server files to be generated..."
+while [ ! -f "${MINECRAFT_DIR}/server.properties" ]; do
+    sleep 5
+done
 
 log_info "=== Starting Server Setup ==="
 
 # Accept EULA
-if [ ! -f "${MINECRAFT_DIR}/eula.txt" ]; then
-    log_info "Accepting Minecraft EULA..."
-    echo "eula=true" > "${MINECRAFT_DIR}/eula.txt"
-fi
+log_info "Accepting Minecraft EULA..."
+echo "eula=true" > "${MINECRAFT_DIR}/eula.txt"
 
 # Create necessary directories
 log_info "Creating directories..."

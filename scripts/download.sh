@@ -47,5 +47,5 @@ if [ ! -f "${STARTSCRIPT_PATH}" ]; then
     exit 1
 fi
 
-ensure_executable "${STARTSCRIPT_PATH}"
+chmod +x "${STARTSCRIPT_PATH}"
 log_info "Modpack setup complete"

@@ -10,7 +10,7 @@ bash "${SCRIPTS_DIR}/setup.sh"
 bash "${SCRIPTS_DIR}/download.sh"
 
 # Ensure start script is executable
-ensure_executable "${STARTSCRIPT_PATH}"
+chmod +x "${STARTSCRIPT_PATH}"
 
 # Schedule post-server-init setup in background
 if [ ! -f "${MINECRAFT_DIR}/.setup_complete" ]; then
