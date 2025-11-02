@@ -1,6 +1,4 @@
 
+#!/bin/bash
 
-
-
-
-exec /mcaselector/delete-chunks.sh
+exec /scripts/delete-chunks.sh

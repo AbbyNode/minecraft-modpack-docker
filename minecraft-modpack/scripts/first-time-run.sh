@@ -68,7 +68,7 @@ kill "${STARTSCRIPT_PID}" || true
 wait "${STARTSCRIPT_PID}" 2>/dev/null || true
 
 log_info "============ Setting up server properties and config files ============"
-bash "${SCRIPTS_DIR}/setup-properties.sh"
+bash "${SCRIPTS_DIR}/set-properties.sh"
 
 log_info "============ First time setup complete ============"
 
