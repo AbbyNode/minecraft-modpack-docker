@@ -156,3 +156,10 @@ After editing, restart Ofelia:
 ```bash
 docker compose restart ofelia
 ```
+
+## Documentation
+
+- **[Orchestrator Configuration Guide](docs/ORCHESTRATOR.md)** - Detailed configuration options for Ofelia, Borgmatic, and MCASelector
+- **[Quick Reference Guide](docs/QUICK-REFERENCE.md)** - Common commands and tasks
+- **[MCASelector CLI Mode](mcaselector/docs/CLI-Mode.md)** - MCASelector command-line documentation
+- **[Chunk Filter Guide](mcaselector/docs/Chunk-Filter.md)** - Understanding chunk filtering options
