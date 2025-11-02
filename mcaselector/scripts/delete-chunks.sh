@@ -25,7 +25,7 @@ fi
 
 # Parse each condition from YAML
 while IFS= read -r line; do
-    if [[ $line =~ ^[[:space:]]*-[[:space:]]]]; then
+    if [[ $line =~ ^[[:space:]]*-[[:space:]] ]]; then
         # Extract LastUpdated value
         last_updated=$(echo "$line" | sed 's/.*last_updated:[[:space:]]*["'"'"']\?\([^"'"'"']*\).*/\1/')
         

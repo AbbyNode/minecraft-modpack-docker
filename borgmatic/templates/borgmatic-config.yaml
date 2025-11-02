@@ -41,9 +41,9 @@ storage:
 hooks:
     before_backup:
         - echo "Starting backup at $(date)"
-    
+
     after_backup:
         - echo "Backup completed at $(date)"
-    
+
     on_error:
         - echo "Backup failed at $(date)"
