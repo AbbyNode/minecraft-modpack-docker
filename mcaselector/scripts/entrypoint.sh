@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Ensure config file exists
 if [ ! -f /config/mcaselector-options.yaml ]; then

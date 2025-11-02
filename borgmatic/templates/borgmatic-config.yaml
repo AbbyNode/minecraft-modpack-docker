@@ -9,7 +9,6 @@ location:
     # Patterns to exclude from backup
     exclude_patterns:
         - '*.tmp'
-        - '*.log'
         - '*/.cache'
 
     # Repository location

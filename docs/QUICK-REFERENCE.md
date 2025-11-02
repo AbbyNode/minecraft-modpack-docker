@@ -5,7 +5,7 @@
 ### Check Job Status
 ```bash
 # View recent job executions
-docker compose logs --tail 50 ofelia
+docker compose logs --tail=50 ofelia
 
 # Check if services are running
 docker compose ps
