@@ -16,6 +16,10 @@ fi
 
 MODPACK_URL="$1"
 
+# Configuration
+PAGE_SIZE=20
+USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
 # Extract modpack slug from URL
 # Example: https://www.curseforge.com/minecraft/modpacks/all-the-mods-10 -> all-the-mods-10
 MODPACK_SLUG=$(echo "$MODPACK_URL" | sed -n 's|.*/modpacks/\([^/?]*\).*|\1|p')
@@ -29,12 +33,12 @@ fi
 log_info "Modpack slug: $MODPACK_SLUG"
 
 # Construct files list URL
-FILES_URL="https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files/all?page=1&pageSize=20"
+FILES_URL="https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files/all?page=1&pageSize=${PAGE_SIZE}"
 log_info "Fetching files list from: $FILES_URL"
 
 # Download the files page with proper headers to avoid being blocked
 TEMP_HTML=$(mktemp)
-if ! curl -L -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+if ! curl -L -A "$USER_AGENT" \
     -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
     -H "Accept-Language: en-US,en;q=0.5" \
     --compressed \
@@ -57,7 +61,7 @@ log_info "Files page downloaded, searching for file IDs..."
 # Extract file IDs from the HTML
 # CurseForge uses URLs like /minecraft/modpacks/all-the-mods-10/files/7121777
 # We'll extract these file IDs and check each one for additional files
-FILE_IDS=$(grep -oP '/minecraft/modpacks/[^/]+/files/\K[0-9]+' "$TEMP_HTML" | sort -u | head -20)
+FILE_IDS=$(grep -oP '/minecraft/modpacks/[^/]+/files/\K[0-9]+' "$TEMP_HTML" | sort -u | head -${PAGE_SIZE})
 
 if [ -z "$FILE_IDS" ]; then
     log_error "No file IDs found on the files page"
@@ -77,7 +81,7 @@ for FILE_ID in $FILE_IDS; do
     ADDITIONAL_FILES_URL="https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files/${FILE_ID}/additional-files"
     
     TEMP_ADDITIONAL=$(mktemp)
-    if ! curl -L -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" \
+    if ! curl -L -A "$USER_AGENT" \
         -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
         --compressed \
         -s "$ADDITIONAL_FILES_URL" > "$TEMP_ADDITIONAL"; then
@@ -97,8 +101,8 @@ for FILE_ID in $FILE_IDS; do
     # The download URL format is typically like: https://mediafilez.forgecdn.net/files/XXXX/YYY/filename.zip
     # or displayed as links with file names containing "server"
     
-    # Try to find download URLs with "server" in the filename
-    SERVER_FILE_URL=$(grep -iE 'https?://[^"]*forgecdn\.net/files/[0-9]+/[0-9]+/[^"]*server[^"]*\.zip' "$TEMP_ADDITIONAL" | head -1 | grep -oE 'https?://[^"]*\.zip')
+    # Try to find download URLs with "server" in the filename - optimized single grep
+    SERVER_FILE_URL=$(grep -oiE 'https?://[^"]*forgecdn\.net/files/[0-9]+/[0-9]+/[^"]*server[^"]*\.zip' "$TEMP_ADDITIONAL" | head -1)
     
     if [ -n "$SERVER_FILE_URL" ]; then
         log_info "Found server file URL: $SERVER_FILE_URL"
