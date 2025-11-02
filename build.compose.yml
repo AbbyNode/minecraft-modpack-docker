@@ -9,3 +9,8 @@ services:
     build:
       context: ./mcaselector
       dockerfile: Dockerfile
+  borgmatic:
+    image: eclarift/borgmatic:latest
+    build:
+      context: ./borgmatic
+      dockerfile: Dockerfile
