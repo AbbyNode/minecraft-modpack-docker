@@ -14,14 +14,22 @@ Quick setup guide for running a Minecraft modded server with Docker.
 For first time setup, run the following commands:
 
 ```bash
-# Download required files
-curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
-curl -o .env https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/.env.example
+# Clone or download the repository
+git clone https://github.com/AbbyNode/minecraft-modpack-docker.git
+cd minecraft-modpack-docker
 
-# Pull and Run
+# Run the setup container to initialize configuration
+docker compose --profile setup run --rm setup
+
+# Pull and start the services
 docker compose pull
 docker compose up -d
 ```
+
+The setup container will:
+- Create `.env` from `.env.example`
+- Create required directory structure
+- Prepare configuration files
 
 ### Edit `.env` to configure your modpack
 
