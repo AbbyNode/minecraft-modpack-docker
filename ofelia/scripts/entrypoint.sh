@@ -14,5 +14,5 @@ else
     exit 1
 fi
 
-# Execute the command passed to the container
-exec "$@"
+# Execute ofelia with the command passed to the container
+exec ofelia "$@"
