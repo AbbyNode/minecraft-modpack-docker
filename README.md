@@ -34,6 +34,8 @@ STARTSCRIPT=startserver.sh
 You can usually find the server files in the Files tab of a modpack.  
 https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/7121777/additional-files
 
+**Important:** Change the `BORG_PASSPHRASE` in your `.env` file to a strong, unique passphrase. This is required for backup encryption and will be needed to restore backups in the future.
+
 ## Interacting with the server
 
 ### Log only console
