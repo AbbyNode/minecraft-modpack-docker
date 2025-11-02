@@ -35,8 +35,6 @@ services:
     container_name: borgmatic
     env_file:
       - .env
-    environment:
-      - BORG_PASSPHRASE=${BORG_PASSPHRASE}
     volumes:
       # Source data to backup (read-only)
       - ./data:/mnt/source:ro

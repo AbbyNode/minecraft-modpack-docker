@@ -26,8 +26,6 @@ After editing, restart: `docker compose restart ofelia`
 
 **File**: `./data/config/borgmatic/config.yaml` (auto-created on first run)
 
-**Important**: Borgmatic requires a `BORG_PASSPHRASE` environment variable to encrypt backups. This is set in your `.env` file and should be changed from the default value to a strong, unique passphrase. You will need this passphrase to restore backups.
-
 ### Key Settings
 
 ```yaml
