@@ -28,7 +28,38 @@ services:
     volumes:
       - ./data/world:/world
       - ./data/config:/config
+    restart: unless-stopped
+
+  borgmatic:
+    image: eclarift/borgmatic:latest
+    container_name: borgmatic
+    volumes:
+      # Source data to backup (read-only)
+      - ./data:/mnt/source:ro
+      # Borg repository storage
+      - ./data/backups/borg-repository:/mnt/borg-repository
+      # Borgmatic configuration
+      - ./data/config/borgmatic:/etc/borgmatic.d
+      # Borg state directory
+      - borgmatic-data:/root
+    restart: unless-stopped
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    command: daemon --config=/etc/ofelia/config.ini
+    volumes:
+      # Docker socket for managing containers
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Ofelia configuration
+      - ./ofelia/config.ini:/etc/ofelia/config.ini:ro
+    restart: unless-stopped
+    depends_on:
+      - borgmatic
+      - mcaselector
 
 volumes:
   minecraft-data:
+    driver: local
+  borgmatic-data:
     driver: local
