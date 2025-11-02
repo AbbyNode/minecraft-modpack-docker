@@ -14,8 +14,3 @@ services:
     build:
       context: ./borgmatic
       dockerfile: Dockerfile
-  ofelia:
-    image: eclarift/ofelia:latest
-    build:
-      context: ./ofelia
-      dockerfile: Dockerfile

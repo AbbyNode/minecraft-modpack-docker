@@ -45,9 +45,13 @@ services:
     restart: unless-stopped
 
   ofelia:
-    image: eclarift/ofelia:latest
+    image: mcuadros/ofelia:latest
     container_name: ofelia
-    command: daemon --config=/etc/ofelia/config.ini
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      mkdir -p /etc/ofelia &&
+      ln -sf /config/config.ini /etc/ofelia/config.ini &&
+      exec /usr/bin/ofelia daemon --config=/etc/ofelia/config.ini
     volumes:
       # Docker socket for managing containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
