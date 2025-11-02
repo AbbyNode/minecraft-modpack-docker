@@ -40,10 +40,8 @@ services:
       - ./data/backups/borg-repository:/mnt/borg-repository
       # Borgmatic configuration
       - ./data/config/borgmatic:/etc/borgmatic.d
-      # Borg state directories
-      - borgmatic-config:/root/.config/borg
-      - borgmatic-cache:/root/.cache/borg
-      - borgmatic-state:/root/.local/state/borgmatic
+      # Borg state directory
+      - borgmatic-data:/root
     restart: unless-stopped
 
   ofelia:
@@ -63,9 +61,5 @@ services:
 volumes:
   minecraft-data:
     driver: local
-  borgmatic-config:
-    driver: local
-  borgmatic-cache:
-    driver: local
-  borgmatic-state:
+  borgmatic-data:
     driver: local

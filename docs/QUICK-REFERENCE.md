@@ -1,4 +1,23 @@
-# Quick Reference Guide
+# Quick Reference
+
+## Quick Start
+
+```bash
+# Download files
+curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/.env.example
+mkdir -p ofelia
+curl -o ofelia/config.ini https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/ofelia/config.ini
+
+# Start services
+docker compose pull
+docker compose up -d
+```
+
+## What Runs Automatically
+
+- **Daily 2 AM**: Backup (world, config, mods, logs) → `./data/backups/borg-repository`
+- **Sunday 3 AM**: Delete old chunks based on age + player activity
 
 ## Daily Tasks
 
@@ -26,7 +45,12 @@ docker exec borgmatic borgmatic list
 docker exec mcaselector /scripts/delete-chunks.sh
 ```
 
-## Common Configurations
+## Configuration
+
+Edit these files to customize:
+- `ofelia/config.ini` - Job schedules
+- `./data/config/borgmatic/config.yaml` - Backup settings (created on first run)
+- `./data/config/mcaselector-options.yaml` - Cleanup rules (created on first run)
 
 ### Change Backup Schedule
 
@@ -39,10 +63,7 @@ command = /scripts/backup.sh
 no-overlap = true
 ```
 
-Then restart:
-```bash
-docker compose restart ofelia
-```
+After editing: `docker compose restart ofelia`
 
 ### Change Retention Policy
 
@@ -121,19 +142,18 @@ du -sh ./data
 
 ## Troubleshooting
 
-### Restart All Services
+### Restart Services
 ```bash
+# All services
 docker compose restart
-```
 
-### Restart Specific Service
-```bash
+# Specific service
 docker compose restart ofelia
 docker compose restart borgmatic
 docker compose restart mcaselector
 ```
 
-### View Service Configuration
+### View Configuration
 ```bash
 # Ofelia config
 docker exec ofelia cat /etc/ofelia/config.ini
@@ -145,7 +165,7 @@ docker exec borgmatic cat /etc/borgmatic.d/config.yaml
 docker exec mcaselector cat /config/mcaselector-options.yaml
 ```
 
-### Test Job Manually
+### Test Jobs Manually
 ```bash
 # Test backup
 docker exec borgmatic /scripts/backup.sh
@@ -173,3 +193,8 @@ docker exec mcaselector /scripts/delete-chunks.sh
 - `@monthly` - Once per month
 - `@hourly` - Once per hour
 - `@every 1h30m` - Every 1.5 hours
+
+## More Documentation
+
+- [ORCHESTRATOR.md](ORCHESTRATOR.md) - Configuration reference
+- [ARCHITECTURE.md](ARCHITECTURE.md) - System design

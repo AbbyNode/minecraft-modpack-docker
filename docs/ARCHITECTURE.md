@@ -22,24 +22,25 @@ graph TB
     end
 ```
 
-## Services
+## Components
 
 ### Ofelia
-- **Purpose**: Schedule and execute jobs across containers
+- **Image**: `mcuadros/ofelia:latest`
 - **Config**: `ofelia/config.ini`
-- **Trigger**: Cron schedules
+- **Purpose**: Schedule jobs via cron syntax
 
 ### Borgmatic
-- **Purpose**: Create encrypted incremental backups
+- **Image**: `eclarift/borgmatic:latest` (custom)
 - **Config**: `./data/config/borgmatic/config.yaml` (auto-created)
+- **Purpose**: Encrypted incremental backups
 - **Storage**: `./data/backups/borg-repository`
 - **Encryption**: repokey-blake2
 - **Retention**: 7 daily, 4 weekly, 6 monthly
 
 ### MCASelector
-- **Purpose**: Delete old/unused chunks
+- **Image**: `eclarift/mcaselector:latest`
 - **Config**: `./data/config/mcaselector-options.yaml` (auto-created)
-- **Criteria**: LastUpdated + InhabitedTime
+- **Purpose**: Delete old chunks based on LastUpdated + InhabitedTime
 
 ## Data Flow
 
@@ -52,6 +53,13 @@ Ofelia → Borgmatic → Read ./data → Encrypt & Compress → ./data/backups/b
 ```
 Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
 ```
+
+## Default Schedules
+
+| Job | Schedule | Description |
+|-----|----------|-------------|
+| borgmatic-backup | 0 2 * * * | Daily 2 AM backup |
+| mcaselector-cleanup | 0 3 * * 0 | Sunday 3 AM cleanup |
 
 ## Volume Mounts
 
@@ -72,3 +80,19 @@ Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
 | `ofelia/config.ini` | Job schedules | Pre-configured |
 | `./data/config/borgmatic/config.yaml` | Backup settings | First run |
 | `./data/config/mcaselector-options.yaml` | Cleanup rules | First run |
+
+## Files Added
+
+```
+borgmatic/
+├── Dockerfile
+├── scripts/{backup.sh, entrypoint.sh}
+└── templates/borgmatic-config.yaml
+
+mcaselector/
+├── scripts/entrypoint.sh (updated)
+└── templates/mcaselector-options.yaml (renamed from options.yml)
+
+ofelia/
+└── config.ini
+```
