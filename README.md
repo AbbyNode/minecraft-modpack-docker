@@ -31,8 +31,22 @@ MODPACK_URL=https://mediafilez.forgecdn.net/files/7121/795/ServerFiles-4.14.zip
 STARTSCRIPT=startserver.sh
 ```
 
-You can usually find the server files in the Files tab of a modpack.  
-https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/7121777/additional-files
+#### Two ways to specify the modpack:
+
+1. **Direct server file URL** (recommended for stability):
+   ```
+   MODPACK_URL=https://mediafilez.forgecdn.net/files/7121/795/ServerFiles-4.14.zip
+   ```
+   You can find the server files in the Files tab of a modpack, under "Additional Files":  
+   https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/7121777/additional-files
+
+2. **CurseForge modpack page URL** (automatic resolution):
+   ```
+   MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
+   ```
+   The system will automatically search the first page of files for server files.
+   
+   **Note:** This method searches only the first page (20 most recent files). If server files are not found on the first page, the download will fail. In that case, use the direct URL method instead.
 
 **Important:** Change the `BORG_PASSPHRASE` in your `.env` file to a strong, unique passphrase. This is required for backup encryption and will be needed to restore backups in the future.
 
