@@ -5,6 +5,7 @@ RUN apk add --no-cache bash curl jq
 
 WORKDIR /mcaselector
 
+# Get latest release from of MCSelector
 RUN \  
     release_json=$(curl --silent "https://api.github.com/repos/Querz/mcaselector/releases/latest") && \  
     latest_tag=$(echo "$release_json" | jq -r '.tag_name') && \  
