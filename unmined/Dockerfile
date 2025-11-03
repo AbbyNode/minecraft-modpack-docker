@@ -1,20 +1,29 @@
 # https://unmined.net/
 # Minecraft world mapper - generates web-based interactive maps
 
-FROM alpine:latest
+# Use Debian slim instead of Alpine for better package availability
+FROM debian:bookworm-slim
 
 # Install required dependencies
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
     curl \
-    ca-certificates
+    ca-certificates \
+    gzip \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /unmined
 
-# Download and install Unmined CLI (Linux musl x64)
+# Download and install Unmined CLI (Linux glibc x64 for Debian/Ubuntu)
 # Using the DEV channel for latest version
+# 
+# If building in a restricted environment, you can manually download the file:
+#   curl -L "https://unmined.net/download/unmined-cli-linux-x64-dev.gz" -o unmined-cli.gz
+# Then uncomment the COPY line below and comment out the RUN curl line:
+# COPY unmined-cli.gz /unmined/unmined-cli.gz
+#
 RUN \
-    curl -L "https://unmined.net/download/unmined-cli-linux-musl-x64-dev.gz" -o unmined-cli.gz && \
+    curl -L "https://unmined.net/download/unmined-cli-linux-x64-dev.gz" -o unmined-cli.gz && \
     gunzip unmined-cli.gz && \
     chmod +x unmined-cli && \
     mv unmined-cli /usr/local/bin/unmined-cli && \
