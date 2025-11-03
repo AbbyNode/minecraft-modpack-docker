@@ -4,13 +4,13 @@ set -e
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 echo ""
 
-# Extract scripts to data/config/setup-scripts
-if [ ! -d /workspace/data/config/setup-scripts ]; then
+# Extract scripts to data/setup-scripts
+if [ ! -d /workspace/data/setup-scripts ]; then
     echo "Extracting setup scripts..."
-    mkdir -p /workspace/data/config/setup-scripts
-    cp -r /scripts/* /workspace/data/config/setup-scripts/
-    chmod +x /workspace/data/config/setup-scripts/*.sh
-    echo "✓ Scripts extracted to data/config/setup-scripts/"
+    mkdir -p /workspace/data/setup-scripts
+    cp -r /scripts/* /workspace/data/setup-scripts/
+    chmod +x /workspace/data/setup-scripts/*.sh
+    echo "✓ Scripts extracted to data/setup-scripts/"
     echo ""
 fi
 

@@ -28,7 +28,7 @@ The setup container will:
 - Create `.env` with default configuration
 - Create required directory structure
 - Create default `data/config/ofelia/config.ini`
-- Extract version-controlled scripts to `data/config/setup-scripts/`
+- Extract version-controlled scripts to `data/setup-scripts/`
 
 ### Edit `.env` to configure your modpack
 

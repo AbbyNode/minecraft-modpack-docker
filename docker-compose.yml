@@ -64,7 +64,7 @@ services:
       # Ofelia configuration
       - ./data/config/ofelia:/config:ro
       # Entrypoint wrapper (extracted from setup image)
-      - ./data/config/setup-scripts/ofelia-entrypoint.sh:/setup-scripts/ofelia-entrypoint.sh:ro
+      - ./data/setup-scripts/ofelia-entrypoint.sh:/setup-scripts/ofelia-entrypoint.sh:ro
     restart: unless-stopped
     depends_on:
       - borgmatic
