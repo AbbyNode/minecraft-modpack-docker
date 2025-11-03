@@ -8,6 +8,19 @@ if [ -z "${MODPACK_URL:-}" ]; then
     exit 1
 fi
 
+# Check if MODPACK_URL is a CurseForge modpack page URL
+# Modpack slugs typically contain alphanumeric chars, hyphens, and underscores
+if echo "${MODPACK_URL}" | grep -qE '^https?://(www\.)?curseforge\.com/minecraft/modpacks/[a-zA-Z0-9_-]+/?$'; then
+    log_info "Detected CurseForge modpack URL, resolving to server files..."
+    RESOLVED_URL=$(bash "${SCRIPTS_DIR}/resolve-curseforge-url.sh" "${MODPACK_URL}")
+    if [ -z "${RESOLVED_URL}" ]; then
+        log_error "Failed to resolve CurseForge modpack URL to server files"
+        exit 1
+    fi
+    log_info "Resolved to: ${RESOLVED_URL}"
+    MODPACK_URL="${RESOLVED_URL}"
+fi
+
 # Download modpack to temporary directory
 DOWNLOAD_DIR=$(mktemp -d)
 log_info "============ Downloading modpack from ${MODPACK_URL} ============"
