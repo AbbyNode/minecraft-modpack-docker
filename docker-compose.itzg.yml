@@ -1,0 +1,106 @@
+services:
+
+  minecraft-modpack:
+    image: itzg/minecraft-server
+    container_name: minecraft-modpack
+    env_file:
+      - .env
+    environment:
+      # Core settings
+      EULA: "TRUE"
+      TYPE: "AUTO_CURSEFORGE"
+      
+      # Modpack source - use GENERIC_PACK for direct URLs, CF_SERVER_MOD for CurseForge
+      # This will be set from .env MODPACK_URL
+      GENERIC_PACK: "${MODPACK_URL}"
+      
+      # Server properties (from templates/default.properties)
+      MOTD: "Minecraft Modpack Server"
+      DIFFICULTY: "normal"
+      GAMEMODE: "survival"
+      FORCE_GAMEMODE: "TRUE"
+      PVP: "FALSE"
+      WHITE_LIST: "TRUE"
+      ENFORCE_WHITELIST: "TRUE"
+      SPAWN_PROTECTION: "0"
+      ALLOW_FLIGHT: "TRUE"
+      VIEW_DISTANCE: "32"
+      SIMULATION_DISTANCE: "16"
+      MAX_PLAYERS: "8"
+      
+      # Performance
+      MEMORY: "4G"
+      USE_AIKAR_FLAGS: "TRUE"
+      
+      # Additional settings
+      ENABLE_ROLLING_LOGS: "TRUE"
+      TZ: "America/New_York"
+    ports:
+      - "25565:25565"
+    volumes:
+      # Main data directory
+      - minecraft-data:/data
+      
+      # Persistent world
+      - ./data/world:/data/world
+      
+      # Server logs
+      - ./data/logs:/data/logs
+      
+      # Config directory for server.properties and JSON configs
+      - ./data/config:/data/config
+      
+      # Mods (if you want to add/override mods)
+      - ./data/mods/jars:/data/mods
+      
+      # Mod configs (if you want to override mod configs)
+      - ./data/mods/config:/data/config
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  mcaselector:
+    image: eclarift/mcaselector:latest
+    container_name: mcaselector
+    env_file:
+      - .env
+    volumes:
+      - ./data/world:/world
+      - ./data/config:/config
+    restart: unless-stopped
+
+  borgmatic:
+    image: eclarift/borgmatic:latest
+    container_name: borgmatic
+    env_file:
+      - .env
+    volumes:
+      # Source data to backup (read-only)
+      - ./data:/mnt/source:ro
+      # Borg repository storage
+      - ./data/backups/borg-repository:/mnt/borg-repository
+      # Borgmatic configuration
+      - ./data/config/borgmatic:/etc/borgmatic.d
+      # Borg state directory
+      - borgmatic-data:/root
+    restart: unless-stopped
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    command: daemon --config=/etc/ofelia/config.ini
+    volumes:
+      # Docker socket for managing containers
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Ofelia configuration
+      - ./ofelia/config.ini:/etc/ofelia/config.ini:ro
+    restart: unless-stopped
+    depends_on:
+      - borgmatic
+      - mcaselector
+
+volumes:
+  minecraft-data:
+    driver: local
+  borgmatic-data:
+    driver: local

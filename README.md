@@ -2,6 +2,8 @@
 
 Quick setup guide for running a Minecraft modded server with Docker.
 
+> **🎉 New Option Available!** This repository now supports using the industry-standard [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) image instead of the custom image. See [Migration Guide](docs/MIGRATION-GUIDE.md) and [Analysis](docs/ITZG-MIGRATION-ANALYSIS.md) for details.
+
 ## Setup
 
 ### Requirements
@@ -173,8 +175,34 @@ After editing, restart Ofelia:
 docker compose restart ofelia
 ```
 
+## Alternative: Using itzg/minecraft-server
+
+This repository now supports migrating to the industry-standard [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) image, which provides:
+
+- ✅ No custom image maintenance required
+- ✅ Active community support (1000+ contributors)
+- ✅ Advanced features: auto-updates, health checks, extensive configuration
+- ✅ Same core functionality: downloads server files from URLs
+- ✅ Better long-term maintenance and updates
+
+**See the migration guides:**
+- **[itzg Migration Analysis](docs/ITZG-MIGRATION-ANALYSIS.md)** - Detailed comparison and feature analysis
+- **[Migration Guide](docs/MIGRATION-GUIDE.md)** - Step-by-step migration instructions
+
+**Quick start with itzg:**
+```bash
+# Use the itzg-based configuration
+cp docker-compose.itzg.yml docker-compose.yml
+cp .env.itzg.example .env
+# Edit .env with your modpack URL and passphrase
+docker compose pull
+docker compose up -d
+```
+
 ## Documentation
 
+- **[itzg Migration Analysis](docs/ITZG-MIGRATION-ANALYSIS.md)** - Analysis of itzg/minecraft-server as replacement for custom image
+- **[Migration Guide](docs/MIGRATION-GUIDE.md)** - Step-by-step guide to migrate to itzg/minecraft-server
 - **[Orchestrator Configuration Guide](docs/ORCHESTRATOR.md)** - Detailed configuration options for Ofelia, Borgmatic, and MCASelector
 - **[Quick Reference Guide](docs/QUICK-REFERENCE.md)** - Common commands and tasks
 - **[MCASelector CLI Mode](mcaselector/docs/CLI-Mode.md)** - MCASelector command-line documentation
