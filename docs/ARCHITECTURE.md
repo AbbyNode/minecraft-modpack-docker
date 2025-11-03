@@ -8,17 +8,21 @@ graph TB
         Ofelia[Ofelia<br/>Job Scheduler]
         Borgmatic[Borgmatic<br/>Backup Service]
         MCASelector[MCASelector<br/>Chunk Cleanup]
+        Unmined[Unmined<br/>Map Generator]
         Minecraft[Minecraft Server]
         
         Ofelia -->|Daily 2AM| Borgmatic
         Ofelia -->|Sunday 3AM| MCASelector
+        Ofelia -.->|Optional: Daily 4AM| Unmined
         
         Borgmatic -.->|Reads| Data[(./data)]
         MCASelector -.->|Modifies| World[(./data/world)]
+        Unmined -.->|Reads| World
         Minecraft -->|Generates| Data
         Minecraft -->|Generates| World
         
         Borgmatic -->|Writes| Backups[(./data/backups)]
+        Unmined -->|Writes| Maps[(./data/unmined-map)]
     end
 ```
 
@@ -42,6 +46,12 @@ graph TB
 - **Config**: `./data/config/mcaselector-options.yaml` (auto-created)
 - **Purpose**: Delete old chunks based on LastUpdated + InhabitedTime
 
+### Unmined
+- **Image**: `eclarift/unmined:latest` (custom)
+- **Config**: None required
+- **Purpose**: Generate interactive web-based maps of the Minecraft world
+- **Output**: `./data/unmined-map/`
+
 ## Data Flow
 
 **Backup (Daily 2AM)**
@@ -54,12 +64,18 @@ Ofelia → Borgmatic → Read ./data → Encrypt & Compress → ./data/backups/b
 Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
 ```
 
+**Map Generation (Optional, Daily 4AM if enabled)**
+```
+Ofelia → Unmined → Read ./data/world → Generate web map → ./data/unmined-map
+```
+
 ## Default Schedules
 
 | Job | Schedule | Description |
 |-----|----------|-------------|
 | borgmatic-backup | 0 2 * * * | Daily 2 AM backup |
 | mcaselector-cleanup | 0 3 * * 0 | Sunday 3 AM cleanup |
+| unmined-render | 0 4 * * * | Daily 4 AM map generation (disabled by default) |
 
 ## Volume Mounts
 
@@ -70,6 +86,8 @@ Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
 | Borgmatic | `./data/config/borgmatic` | `/etc/borgmatic.d` | rw |
 | MCASelector | `./data/world` | `/world` | rw |
 | MCASelector | `./data/config` | `/config` | rw |
+| Unmined | `./data/world` | `/world` | ro |
+| Unmined | `./data/unmined-map` | `/output` | rw |
 | Ofelia | `/var/run/docker.sock` | `/var/run/docker.sock` | ro |
 | Ofelia | `./ofelia/config.ini` | `/etc/ofelia/config.ini` | ro |
 
@@ -92,6 +110,11 @@ borgmatic/
 mcaselector/
 ├── scripts/entrypoint.sh (updated)
 └── templates/mcaselector-options.yaml (renamed from options.yml)
+
+unmined/
+├── Dockerfile
+├── scripts/{entrypoint.sh, render-map.sh}
+└── README.md
 
 ofelia/
 └── config.ini
