@@ -175,34 +175,32 @@ After editing, restart Ofelia:
 docker compose restart ofelia
 ```
 
-## Alternative: Using itzg/minecraft-server
+## Alternative: Hybrid itzg/minecraft-server Approach
 
-This repository now supports migrating to the industry-standard [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) image, which provides:
+This repository provides a hybrid approach using [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) as the base:
 
-- ✅ No custom image maintenance required
-- ✅ Active community support (1000+ contributors)
-- ✅ Advanced features: auto-updates, health checks, extensive configuration
-- ✅ Same core functionality: downloads server files from URLs
-- ✅ Better long-term maintenance and updates
+**Benefits:**
+- ✅ Community-maintained base (1000+ contributors)
+- ✅ Uses custom start scripts if present in modpack
+- ✅ CurseForge page URL resolution without API key
+- ✅ Server properties via environment variables
+- ✅ Advanced features: health checks, optimized JVM flags
 
-**See the migration guides:**
-- **[itzg Migration Analysis](docs/ITZG-MIGRATION-ANALYSIS.md)** - Detailed comparison and feature analysis
-- **[Migration Guide](docs/MIGRATION-GUIDE.md)** - Step-by-step migration instructions
-
-**Quick start with itzg:**
+**Quick start:**
 ```bash
-# Use the itzg-based configuration
+# Use the hybrid itzg configuration
 cp docker-compose.itzg.yml docker-compose.yml
 cp .env.itzg.example .env
-# Edit .env with your modpack URL and passphrase
-docker compose pull
+# Edit .env with your modpack URL and server properties
+docker compose build
 docker compose up -d
 ```
 
+See **[docs/ITZG-GUIDE.md](docs/ITZG-GUIDE.md)** for full details.
+
 ## Documentation
 
-- **[itzg Migration Analysis](docs/ITZG-MIGRATION-ANALYSIS.md)** - Analysis of itzg/minecraft-server as replacement for custom image
-- **[Migration Guide](docs/MIGRATION-GUIDE.md)** - Step-by-step guide to migrate to itzg/minecraft-server
+- **[Hybrid itzg Guide](docs/ITZG-GUIDE.md)** - Using itzg/minecraft-server with custom start script support
 - **[Orchestrator Configuration Guide](docs/ORCHESTRATOR.md)** - Detailed configuration options for Ofelia, Borgmatic, and MCASelector
 - **[Quick Reference Guide](docs/QUICK-REFERENCE.md)** - Common commands and tasks
 - **[MCASelector CLI Mode](mcaselector/docs/CLI-Mode.md)** - MCASelector command-line documentation

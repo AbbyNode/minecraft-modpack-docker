@@ -1,32 +1,23 @@
 services:
 
   minecraft-modpack:
-    image: itzg/minecraft-server
+    build:
+      context: ./minecraft-modpack-itzg
     container_name: minecraft-modpack
     env_file:
       - .env
     environment:
       # Core settings
       EULA: "TRUE"
-      TYPE: "AUTO"
       
-      # Modpack source - GENERIC_PACK accepts direct URLs to server file zips
-      # For CurseForge page URLs, use CF_SERVER_MOD or TYPE=AUTO_CURSEFORGE with CF_PAGE_URL
-      GENERIC_PACK: "${MODPACK_URL}"
+      # MODPACK_URL is set in .env and passed to the hybrid image
+      # It can be either:
+      # - Direct server file URL (e.g., https://mediafilez.forgecdn.net/files/.../ServerFiles.zip)
+      # - CurseForge modpack page URL (e.g., https://www.curseforge.com/minecraft/modpacks/...)
+      # The hybrid image resolves page URLs automatically without needing an API key
       
-      # Server properties (from templates/default.properties)
-      MOTD: "Minecraft Modpack Server"
-      DIFFICULTY: "normal"
-      GAMEMODE: "survival"
-      FORCE_GAMEMODE: "TRUE"
-      PVP: "FALSE"
-      WHITE_LIST: "TRUE"
-      ENFORCE_WHITELIST: "TRUE"
-      SPAWN_PROTECTION: "0"
-      ALLOW_FLIGHT: "TRUE"
-      VIEW_DISTANCE: "32"
-      SIMULATION_DISTANCE: "16"
-      MAX_PLAYERS: "8"
+      # Server properties (from .env)
+      # These are loaded from .env file to override defaults
       
       # Performance
       MEMORY: "4G"
@@ -38,20 +29,16 @@ services:
     ports:
       - "25565:25565"
     volumes:
-      # Main data directory
+      # Main data directory - contains everything
       - minecraft-data:/data
       
-      # Persistent world
+      # Persistent folders (bind mount folders only, no individual files)
       - ./data/world:/data/world
-      
-      # Server logs
       - ./data/logs:/data/logs
-      
-      # Config directory for server.properties and JSON configs
       - ./data/config:/data/config
       
-      # Mods (if you want to add/override mods)
-      - ./data/mods/jars:/data/mods
+      # Mods directory (if you want to add/override mods)
+      - ./data/mods:/data/mods
     restart: unless-stopped
     stdin_open: true
     tty: true
