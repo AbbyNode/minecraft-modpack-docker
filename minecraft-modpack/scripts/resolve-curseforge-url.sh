@@ -61,7 +61,8 @@ log_info "Files page downloaded, searching for server files..."
 
 # Extract file IDs that have "server" in their associated file name
 # Get the highest (most recent) file ID
-SERVER_FILE_ID=$(grep -i 'server.*\.zip' "$TEMP_HTML" | grep -oP '/files/\K[0-9]+' | sort -rn | head -1)
+# Use sed instead of grep -P for better compatibility
+SERVER_FILE_ID=$(grep -i 'server.*\.zip' "$TEMP_HTML" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | sort -rn | head -1)
 
 if [ -z "$SERVER_FILE_ID" ]; then
     log_error "No server files found on the files list page"
@@ -72,7 +73,8 @@ fi
 
 # Extract filename for this file ID
 # Find the line containing this specific file ID and extract the filename
-SERVER_FILENAME=$(grep "/files/${SERVER_FILE_ID}" "$TEMP_HTML" | grep -ioP '[^"/<>]*server[^"/<>]*\.zip' | head -1)
+# Use sed instead of grep -P for better compatibility
+SERVER_FILENAME=$(grep "/files/${SERVER_FILE_ID}" "$TEMP_HTML" | grep -io 'server[^"<>]*\.zip' | head -1)
 
 rm -f "$TEMP_HTML"
 
@@ -86,6 +88,13 @@ log_info "Found server file: $SERVER_FILENAME (ID: $SERVER_FILE_ID)"
 # Construct the direct download URL
 # CurseForge uses format: https://mediafilez.forgecdn.net/files/XXXX/YYY/filename.zip
 # where file ID 7121795 becomes 7121/795
+
+# Validate file ID has at least 3 digits
+if [ ${#SERVER_FILE_ID} -lt 3 ]; then
+    log_error "File ID '$SERVER_FILE_ID' is too short (< 3 digits) to construct a valid download URL"
+    exit 1
+fi
+
 PART1=$(echo "$SERVER_FILE_ID" | sed 's/\(.*\)\(...\)/\1/')
 PART2=$(echo "$SERVER_FILE_ID" | sed 's/.*\(...\)/\1/')
 
