@@ -87,7 +87,7 @@ This index helps you navigate the documentation created for migrating from the c
 → [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) or [CHECKLIST.md](CHECKLIST.md)
 
 **"What files do I need to change?"**
-→ [QUICK-COMPARISON.md](QUICK-COMPARISON.md#configuration) or [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#step-3-update-configuration-files)
+→ [QUICK-COMPARISON.md](QUICK-COMPARISON.md#files-to-change) or [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#step-3-update-configuration-files)
 
 **"Can I rollback if something goes wrong?"**
 → [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#rollback-instructions) or [CHECKLIST.md](CHECKLIST.md#rollback-if-needed)
@@ -210,7 +210,7 @@ Each document reinforces these key points:
 1. Choose your reading path above
 2. Review the relevant documentation
 3. Make your decision
-4. If migrating, follow the [CHECKLIST.md](docs/CHECKLIST.md)
+4. If migrating, follow the [CHECKLIST.md](CHECKLIST.md)
 
 ---
 

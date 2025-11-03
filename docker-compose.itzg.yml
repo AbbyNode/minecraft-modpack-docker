@@ -8,10 +8,10 @@ services:
     environment:
       # Core settings
       EULA: "TRUE"
-      TYPE: "AUTO_CURSEFORGE"
+      TYPE: "AUTO"
       
-      # Modpack source - use GENERIC_PACK for direct URLs, CF_SERVER_MOD for CurseForge
-      # This will be set from .env MODPACK_URL
+      # Modpack source - GENERIC_PACK accepts direct URLs to server file zips
+      # For CurseForge page URLs, use CF_SERVER_MOD or TYPE=AUTO_CURSEFORGE with CF_PAGE_URL
       GENERIC_PACK: "${MODPACK_URL}"
       
       # Server properties (from templates/default.properties)

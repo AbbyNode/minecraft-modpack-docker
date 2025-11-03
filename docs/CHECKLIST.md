@@ -217,7 +217,7 @@ If you encounter issues, check:
 2. **MODPACK_URL**: Verify it's accessible with `curl -I "${MODPACK_URL}"`
 3. **Server Type**: May need to set TYPE explicitly (FORGE, FABRIC, NEOFORGE)
 4. **Memory**: May need to increase MEMORY setting
-5. **Documentation**: See [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) troubleshooting section
+5. **Documentation**: See [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) troubleshooting section
 
 ## 📞 Getting Help
 
