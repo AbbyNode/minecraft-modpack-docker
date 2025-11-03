@@ -10,6 +10,13 @@
 
 set -e
 
+# Ensure git is configured
+if ! git config user.email > /dev/null 2>&1; then
+    echo "Git user not configured. Setting default identity for this operation..."
+    git config user.name "Git History Rewriter"
+    git config user.email "noreply@localhost"
+fi
+
 echo "=== Git History Rewrite Script ==="
 echo "This script will rewrite git history to convert merge commits to squash commits"
 echo ""
