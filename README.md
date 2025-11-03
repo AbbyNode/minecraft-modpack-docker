@@ -149,6 +149,35 @@ docker exec mcaselector /scripts/delete-chunks.sh
 - Edit `./data/config/mcaselector-options.yaml` to customize cleanup rules
 - After first run, the configuration file will be created from the template
 
+### World Map Generation (Unmined)
+
+Generate interactive web-based maps of your Minecraft world:
+
+**What it does:**
+- Creates a browsable, zoomable web map of your entire world
+- Viewable in any web browser (no server required)
+- Shows terrain, structures, biomes, and more
+
+**Map location:**
+- Generated map files: `./data/unmined-map/`
+- Open `unmined.index.html` in a web browser to view
+
+**Manual map generation:**
+```bash
+# Generate map immediately
+docker exec unmined /scripts/render-map.sh
+```
+
+**Automatic map generation:**
+- By default, map generation is manual only
+- To enable automatic generation, edit `ofelia/config.ini` and uncomment the `unmined-render` job
+- Default schedule if enabled: Daily at 4:00 AM
+- **Note:** Map generation can take a long time for large worlds
+
+**Incremental updates:**
+- If you regenerate the map, only new or changed regions will be rendered
+- This makes updates much faster than the initial generation
+
 ### Job Orchestration (Ofelia)
 
 Ofelia manages all scheduled tasks. View job logs:
