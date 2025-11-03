@@ -59,31 +59,89 @@ fi
 
 log_info "Files page downloaded, searching for server files..."
 
-# Extract file IDs that have "server" in their associated file name
-# Get the highest (most recent) file ID
-# Use sed instead of grep -P for better compatibility
-SERVER_FILE_ID=$(grep -i 'server.*\.zip' "$TEMP_HTML" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | sort -rn | head -1)
+# First, try to find files with "server" in the filename directly on the main page
+# Extract filenames that contain "server"
+SERVER_FILENAME=$(grep -io 'server[^"<>]*\.zip' "$TEMP_HTML" | head -1 || true)
 
-if [ -z "$SERVER_FILE_ID" ]; then
-    log_error "No server files found on the files list page"
-    log_error "You can manually check: https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files"
-    rm -f "$TEMP_HTML"
-    exit 1
+if [ -n "$SERVER_FILENAME" ]; then
+    # Found a server filename, now find its file ID
+    SERVER_FILE_ID=$(grep -i "$SERVER_FILENAME" "$TEMP_HTML" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
+    
+    if [ -n "$SERVER_FILE_ID" ]; then
+        log_info "Found server file in main list: $SERVER_FILENAME (ID: $SERVER_FILE_ID)"
+        rm -f "$TEMP_HTML"
+    else
+        SERVER_FILENAME=""
+    fi
 fi
 
-# Extract filename for this file ID
-# Find the line containing this specific file ID and extract the filename
-# Use sed instead of grep -P for better compatibility
-SERVER_FILENAME=$(grep "/files/${SERVER_FILE_ID}" "$TEMP_HTML" | grep -io 'server[^"<>]*\.zip' | head -1)
-
-rm -f "$TEMP_HTML"
-
+# If no server file found in main list, check additional files for each file on the page
 if [ -z "$SERVER_FILENAME" ]; then
-    log_error "Failed to extract server filename for file ID: $SERVER_FILE_ID"
-    exit 1
+    log_info "No server files in main list, checking additional files..."
+    
+    # Extract all file IDs from the page
+    FILE_IDS=$(grep -oE '/files/[0-9]+' "$TEMP_HTML" | sed 's|/files/||' | sort -rn | uniq | head -${PAGE_SIZE} || true)
+    
+    rm -f "$TEMP_HTML"
+    
+    if [ -z "$FILE_IDS" ]; then
+        log_error "No file IDs found on the files page"
+        exit 1
+    fi
+    
+    # Check each file's additional files page for server files
+    for FILE_ID in $FILE_IDS; do
+        log_info "Checking additional files for file ID: $FILE_ID"
+        
+        ADDITIONAL_URL="https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files/${FILE_ID}/additional-files"
+        TEMP_ADDITIONAL=$(mktemp)
+        
+        # Fetch additional files page (don't exit on curl failure due to set -e)
+        if curl -L -A "$USER_AGENT" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            --max-time "$CURL_TIMEOUT" \
+            -s "$ADDITIONAL_URL" > "$TEMP_ADDITIONAL" 2>/dev/null; then
+            # Curl succeeded
+            :
+        else
+            log_warn "Failed to fetch additional files for file ID $FILE_ID"
+            rm -f "$TEMP_ADDITIONAL"
+            continue
+        fi
+        
+        # Check if page has content
+        if [ ! -s "$TEMP_ADDITIONAL" ]; then
+            rm -f "$TEMP_ADDITIONAL"
+            continue
+        fi
+        
+        # Look for server filenames in additional files
+        SERVER_FILENAME=$(grep -io 'server[^"<>]*\.zip' "$TEMP_ADDITIONAL" | head -1 || true)
+        
+        if [ -n "$SERVER_FILENAME" ]; then
+            # Found a server filename, now find its file ID
+            SERVER_FILE_ID=$(grep -i "$SERVER_FILENAME" "$TEMP_ADDITIONAL" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
+            rm -f "$TEMP_ADDITIONAL"
+            
+            if [ -n "$SERVER_FILE_ID" ]; then
+                log_info "Found server file in additional files: $SERVER_FILENAME (ID: $SERVER_FILE_ID)"
+                break
+            else
+                SERVER_FILENAME=""
+            fi
+        fi
+        
+        rm -f "$TEMP_ADDITIONAL"
+    done
+    
+    if [ -z "$SERVER_FILENAME" ] || [ -z "$SERVER_FILE_ID" ]; then
+        log_error "No server files found in main list or additional files"
+        log_error "You can manually check: https://www.curseforge.com/minecraft/modpacks/${MODPACK_SLUG}/files"
+        exit 1
+    fi
+else
+    rm -f "$TEMP_HTML"
 fi
-
-log_info "Found server file: $SERVER_FILENAME (ID: $SERVER_FILE_ID)"
 
 # Construct the direct download URL
 # CurseForge uses format: https://mediafilez.forgecdn.net/files/XXXX/YYY/filename.zip
