@@ -6,6 +6,7 @@ This index helps you navigate the documentation created for migrating from the c
 
 **New to this?** Start with one of these based on how much time you have:
 
+- **2 minutes**: [FINAL-SUMMARY.md](FINAL-SUMMARY.md) - Quick decision guide based on testing
 - **5 minutes**: [ANSWER.md](ANSWER.md) - Quick answer to "Can I replace my custom image?"
 - **15 minutes**: [QUICK-COMPARISON.md](QUICK-COMPARISON.md) - Side-by-side comparison
 - **30 minutes**: [../SUMMARY.md](../SUMMARY.md) - Complete overview of findings
@@ -15,9 +16,16 @@ This index helps you navigate the documentation created for migrating from the c
 ### Quick Reference
 | Document | Purpose | Time to Read |
 |----------|---------|--------------|
+| [FINAL-SUMMARY.md](FINAL-SUMMARY.md) | Decision guide with testing results | 5 min |
 | [ANSWER.md](ANSWER.md) | Direct answer to the original question | 5 min |
 | [../SUMMARY.md](../SUMMARY.md) | Complete summary of investigation | 10 min |
 | [QUICK-COMPARISON.md](QUICK-COMPARISON.md) | Side-by-side comparison table | 10 min |
+
+### Testing & Clarifications
+| Document | Purpose | Time to Read |
+|----------|---------|--------------|
+| [TESTING-RESULTS.md](TESTING-RESULTS.md) | Real modpack testing results (9 modpacks tested) | 10 min |
+| [CLARIFICATIONS.md](CLARIFICATIONS.md) | Answers to start scripts, properties, configs questions | 15 min |
 
 ### Detailed Analysis
 | Document | Purpose | Time to Read |
@@ -42,29 +50,30 @@ This index helps you navigate the documentation created for migrating from the c
 
 ## 🗺️ Reading Paths
 
-### Path 1: "Just Tell Me Yes or No" (5 minutes)
-1. [ANSWER.md](ANSWER.md) ← Start here!
+### Path 1: "Just Tell Me Yes or No" (2 minutes)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md) ← Start here for quick decision!
 
-**Result**: You'll know if migration is possible and how to do it.
+**Result**: You'll know exactly which approach to use based on testing.
 
 ### Path 2: "Give Me the Overview" (20 minutes)
-1. [ANSWER.md](ANSWER.md)
-2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
-3. [../SUMMARY.md](../SUMMARY.md)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md)
+2. [TESTING-RESULTS.md](TESTING-RESULTS.md)
+3. [CLARIFICATIONS.md](CLARIFICATIONS.md)
 
-**Result**: You'll understand the trade-offs and benefits.
+**Result**: You'll understand testing results and key differences.
 
 ### Path 3: "I Want All the Details" (1 hour)
-1. [ANSWER.md](ANSWER.md)
-2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
-3. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
-4. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md)
-5. [CHECKLIST.md](CHECKLIST.md)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md)
+2. [TESTING-RESULTS.md](TESTING-RESULTS.md)
+3. [CLARIFICATIONS.md](CLARIFICATIONS.md)
+4. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
+5. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md)
+6. [CHECKLIST.md](CHECKLIST.md)
 
 **Result**: You'll be fully prepared to migrate with confidence.
 
 ### Path 4: "Let's Do This!" (1-2 hours)
-1. [ANSWER.md](ANSWER.md) - Understand the solution
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md) - Understand the decision
 2. [CHECKLIST.md](CHECKLIST.md) - Follow the steps
 3. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Reference as needed
 
@@ -159,17 +168,17 @@ This index helps you navigate the documentation created for migrating from the c
 ## 🎯 Recommended Reading Order
 
 ### Scenario 1: Just Exploring
-1. [ANSWER.md](ANSWER.md)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md)
 2. Stop here or continue if interested
 
 ### Scenario 2: Seriously Considering
-1. [ANSWER.md](ANSWER.md)
-2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
-3. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md)
+2. [TESTING-RESULTS.md](TESTING-RESULTS.md)
+3. [CLARIFICATIONS.md](CLARIFICATIONS.md)
 4. Make decision
 
 ### Scenario 3: Ready to Migrate
-1. [ANSWER.md](ANSWER.md) (if not already read)
+1. [FINAL-SUMMARY.md](FINAL-SUMMARY.md) (if not already read)
 2. [CHECKLIST.md](CHECKLIST.md) - Follow step by step
 3. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Reference as needed
 4. Perform migration
