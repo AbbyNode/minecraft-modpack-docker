@@ -5,19 +5,22 @@ Provides initialization and wrapper scripts for the Minecraft modpack Docker env
 ## Scripts
 
 ### `scripts/init.sh`
-Main initialization script. Supports two modes:
-- `init` (default): Creates .env, directories, ofelia config, and extracts scripts
-- `extract`: Only extracts scripts to `.minecraft-setup/`
+Main initialization script that creates .env, directories, ofelia config, and extracts scripts to `data/config/setup-scripts/`.
 
 ### `scripts/ofelia-entrypoint.sh`
 Wrapper for Ofelia that creates symlinks before starting the daemon. Extracted to host and mounted into the Ofelia container.
+
+## Templates
+
+### `templates/default.env`
+Default environment configuration used if .env.example is not available.
+
+### `templates/ofelia-config.ini`
+Default Ofelia job configuration for scheduled tasks.
 
 ## Usage
 
 ```bash
 # Initial setup
 docker compose --profile setup run --rm setup
-
-# Re-extract scripts only (e.g., after updating setup image)
-docker compose --profile setup run --rm setup extract
 ```

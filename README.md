@@ -27,8 +27,8 @@ docker compose up -d
 The setup container will:
 - Create `.env` with default configuration
 - Create required directory structure
-- Create default `ofelia/config.ini`
-- Extract version-controlled scripts to `.minecraft-setup/`
+- Create default `data/config/ofelia/config.ini`
+- Extract version-controlled scripts to `data/config/setup-scripts/`
 
 ### Edit `.env` to configure your modpack
 
