@@ -19,7 +19,7 @@ WORKDIR /unmined
 # 
 # If building in a restricted environment, you can manually download the file:
 #   curl -L "https://unmined.net/download/unmined-cli-linux-x64-dev.gz" -o unmined-cli.gz
-# Then uncomment the COPY line below and comment out the RUN curl line:
+# Then UNCOMMENT the COPY line below AND COMMENT OUT the RUN curl command:
 # COPY unmined-cli.gz /unmined/unmined-cli.gz
 #
 RUN \

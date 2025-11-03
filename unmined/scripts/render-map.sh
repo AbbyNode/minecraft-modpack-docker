@@ -24,7 +24,7 @@ fi
 mkdir -p /output
 
 # Check if output directory is empty (excluding hidden files)
-if [ -n "$(ls -A /output 2>/dev/null | grep -v '^\..*')" ]; then
+if [ -n "$(ls -A /output 2>/dev/null | grep -v '^\.')" ]; then
     echo "WARNING: Output directory is not empty. Existing map will be updated."
     echo "Only new or changed regions will be rendered."
 else
