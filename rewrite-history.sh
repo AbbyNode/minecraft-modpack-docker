@@ -53,22 +53,29 @@ echo ""
 echo "Step 3: Squashing second merge (PR #3: Borgmatic passphrase)..."
 git merge --squash 19667b0
 
-# Check if there are merge conflicts
-if git diff --cached --quiet; then
-    echo "No changes to commit (possible conflict or already applied)"
-    git reset --hard
-else
-    # Resolve any merge conflicts in docker-compose.yml
+# Check if there are changes to commit
+if ! git diff --cached --quiet; then
+    # Check for merge conflicts in docker-compose.yml
     if [ -f "docker-compose.yml" ] && grep -q "<<<<<<< HEAD" docker-compose.yml; then
         echo "Resolving merge conflict in docker-compose.yml..."
-        # Auto-resolve by keeping the version with env_file added
-        sed -i '/<<<<<<< HEAD/,/=======/{//!d}; /=======/d; />>>>>>> 19667b0/d' docker-compose.yml
+        # The conflict is about adding env_file to borgmatic service
+        # We want to keep the version that adds it (from 19667b0)
+        # Use a temporary file to resolve the conflict
+        awk '
+            /<<<<<<< HEAD/ { skip=1; next }
+            /=======/ { if (skip) { skip=0; next } }
+            />>>>>>> 19667b0/ { next }
+            { if (!skip) print }
+        ' docker-compose.yml > docker-compose.yml.tmp
+        mv docker-compose.yml.tmp docker-compose.yml
         git add docker-compose.yml
     fi
     
     git commit -m "Merge pull request #3 from AbbyNode/copilot/fix-borgmatic-repository-issue
 
 Add BORG_PASSPHRASE environment variable for borgmatic repository initialization"
+else
+    echo "No changes to commit (already applied)"
 fi
 
 echo ""
