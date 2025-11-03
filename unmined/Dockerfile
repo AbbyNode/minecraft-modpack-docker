@@ -36,7 +36,4 @@ RUN unmined-cli --help
 COPY ./scripts /scripts
 RUN chmod +x /scripts/*.sh
 
-# Copy templates
-COPY ./templates /templates
-
 ENTRYPOINT ["/scripts/entrypoint.sh"]
