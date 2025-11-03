@@ -1,2 +1,5 @@
 docs
 *.md
+# Exclude downloaded binaries (if manually downloaded)
+unmined-cli.gz
+unmined-cli

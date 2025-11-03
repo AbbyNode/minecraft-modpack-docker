@@ -178,6 +178,10 @@ docker exec unmined /scripts/render-map.sh
 - If you regenerate the map, only new or changed regions will be rendered
 - This makes updates much faster than the initial generation
 
+**Building the image:**
+- See [unmined/README.md](unmined/README.md) for build instructions
+- If building in a restricted environment, see [unmined/BUILD-GUIDE.md](unmined/BUILD-GUIDE.md)
+
 ### Job Orchestration (Ofelia)
 
 Ofelia manages all scheduled tasks. View job logs:
