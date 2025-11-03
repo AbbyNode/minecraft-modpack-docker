@@ -56,15 +56,15 @@ services:
   ofelia:
     image: mcuadros/ofelia:latest
     container_name: ofelia
-    entrypoint: ["/entrypoint-wrapper.sh"]
+    entrypoint: ["/.minecraft-setup/ofelia-entrypoint.sh"]
     command: daemon --config=/etc/ofelia/config.ini
     volumes:
       # Docker socket for managing containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # Ofelia configuration
       - ./ofelia:/config:ro
-      # Entrypoint wrapper from setup image (version controlled)
-      - ./setup/scripts/ofelia-entrypoint.sh:/entrypoint-wrapper.sh:ro
+      # Entrypoint wrapper (extracted from setup image)
+      - ./.minecraft-setup/ofelia-entrypoint.sh:/.minecraft-setup/ofelia-entrypoint.sh:ro
     restart: unless-stopped
     depends_on:
       - borgmatic
