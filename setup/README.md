@@ -12,8 +12,8 @@ Wrapper for Ofelia that creates symlinks before starting the daemon. Extracted t
 
 ## Templates
 
-### `templates/default.env`
-Default environment configuration used if .env.example is not available.
+### `templates/.env.example`
+Environment configuration template (from repository's .env.example).
 
 ### `templates/ofelia-config.ini`
 Default Ofelia job configuration for scheduled tasks.

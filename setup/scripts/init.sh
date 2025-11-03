@@ -16,16 +16,9 @@ fi
 
 # Create .env file if it doesn't exist
 if [ ! -f /workspace/.env ]; then
-    if [ -f /workspace/.env.example ]; then
-        echo "Creating .env from .env.example..."
-        cp /workspace/.env.example /workspace/.env
-        echo "✓ .env created"
-    else
-        echo "⚠ Warning: .env.example not found"
-        echo "Creating default .env..."
-        cp /templates/default.env /workspace/.env
-        echo "✓ Default .env created"
-    fi
+    echo "Creating .env from template..."
+    cp /templates/.env.example /workspace/.env
+    echo "✓ .env created"
 else
     echo "✓ .env already exists"
 fi
