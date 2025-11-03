@@ -9,6 +9,7 @@ graph TB
         Borgmatic[Borgmatic<br/>Backup Service]
         MCASelector[MCASelector<br/>Chunk Cleanup]
         Minecraft[Minecraft Server]
+        Unmined[uNmINeD<br/>World Viewer]
         
         Ofelia -->|Daily 2AM| Borgmatic
         Ofelia -->|Sunday 3AM| MCASelector
@@ -17,6 +18,7 @@ graph TB
         MCASelector -.->|Modifies| World[(./data/world)]
         Minecraft -->|Generates| Data
         Minecraft -->|Generates| World
+        Unmined -.->|Reads| World
         
         Borgmatic -->|Writes| Backups[(./data/backups)]
     end
@@ -42,6 +44,13 @@ graph TB
 - **Config**: `./data/config/mcaselector-options.yaml` (auto-created)
 - **Purpose**: Delete old chunks based on LastUpdated + InhabitedTime
 
+### uNmINeD
+- **Image**: `ich777/unmined:latest`
+- **Purpose**: Web-based Minecraft world viewer and mapper
+- **Web UI**: http://localhost:8080/vnc.html?autoconnect=true
+- **Resolution**: 1280x850 (configurable via environment variables)
+- **Access**: Read-only access to world files
+
 ## Data Flow
 
 **Backup (Daily 2AM)**
@@ -52,6 +61,11 @@ Ofelia → Borgmatic → Read ./data → Encrypt & Compress → ./data/backups/b
 **Cleanup (Sunday 3AM)**
 ```
 Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
+```
+
+**World Viewing (On-Demand)**
+```
+User → uNmINeD Web UI → Read ./data/world → Display 2D map
 ```
 
 ## Default Schedules
@@ -70,6 +84,7 @@ Ofelia → MCASelector → Analyze ./data/world → Delete matching chunks
 | Borgmatic | `./data/config/borgmatic` | `/etc/borgmatic.d` | rw |
 | MCASelector | `./data/world` | `/world` | rw |
 | MCASelector | `./data/config` | `/config` | rw |
+| uNmINeD | `./data/world` | `/unmined/worlds/minecraft` | ro |
 | Ofelia | `/var/run/docker.sock` | `/var/run/docker.sock` | ro |
 | Ofelia | `./ofelia/config.ini` | `/etc/ofelia/config.ini` | ro |
 

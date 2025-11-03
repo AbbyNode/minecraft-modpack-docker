@@ -135,6 +135,25 @@ docker exec mcaselector /scripts/delete-chunks.sh
 - Edit `./data/config/mcaselector-options.yaml` to customize cleanup rules
 - After first run, the configuration file will be created from the template
 
+### World Viewer and Mapper (uNmINeD)
+
+View and export your Minecraft world as a 2D map through a web-based interface:
+
+**Features:**
+- Browse your Minecraft world in a 2D map view
+- Export maps for sharing or documentation
+- Supports both Java and Bedrock Edition worlds
+- Read-only access to world files for safety
+
+**Access the web interface:**
+- URL: http://localhost:8080/vnc.html?autoconnect=true
+- Replace `localhost` with your server IP if accessing remotely
+
+**Usage tips:**
+- The world is mounted as read-only to prevent accidental modifications
+- Resolution is set to 1280x850 by default (configurable in `docker-compose.yml`)
+- Access the interface anytime the container is running
+
 ### Job Orchestration (Ofelia)
 
 Ofelia manages all scheduled tasks. View job logs:

@@ -46,6 +46,25 @@ services:
       - borgmatic-data:/root
     restart: unless-stopped
 
+  unmined:
+    image: ich777/unmined:latest
+    container_name: unmined
+    environment:
+      - CUSTOM_RES_W=1280
+      - CUSTOM_RES_H=850
+      - UID=1000
+      - GID=1000
+      - UMASK=000
+      - DATA_PERM=770
+    ports:
+      - "8080:8080"
+    volumes:
+      # uNmINeD data directory
+      - unmined-data:/unmined
+      # Minecraft world (read-only for safety)
+      - ./data/world:/unmined/worlds/minecraft:ro
+    restart: unless-stopped
+
   ofelia:
     image: mcuadros/ofelia:latest
     container_name: ofelia
@@ -64,4 +83,6 @@ volumes:
   minecraft-data:
     driver: local
   borgmatic-data:
+    driver: local
+  unmined-data:
     driver: local

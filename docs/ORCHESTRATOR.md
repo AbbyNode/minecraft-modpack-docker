@@ -120,6 +120,73 @@ delete_chunks:
 docker exec mcaselector /scripts/delete-chunks.sh
 ```
 
+## uNmINeD (World Viewer)
+
+**Service**: `unmined` in `docker-compose.yml`
+
+### Configuration
+
+```yaml
+unmined:
+  image: ich777/unmined:latest
+  environment:
+    - CUSTOM_RES_W=1280      # Display width in pixels
+    - CUSTOM_RES_H=850       # Display height in pixels
+    - UID=1000               # User ID for file permissions
+    - GID=1000               # Group ID for file permissions
+    - UMASK=000              # File creation mask
+    - DATA_PERM=770          # Data directory permissions
+  ports:
+    - "8080:8080"            # Web interface port
+```
+
+### Resolution Settings
+
+Common resolutions:
+- **1280x850** - Default, good for most screens
+- **1920x1080** - Full HD
+- **1600x900** - Medium widescreen
+- **1280x720** - HD
+
+After changing resolution, restart: `docker compose up -d unmined`
+
+### Access
+
+**Web Interface**: http://localhost:8080/vnc.html?autoconnect=true
+- Replace `localhost` with your server's IP address for remote access
+- The interface provides VNC access to the uNmINeD GUI application
+
+### Port Configuration
+
+To change the web interface port, edit `docker-compose.yml`:
+```yaml
+ports:
+  - "9090:8080"  # Expose on port 9090 instead of 8080
+```
+
+### Usage Notes
+
+- World files are mounted **read-only** to prevent accidental modifications
+- The service runs continuously and can be accessed anytime
+- No scheduled jobs - use on-demand when you want to view or export maps
+- Supports both Java and Bedrock Edition world files
+
+### Manual Operations
+
+```bash
+# View unmined logs
+docker compose logs unmined
+
+# Restart unmined
+docker compose restart unmined
+
+# Stop unmined if not needed
+docker compose stop unmined
+
+# Start unmined again
+docker compose start unmined
+```
+
 ## Monitoring
 
 ```bash
@@ -129,6 +196,7 @@ docker compose logs ofelia
 # View service logs
 docker compose logs borgmatic
 docker compose logs mcaselector
+docker compose logs unmined
 
 # Check disk usage
 du -sh ./data/backups/borg-repository
@@ -149,4 +217,8 @@ docker exec mcaselector cat /config/mcaselector-options.yaml
 # Test jobs manually
 docker exec borgmatic /scripts/backup.sh
 docker exec mcaselector /scripts/delete-chunks.sh
+
+# Check unmined status
+docker compose ps unmined
+docker compose logs unmined
 ```

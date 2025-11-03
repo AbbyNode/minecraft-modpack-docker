@@ -45,12 +45,26 @@ docker exec borgmatic borgmatic list
 docker exec mcaselector /scripts/delete-chunks.sh
 ```
 
+### Access World Viewer
+```bash
+# Access the uNmINeD web interface
+# Navigate to: http://localhost:8080/vnc.html?autoconnect=true
+# (Replace localhost with your server IP if accessing remotely)
+
+# Check if unmined is running
+docker compose ps unmined
+
+# View unmined logs
+docker compose logs unmined
+```
+
 ## Configuration
 
 Edit these files to customize:
 - `ofelia/config.ini` - Job schedules
 - `./data/config/borgmatic/config.yaml` - Backup settings (created on first run)
 - `./data/config/mcaselector-options.yaml` - Cleanup rules (created on first run)
+- `docker-compose.yml` - Service settings (e.g., unmined resolution, ports)
 
 ### Change Backup Schedule
 
@@ -83,6 +97,17 @@ delete_chunks:
   - last_updated: "30 days"
     inhabited_time: "2 hours"
 ```
+
+### Change World Viewer Resolution
+
+Edit `docker-compose.yml` under the `unmined` service:
+```yaml
+environment:
+  - CUSTOM_RES_W=1920  # Width in pixels
+  - CUSTOM_RES_H=1080  # Height in pixels
+```
+
+After editing: `docker compose up -d unmined`
 
 ## Backup Management
 
@@ -125,6 +150,7 @@ docker compose logs -f
 # Specific service
 docker compose logs -f borgmatic
 docker compose logs -f mcaselector
+docker compose logs -f unmined
 docker compose logs -f ofelia
 ```
 
@@ -151,6 +177,7 @@ docker compose restart
 docker compose restart ofelia
 docker compose restart borgmatic
 docker compose restart mcaselector
+docker compose restart unmined
 ```
 
 ### View Configuration
