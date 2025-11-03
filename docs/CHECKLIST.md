@@ -20,15 +20,15 @@ Review these points to decide if you should migrate:
 Choose your reading path based on your needs:
 
 ### Quick Path (15 minutes)
-1. [ ] Read [ANSWER.md](docs/ANSWER.md) - Direct answer to your question
-2. [ ] Skim [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md) - Side-by-side comparison
+1. [ ] Read [ANSWER.md](ANSWER.md) - Direct answer to your question
+2. [ ] Skim [QUICK-COMPARISON.md](QUICK-COMPARISON.md) - Side-by-side comparison
 3. [ ] Skip to migration steps below
 
 ### Thorough Path (30 minutes)
-1. [ ] Read [ANSWER.md](docs/ANSWER.md) - Direct answer to your question
-2. [ ] Read [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md) - Quick overview
-3. [ ] Read [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md) - Detailed analysis
-4. [ ] Review [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) - Step-by-step guide
+1. [ ] Read [ANSWER.md](ANSWER.md) - Direct answer to your question
+2. [ ] Read [QUICK-COMPARISON.md](QUICK-COMPARISON.md) - Quick overview
+3. [ ] Read [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md) - Detailed analysis
+4. [ ] Review [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Step-by-step guide
 5. [ ] Proceed to migration steps below
 
 ## 🔧 Migration Steps
@@ -225,9 +225,9 @@ If you encounter issues, check:
 - **itzg GitHub Issues**: https://github.com/itzg/docker-minecraft-server/issues
 - **itzg Discord**: https://discord.gg/ScbTrAw
 - **Your Documentation**: 
-  - [ANSWER.md](docs/ANSWER.md)
-  - [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md)
-  - [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md)
+  - [ANSWER.md](ANSWER.md)
+  - [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md)
+  - [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
 
 ## 📋 Summary
 

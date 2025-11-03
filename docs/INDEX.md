@@ -6,67 +6,67 @@ This index helps you navigate the documentation created for migrating from the c
 
 **New to this?** Start with one of these based on how much time you have:
 
-- **5 minutes**: [ANSWER.md](docs/ANSWER.md) - Quick answer to "Can I replace my custom image?"
-- **15 minutes**: [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md) - Side-by-side comparison
-- **30 minutes**: [SUMMARY.md](SUMMARY.md) - Complete overview of findings
+- **5 minutes**: [ANSWER.md](ANSWER.md) - Quick answer to "Can I replace my custom image?"
+- **15 minutes**: [QUICK-COMPARISON.md](QUICK-COMPARISON.md) - Side-by-side comparison
+- **30 minutes**: [../SUMMARY.md](../SUMMARY.md) - Complete overview of findings
 
 ## 📚 Documentation Map
 
 ### Quick Reference
 | Document | Purpose | Time to Read |
 |----------|---------|--------------|
-| [ANSWER.md](docs/ANSWER.md) | Direct answer to the original question | 5 min |
-| [SUMMARY.md](SUMMARY.md) | Complete summary of investigation | 10 min |
-| [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md) | Side-by-side comparison table | 10 min |
+| [ANSWER.md](ANSWER.md) | Direct answer to the original question | 5 min |
+| [../SUMMARY.md](../SUMMARY.md) | Complete summary of investigation | 10 min |
+| [QUICK-COMPARISON.md](QUICK-COMPARISON.md) | Side-by-side comparison table | 10 min |
 
 ### Detailed Analysis
 | Document | Purpose | Time to Read |
 |----------|---------|--------------|
-| [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md) | Comprehensive feature comparison | 20 min |
-| [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) | Step-by-step migration instructions | 30 min |
-| [CHECKLIST.md](docs/CHECKLIST.md) | Interactive migration checklist | 15 min |
+| [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md) | Comprehensive feature comparison | 20 min |
+| [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) | Step-by-step migration instructions | 30 min |
+| [CHECKLIST.md](CHECKLIST.md) | Interactive migration checklist | 15 min |
 
 ### Configuration Files
 | File | Purpose |
 |------|---------|
-| [docker-compose.itzg.yml](docker-compose.itzg.yml) | Ready-to-use itzg configuration |
-| [.env.itzg.example](.env.itzg.example) | Updated environment file template |
+| [../docker-compose.itzg.yml](../docker-compose.itzg.yml) | Ready-to-use itzg configuration |
+| [../.env.itzg.example](../.env.itzg.example) | Updated environment file template |
 
 ### Existing Documentation
 | Document | Purpose |
 |----------|---------|
-| [README.md](README.md) | Updated main README with migration info |
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture overview |
-| [QUICK-REFERENCE.md](docs/QUICK-REFERENCE.md) | Common commands and tasks |
-| [ORCHESTRATOR.md](docs/ORCHESTRATOR.md) | Ofelia, Borgmatic, MCASelector config |
+| [../README.md](../README.md) | Updated main README with migration info |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | System architecture overview |
+| [QUICK-REFERENCE.md](QUICK-REFERENCE.md) | Common commands and tasks |
+| [ORCHESTRATOR.md](ORCHESTRATOR.md) | Ofelia, Borgmatic, MCASelector config |
 
 ## 🗺️ Reading Paths
 
 ### Path 1: "Just Tell Me Yes or No" (5 minutes)
-1. [ANSWER.md](docs/ANSWER.md) ← Start here!
+1. [ANSWER.md](ANSWER.md) ← Start here!
 
 **Result**: You'll know if migration is possible and how to do it.
 
 ### Path 2: "Give Me the Overview" (20 minutes)
-1. [ANSWER.md](docs/ANSWER.md)
-2. [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md)
-3. [SUMMARY.md](SUMMARY.md)
+1. [ANSWER.md](ANSWER.md)
+2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
+3. [../SUMMARY.md](../SUMMARY.md)
 
 **Result**: You'll understand the trade-offs and benefits.
 
 ### Path 3: "I Want All the Details" (1 hour)
-1. [ANSWER.md](docs/ANSWER.md)
-2. [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md)
-3. [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md)
-4. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md)
-5. [CHECKLIST.md](docs/CHECKLIST.md)
+1. [ANSWER.md](ANSWER.md)
+2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
+3. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
+4. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md)
+5. [CHECKLIST.md](CHECKLIST.md)
 
 **Result**: You'll be fully prepared to migrate with confidence.
 
 ### Path 4: "Let's Do This!" (1-2 hours)
-1. [ANSWER.md](docs/ANSWER.md) - Understand the solution
-2. [CHECKLIST.md](docs/CHECKLIST.md) - Follow the steps
-3. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) - Reference as needed
+1. [ANSWER.md](ANSWER.md) - Understand the solution
+2. [CHECKLIST.md](CHECKLIST.md) - Follow the steps
+3. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Reference as needed
 
 **Result**: Successfully migrated to itzg/minecraft-server!
 
@@ -75,108 +75,108 @@ This index helps you navigate the documentation created for migrating from the c
 ### Questions & Answers
 
 **"Can I replace my custom image with itzg?"**
-→ [ANSWER.md](docs/ANSWER.md)
+→ [ANSWER.md](ANSWER.md)
 
 **"How do itzg and my custom image compare?"**
-→ [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md)
+→ [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
 
 **"What are the detailed differences?"**
-→ [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md)
+→ [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
 
 **"How do I migrate?"**
-→ [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) or [CHECKLIST.md](docs/CHECKLIST.md)
+→ [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) or [CHECKLIST.md](CHECKLIST.md)
 
 **"What files do I need to change?"**
-→ [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md#configuration) or [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md#step-3-update-configuration-files)
+→ [QUICK-COMPARISON.md](QUICK-COMPARISON.md#configuration) or [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#step-3-update-configuration-files)
 
 **"Can I rollback if something goes wrong?"**
-→ [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md#rollback-instructions) or [CHECKLIST.md](docs/CHECKLIST.md#rollback-if-needed)
+→ [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#rollback-instructions) or [CHECKLIST.md](CHECKLIST.md#rollback-if-needed)
 
 **"How does itzg handle server file downloads?"**
-→ [ANSWER.md](docs/ANSWER.md#your-specific-concern)
+→ [ANSWER.md](ANSWER.md#your-specific-concern)
 
 **"What environment variables do I need?"**
-→ [ANSWER.md](docs/ANSWER.md#key-environment-variables) or [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md#environment-variable-mapping)
+→ [ANSWER.md](ANSWER.md#key-environment-variables) or [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md#environment-variable-mapping)
 
 ### By Task
 
 **Task: Evaluate if migration is right for me**
-→ [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md#when-to-use-which)
+→ [QUICK-COMPARISON.md](QUICK-COMPARISON.md#when-to-use-which)
 
 **Task: Understand benefits and risks**
-→ [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md#advantages-of-migrating-to-itzg)
+→ [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md#advantages-of-migrating-to-itzg)
 
 **Task: Prepare for migration**
-→ [CHECKLIST.md](docs/CHECKLIST.md#decision-checklist)
+→ [CHECKLIST.md](CHECKLIST.md#decision-checklist)
 
 **Task: Perform the migration**
-→ [CHECKLIST.md](docs/CHECKLIST.md#migration-steps)
+→ [CHECKLIST.md](CHECKLIST.md#migration-steps)
 
 **Task: Troubleshoot issues**
-→ [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md#troubleshooting)
+→ [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#troubleshooting)
 
 **Task: Get help**
-→ [CHECKLIST.md](docs/CHECKLIST.md#getting-help)
+→ [CHECKLIST.md](CHECKLIST.md#getting-help)
 
 ## 📊 Document Overview
 
 ### By Type
 
 **Answers & Summaries**
-- [ANSWER.md](docs/ANSWER.md) - Direct answer
-- [SUMMARY.md](SUMMARY.md) - Project summary
-- [README.md](README.md) - Updated overview
+- [ANSWER.md](ANSWER.md) - Direct answer
+- [../SUMMARY.md](../SUMMARY.md) - Project summary
+- [../README.md](../README.md) - Updated overview
 
 **Comparisons**
-- [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md) - Quick comparison
-- [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md) - Detailed analysis
+- [QUICK-COMPARISON.md](QUICK-COMPARISON.md) - Quick comparison
+- [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md) - Detailed analysis
 
 **How-To Guides**
-- [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) - Step-by-step guide
-- [CHECKLIST.md](docs/CHECKLIST.md) - Interactive checklist
+- [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Step-by-step guide
+- [CHECKLIST.md](CHECKLIST.md) - Interactive checklist
 
 **Configuration**
-- [docker-compose.itzg.yml](docker-compose.itzg.yml) - itzg compose file
-- [.env.itzg.example](.env.itzg.example) - Environment template
+- [../docker-compose.itzg.yml](../docker-compose.itzg.yml) - itzg compose file
+- [../.env.itzg.example](../.env.itzg.example) - Environment template
 
 ### By Audience
 
 **For Decision Makers**
-1. [ANSWER.md](docs/ANSWER.md)
-2. [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md)
-3. [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md#advantages-of-migrating-to-itzg)
+1. [ANSWER.md](ANSWER.md)
+2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
+3. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md#advantages-of-migrating-to-itzg)
 
 **For System Administrators**
-1. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md)
-2. [CHECKLIST.md](docs/CHECKLIST.md)
-3. [docker-compose.itzg.yml](docker-compose.itzg.yml)
+1. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md)
+2. [CHECKLIST.md](CHECKLIST.md)
+3. [../docker-compose.itzg.yml](../docker-compose.itzg.yml)
 
 **For Developers**
-1. [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md)
-2. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md#advanced-configuration)
-3. [docker-compose.itzg.yml](docker-compose.itzg.yml)
+1. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
+2. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#advanced-configuration)
+3. [../docker-compose.itzg.yml](../docker-compose.itzg.yml)
 
 ## 🎯 Recommended Reading Order
 
 ### Scenario 1: Just Exploring
-1. [ANSWER.md](docs/ANSWER.md)
+1. [ANSWER.md](ANSWER.md)
 2. Stop here or continue if interested
 
 ### Scenario 2: Seriously Considering
-1. [ANSWER.md](docs/ANSWER.md)
-2. [QUICK-COMPARISON.md](docs/QUICK-COMPARISON.md)
-3. [ITZG-MIGRATION-ANALYSIS.md](docs/ITZG-MIGRATION-ANALYSIS.md)
+1. [ANSWER.md](ANSWER.md)
+2. [QUICK-COMPARISON.md](QUICK-COMPARISON.md)
+3. [ITZG-MIGRATION-ANALYSIS.md](ITZG-MIGRATION-ANALYSIS.md)
 4. Make decision
 
 ### Scenario 3: Ready to Migrate
-1. [ANSWER.md](docs/ANSWER.md) (if not already read)
-2. [CHECKLIST.md](docs/CHECKLIST.md) - Follow step by step
-3. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md) - Reference as needed
+1. [ANSWER.md](ANSWER.md) (if not already read)
+2. [CHECKLIST.md](CHECKLIST.md) - Follow step by step
+3. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md) - Reference as needed
 4. Perform migration
 
 ### Scenario 4: Troubleshooting
-1. [MIGRATION-GUIDE.md](docs/MIGRATION-GUIDE.md#troubleshooting)
-2. [CHECKLIST.md](docs/CHECKLIST.md#getting-help)
+1. [MIGRATION-GUIDE.md](MIGRATION-GUIDE.md#troubleshooting)
+2. [CHECKLIST.md](CHECKLIST.md#getting-help)
 3. External resources (itzg docs, Discord, etc.)
 
 ## 🔗 External Resources
@@ -215,8 +215,8 @@ Each document reinforces these key points:
 ---
 
 **Quick Links:**
-- [Start with ANSWER.md](docs/ANSWER.md)
-- [Jump to CHECKLIST.md](docs/CHECKLIST.md)
-- [See full SUMMARY.md](SUMMARY.md)
+- [Start with ANSWER.md](ANSWER.md)
+- [Jump to CHECKLIST.md](CHECKLIST.md)
+- [See full SUMMARY.md](../SUMMARY.md)
 
 Good luck! 🎉

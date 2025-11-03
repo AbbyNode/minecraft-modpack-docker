@@ -52,9 +52,6 @@ services:
       
       # Mods (if you want to add/override mods)
       - ./data/mods/jars:/data/mods
-      
-      # Mod configs (if you want to override mod configs)
-      - ./data/mods/config:/data/config
     restart: unless-stopped
     stdin_open: true
     tty: true
