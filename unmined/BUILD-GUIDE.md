@@ -58,10 +58,33 @@ COPY unmined-cli.gz /unmined/unmined-cli.gz
 
 ### Step 3: Add extraction and installation steps
 
-After the COPY line, add:
+After the COPY line, add the RUN command to extract and install:
 
 ```dockerfile
+RUN \
+    gunzip unmined-cli.gz && \
+    chmod +x unmined-cli && \
+    mv unmined-cli /usr/local/bin/unmined-cli && \
+    echo "Unmined CLI installed successfully"
+```
+
+The complete modified section should look like:
+
+```dockerfile
+# Download and install Unmined CLI (Linux glibc x64 for Debian/Ubuntu)
+# Using the DEV channel for latest version
+# 
+# If building in a restricted environment, you can manually download the file:
+#   curl -L "https://unmined.net/download/unmined-cli-linux-x64-dev.gz" -o unmined-cli.gz
+# Then uncomment the COPY line below and comment out the RUN curl line:
 COPY unmined-cli.gz /unmined/unmined-cli.gz
+
+# RUN \
+#     curl -L "https://unmined.net/download/unmined-cli-linux-x64-dev.gz" -o unmined-cli.gz && \
+#     gunzip unmined-cli.gz && \
+#     chmod +x unmined-cli && \
+#     mv unmined-cli /usr/local/bin/unmined-cli && \
+#     echo "Unmined CLI installed successfully"
 
 RUN \
     gunzip unmined-cli.gz && \
