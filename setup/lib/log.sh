@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Shared logging helpers. Source this from any script.
 # If LOG_FILE is set, logs are also appended there.
 
