@@ -36,6 +36,8 @@ services:
   borgmatic:
     image: eclarift/borgmatic:latest
     container_name: borgmatic
+    env_file:
+      - .env
     volumes:
       - ./data:/mnt/source:ro
       - ./data/backups/borg-repository:/mnt/borg-repository
