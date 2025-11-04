@@ -12,15 +12,15 @@ services:
   mcaselector:
     image: eclarift/mcaselector:latest
     build:
-      context: ./mcaselector
+      context: ./modules/mcaselector
       dockerfile: Dockerfile
   borgmatic:
     image: eclarift/borgmatic:latest
     build:
-      context: ./borgmatic
+      context: ./modules/borgmatic
       dockerfile: Dockerfile
   unmined:
     image: eclarift/unmined:latest
     build:
-      context: ./unmined
+      context: ./modules/unmined
       dockerfile: Dockerfile

@@ -57,12 +57,12 @@ Services that need these utilities mount the `shared-scripts` volume read-only a
 Custom images are built for Borgmatic and MCASelector to include project-specific scripts and templates:
 
 ```
-borgmatic/
+modules/borgmatic/
 ├── Dockerfile
 ├── scripts/{backup.sh, entrypoint.sh}
 └── templates/borgmatic-config.yaml
 
-mcaselector/
+modules/mcaselector/
 ├── scripts/entrypoint.sh
 └── templates/mcaselector-options.yaml
 ```
