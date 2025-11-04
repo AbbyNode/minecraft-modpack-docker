@@ -6,7 +6,7 @@ services:
     volumes:
       - .:/workspace
       - shared-scripts:/opt/shared
-    restart: "no"
+    restart: no
     profiles:
       - setup
 
@@ -34,8 +34,6 @@ services:
   mcaselector:
     image: eclarift/mcaselector:latest
     container_name: mcaselector
-    env_file:
-      - .env
     volumes:
       - ./data/world:/world
       - ./data/config:/config
@@ -44,8 +42,6 @@ services:
   borgmatic:
     image: eclarift/borgmatic:latest
     container_name: borgmatic
-    env_file:
-      - .env
     volumes:
       - ./data:/mnt/source:ro
       - ./data/backups/borg-repository:/mnt/borg-repository
@@ -56,8 +52,6 @@ services:
   unmined:
     image: eclarift/unmined:latest
     container_name: unmined
-    env_file:
-      - .env
     volumes:
       - ./data/world:/world:ro
       - ./data/unmined-map:/output
@@ -74,8 +68,10 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
     command: tunnel run
+    env_file:
+      - .env
     environment:
-      - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN}
+      TUNNEL_TOKEN: ${CLOUDFLARED_TOKEN}
     restart: unless-stopped
     depends_on:
       - nginx
