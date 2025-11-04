@@ -138,4 +138,5 @@ docker compose restart ofelia
 - **[Bind Mounts](docs/bind-mounts.md)** - Host-container path mappings
 - **[MCASelector CLI](modules/mcaselector/docs/CLI-Mode.md)** - Command-line reference
 - **[Chunk Filters](modules/mcaselector/docs/Chunk-Filter.md)** - Chunk filtering options
- - Shared libs: `setup/shared/lib/log.sh`, URL resolver: `setup/shared/url/resolve-curseforge-url.sh`
+- **[Testing](testing/README.md)** - Test suite for all features
+- Shared libs: `setup/shared/lib/log.sh`, URL resolver: `setup/shared/url/resolve-curseforge-url.sh`
