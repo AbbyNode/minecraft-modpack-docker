@@ -42,6 +42,8 @@ assert_true() {
     
     TESTS_RUN=$((TESTS_RUN + 1))
     
+    # Note: eval is used here for test flexibility. This is safe in a testing context
+    # where conditions are defined by trusted test code, not user input.
     if eval "$condition"; then
         TESTS_PASSED=$((TESTS_PASSED + 1))
         echo -e "${GREEN}✓${NC} ${test_name}"

@@ -80,7 +80,7 @@ test_ofelia_compose() {
     # Check custom entrypoint
     assert_true "grep -A 10 'ofelia:' '$compose_file' | grep -q 'entrypoint:.*ofelia-entrypoint.sh'" "Uses custom entrypoint"
     
-    # Check depends on scheduled services
+    # Check depends on scheduled services (combined check ensures all are present)
     assert_true "grep -A 15 'ofelia:' '$compose_file' | grep -q 'borgmatic' && \
                  grep -A 15 'ofelia:' '$compose_file' | grep -q 'mcaselector' && \
                  grep -A 15 'ofelia:' '$compose_file' | grep -q 'unmined'" "Depends on scheduled services"
