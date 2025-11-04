@@ -47,11 +47,32 @@ docker compose down
 docker compose up --pull missing -d
 ```
 
-## Automated Tasks
+## Automated Management
 
-### Backups (Daily 7:00 AM)
-Backs up world, config, mods, and logs to `./data/backups/borg-repository` with retention of 7 daily, 4 weekly, 6 monthly backups.
+This setup includes automated orchestration for backups and maintenance tasks.
 
+### Backup System (Borgmatic)
+
+The server automatically backs up important data using Borgmatic with BorgBackup:
+
+**What gets backed up:**
+- World data
+- Server configuration
+- Mods and mod configurations
+- Server logs
+
+**Backup schedule:**
+- Runs daily at 2:00 AM (configurable in `ofelia/config.ini`)
+
+**Retention policy:**
+- 7 daily backups
+- 4 weekly backups
+- 6 monthly backups
+
+**Backup location:**
+- Local: `./data/backups/borg-repository`
+
+**Manual backup:**
 ```bash
 # Manual backup
 docker exec borgmatic /scripts/backup.sh
@@ -80,10 +101,30 @@ Deletes old chunks based on age and player activity to save disk space.
 docker exec mcaselector /scripts/delete-chunks.sh
 ```
 
-**Configuration:** `./data/config/mcaselector-options.yaml` (auto-created on first run)
+**Configuration:**
+- Edit `./data/config/mcaselector-options.yaml` to customize cleanup rules
+- After first run, the configuration file will be created from the template
 
-### Job Scheduling
-Customize schedules in `ofelia/config.ini` using cron syntax, then restart:
+### Job Orchestration (Ofelia)
+
+Ofelia manages all scheduled tasks. View job logs:
+
+```bash
+# View Ofelia logs
+docker compose logs -f ofelia
+
+# View all service logs
+docker compose logs -f
+```
+
+**Customize schedules:**
+Edit `ofelia/config.ini` to change when jobs run. Uses standard cron syntax:
+- `@daily` - Once per day at midnight
+- `@weekly` - Once per week on Sunday at midnight
+- `@hourly` - Once per hour
+- Custom: `0 2 * * *` - Daily at 2:00 AM
+
+After editing, restart Ofelia:
 ```bash
 docker compose restart ofelia
 ```

@@ -7,7 +7,8 @@ FROM debian:bookworm-slim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     ca-certificates \
-    wget && \
+    wget \
+    libicu72 && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /unmined
