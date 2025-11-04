@@ -21,7 +21,6 @@ docker compose -f build.compose.yml push
 End users only need the single `docker-compose.yml` file. They don't clone the repository:
 ```bash
 curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
-curl -o .env https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/.env.example
 docker compose pull
 docker compose up -d
 ```
