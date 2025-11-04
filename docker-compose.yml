@@ -16,12 +16,6 @@ services:
     container_name: minecraft-modpack
     env_file:
       - .env
-    environment:
-      EULA: "TRUE"
-      MEMORY: "4G"
-      USE_AIKAR_FLAGS: "TRUE"
-      ENABLE_ROLLING_LOGS: "TRUE"
-      TZ: "America/New_York"
     ports:
       - "25565:25565"
     volumes:
