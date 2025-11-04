@@ -34,14 +34,8 @@ services:
     ports:
       - "25565:25565"
     volumes:
-      # Main data directory
-      - minecraft-data:/data
-      
       # Persistent folders (bind mount folders only, no individual files)
-      - ./data/world:/data/world
-      - ./data/logs:/data/logs
-      - ./data/config:/data/config
-      - ./data/mods:/data/mods
+      - ./data:/data
     restart: unless-stopped
     stdin_open: true
     tty: true
@@ -118,7 +112,5 @@ services:
       - unmined
 
 volumes:
-  minecraft-data:
-    driver: local
   borgmatic-data:
     driver: local

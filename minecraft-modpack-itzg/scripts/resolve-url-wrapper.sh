@@ -131,13 +131,15 @@ if [ -n "${MODPACK_URL}" ]; then
         
         # Construct the direct download URL
         # Format: https://mediafilez.forgecdn.net/files/XXXX/YYY/filename.zip
-        if [ ${#SERVER_FILE_ID} -lt 3 ]; then
-            log_error "File ID '${SERVER_FILE_ID}' is too short to construct a valid download URL"
+        # File ID is split: last 3 digits become PART2, everything before becomes PART1
+        if [ ${#SERVER_FILE_ID} -lt 4 ]; then
+            log_error "File ID '${SERVER_FILE_ID}' is too short (< 4 digits) to construct a valid download URL"
             exit 1
         fi
         
-        PART1=$(echo "${SERVER_FILE_ID}" | sed 's/\(.*\)\(...\)/\1/')
-        PART2=$(echo "${SERVER_FILE_ID}" | sed 's/.*\(...\)/\1/')
+        # Split file ID: everything except last 3 digits / last 3 digits
+        PART1="${SERVER_FILE_ID:0:${#SERVER_FILE_ID}-3}"
+        PART2="${SERVER_FILE_ID: -3}"
         
         RESOLVED_URL="https://mediafilez.forgecdn.net/files/${PART1}/${PART2}/${SERVER_FILENAME}"
         
