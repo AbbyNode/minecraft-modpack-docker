@@ -9,8 +9,8 @@ graph TB
     MCASelector[MCASelector<br/>Chunk Cleanup]
     Minecraft[Minecraft Server]
     
-    Ofelia -->|Daily 2AM| Borgmatic
-    Ofelia -->|Weekly Sun 3AM| MCASelector
+    Ofelia -->|Daily 7AM| Borgmatic
+    Ofelia -->|Daily 7AM| MCASelector
     
     Borgmatic -.->|Reads| Data[(./data)]
     MCASelector -.->|Modifies| World[(./data/world)]

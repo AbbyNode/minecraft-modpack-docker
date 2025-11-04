@@ -49,7 +49,7 @@ docker compose up --pull missing -d
 
 ## Automated Tasks
 
-### Backups (Daily 2:00 AM)
+### Backups (Daily 7:00 AM)
 Backs up world, config, mods, and logs to `./data/backups/borg-repository` with retention of 7 daily, 4 weekly, 6 monthly backups.
 
 ```bash
@@ -66,7 +66,7 @@ docker cp borgmatic:/tmp/restore ./restore/
 
 **Configuration:** `./data/config/borgmatic/config.yaml` (auto-created on first run)
 
-### Chunk Cleanup (Weekly Sunday 3:00 AM)
+### Chunk Cleanup (Daily 7:00 AM)
 Deletes old chunks based on age and player activity to save disk space.
 
 **Default rules:**
@@ -90,7 +90,7 @@ docker compose restart ofelia
 
 ## Additional Documentation
 
-- **[Architecture](docs/ARCHITECTURE.md)** - System design and component overview
+- **[Architecture](docs/Architecture.md)** - System design and component overview
 - **[Bind Mounts](docs/bind-mounts.md)** - Host-container path mappings
 - **[MCASelector CLI](mcaselector/docs/CLI-Mode.md)** - Command-line reference
 - **[Chunk Filters](mcaselector/docs/Chunk-Filter.md)** - Chunk filtering options
