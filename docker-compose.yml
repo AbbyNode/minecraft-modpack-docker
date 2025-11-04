@@ -56,6 +56,23 @@ services:
       - ./data/unmined-map:/output
     restart: unless-stopped
 
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./data/unmined-map:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARED_TOKEN}
+    restart: unless-stopped
+    depends_on:
+      - nginx
+
   ofelia:
     image: mcuadros/ofelia:latest
     container_name: ofelia
