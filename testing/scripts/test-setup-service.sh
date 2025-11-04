@@ -25,7 +25,6 @@ test_setup_script_structure() {
     assert_true "grep -q 'data/setup-scripts' '$init_script'" "Script creates setup-scripts directory"
     assert_true "grep -q '\\.env' '$init_script'" "Script handles .env file"
     assert_true "grep -q 'ofelia' '$init_script'" "Script handles ofelia config"
-    assert_true "grep -q '/opt/shared' '$init_script'" "Script populates shared scripts volume"
 }
 
 test_setup_script_structure
@@ -54,23 +53,6 @@ test_setup_templates() {
 
 test_setup_templates
 
-test_suite "Setup Service - Shared Libraries"
-
-# Test that shared libraries are properly structured
-test_shared_libraries() {
-    local lib_dir="$PROJECT_ROOT/setup/lib"
-    
-    assert_dir_exists "$lib_dir" "Shared lib directory exists"
-    assert_file_exists "$lib_dir/log.sh" "log.sh library exists"
-    assert_file_exists "$lib_dir/resolve-curseforge-url.sh" "resolve-curseforge-url.sh exists"
-    
-    # Both should be executable
-    assert_true "[ -x '$lib_dir/log.sh' ]" "log.sh is executable"
-    assert_true "[ -x '$lib_dir/resolve-curseforge-url.sh' ]" "resolve-curseforge-url.sh is executable"
-}
-
-test_shared_libraries
-
 test_suite "Setup Service - Dockerfile"
 
 # Test setup Dockerfile
@@ -83,7 +65,6 @@ test_setup_dockerfile() {
     assert_true "grep -q 'FROM alpine' '$dockerfile'" "Uses Alpine base image"
     assert_true "grep -q 'COPY.*templates' '$dockerfile'" "Copies templates"
     assert_true "grep -q 'COPY.*scripts' '$dockerfile'" "Copies scripts"
-    assert_true "grep -q 'COPY.*lib' '$dockerfile'" "Copies shared lib"
     assert_true "grep -q 'ENTRYPOINT.*init.sh' '$dockerfile'" "Sets init.sh as entrypoint"
 }
 

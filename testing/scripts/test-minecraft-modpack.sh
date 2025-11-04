@@ -19,8 +19,7 @@ test_minecraft_scripts() {
     assert_file_exists "$resolve_wrapper" "resolve-url-wrapper.sh exists"
     assert_true "[ -x '$resolve_wrapper' ]" "resolve-url-wrapper.sh is executable"
     
-    # Check wrapper script calls URL resolver
-    assert_true "grep -q 'resolve-curseforge-url.sh' '$resolve_wrapper'" "Wrapper calls CurseForge resolver"
+    # Check wrapper script references
     assert_true "grep -q 'MODPACK_URL' '$resolve_wrapper'" "Wrapper handles MODPACK_URL"
     assert_true "grep -q 'GENERIC_PACK' '$resolve_wrapper'" "Wrapper sets GENERIC_PACK for itzg"
     assert_true "grep -q '/start' '$resolve_wrapper'" "Wrapper calls itzg entrypoint"
@@ -30,6 +29,20 @@ test_minecraft_scripts() {
 }
 
 test_minecraft_scripts
+
+test_suite "Minecraft Modpack Service - Library Structure"
+
+# Test minecraft-modpack libraries exist
+test_minecraft_libs() {
+    local lib_dir="$PROJECT_ROOT/minecraft-modpack/lib"
+    local log_script="$lib_dir/log.sh"
+    
+    assert_dir_exists "$lib_dir" "lib directory exists"
+    assert_file_exists "$log_script" "log.sh exists"
+    assert_true "[ -x '$log_script' ]" "log.sh is executable"
+}
+
+test_minecraft_libs
 
 test_suite "Minecraft Modpack Service - Dockerfile"
 
@@ -41,6 +54,9 @@ test_minecraft_dockerfile() {
     
     # Check uses itzg base image
     assert_true "grep -q 'FROM itzg/minecraft-server' '$dockerfile'" "Uses itzg/minecraft-server base"
+    
+    # Check copies lib directory
+    assert_true "grep -q 'COPY.*lib' '$dockerfile'" "Copies lib directory"
     
     # Check copies wrapper script
     assert_true "grep -q 'COPY.*resolve-url-wrapper.sh' '$dockerfile'" "Copies URL wrapper script"
@@ -71,7 +87,6 @@ test_minecraft_compose() {
     
     # Check volume mounts
     assert_true "grep -A 20 'minecraft-modpack:' '$compose_file' | grep -q './data:/data'" "Mounts data directory"
-    assert_true "grep -A 20 'minecraft-modpack:' '$compose_file' | grep -q 'shared-scripts:/opt/shared'" "Mounts shared scripts"
     
     # Check port mapping
     assert_true "grep -A 20 'minecraft-modpack:' '$compose_file' | grep -q '25565:25565'" "Exposes Minecraft port"
