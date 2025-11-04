@@ -69,8 +69,8 @@ if [ -n "${MODPACK_URL}" ]; then
         SERVER_FILENAME=$(grep -io 'server[^"<>]*\.zip' "${TEMP_HTML}" | head -1 || true)
         
         if [ -n "${SERVER_FILENAME}" ]; then
-            # Found a server filename, now find its file ID
-            SERVER_FILE_ID=$(grep -i "${SERVER_FILENAME}" "${TEMP_HTML}" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
+            # Found a server filename, now find its file ID using literal match
+            SERVER_FILE_ID=$(grep -iF "${SERVER_FILENAME}" "${TEMP_HTML}" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
             
             if [ -n "${SERVER_FILE_ID}" ]; then
                 log_info "Found server file: ${SERVER_FILENAME} (ID: ${SERVER_FILE_ID})"
@@ -104,7 +104,7 @@ if [ -n "${MODPACK_URL}" ]; then
                         SERVER_FILENAME=$(grep -io 'server[^"<>]*\.zip' "${TEMP_ADDITIONAL}" | head -1 || true)
                         
                         if [ -n "${SERVER_FILENAME}" ]; then
-                            SERVER_FILE_ID=$(grep -i "${SERVER_FILENAME}" "${TEMP_ADDITIONAL}" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
+                            SERVER_FILE_ID=$(grep -iF "${SERVER_FILENAME}" "${TEMP_ADDITIONAL}" | sed -n 's|.*/files/\([0-9]\+\).*|\1|p' | head -1)
                             rm -f "${TEMP_ADDITIONAL}"
                             
                             if [ -n "${SERVER_FILE_ID}" ]; then
