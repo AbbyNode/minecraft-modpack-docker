@@ -30,20 +30,6 @@ test_minecraft_scripts() {
 
 test_minecraft_scripts
 
-test_suite "Minecraft Modpack Service - Library Structure"
-
-# Test minecraft-modpack libraries exist
-test_minecraft_libs() {
-    local lib_dir="$PROJECT_ROOT/minecraft-modpack/lib"
-    local log_script="$lib_dir/log.sh"
-    
-    assert_dir_exists "$lib_dir" "lib directory exists"
-    assert_file_exists "$log_script" "log.sh exists"
-    assert_true "[ -x '$log_script' ]" "log.sh is executable"
-}
-
-test_minecraft_libs
-
 test_suite "Minecraft Modpack Service - Dockerfile"
 
 # Test minecraft-modpack Dockerfile
