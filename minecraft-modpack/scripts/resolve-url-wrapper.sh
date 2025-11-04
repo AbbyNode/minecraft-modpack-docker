@@ -4,14 +4,11 @@ set -e
 # Wrapper entrypoint for hybrid itzg image
 # Resolves CurseForge page URLs to direct server file URLs, then calls itzg entrypoint
 
-SHARED_DIR="${SHARED_DIR:-/opt/shared}"
+# Source logging library
 # shellcheck disable=SC1091
-[ -f "$SHARED_DIR/lib/log.sh" ] && source "$SHARED_DIR/lib/log.sh"
-# Fallback logging if shared lib is unavailable
-if ! command -v log_info >/dev/null 2>&1; then
-    log_info() { echo "[INFO] $(date +'%Y-%m-%d %H:%M:%S') - $*"; }
-    log_error() { echo "[ERROR] $(date +'%Y-%m-%d %H:%M:%S') - $*" >&2; }
-fi
+source /usr/local/lib/minecraft/log.sh
+
+SHARED_DIR="${SHARED_DIR:-/opt/shared}"
 
 resolve_if_needed() {
     if [ -z "${MODPACK_URL:-}" ]; then

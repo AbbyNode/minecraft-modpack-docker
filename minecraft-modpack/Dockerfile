@@ -18,6 +18,10 @@ FROM itzg/minecraft-server:latest
 #   MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
 #   The wrapper resolves this to a direct URL automatically
 
+# Add lib directory with shared utilities
+COPY ./lib /usr/local/lib/minecraft
+RUN chmod +x /usr/local/lib/minecraft/*.sh
+
 # Add URL resolution wrapper script
 COPY ./scripts/resolve-url-wrapper.sh /usr/local/bin/resolve-url-wrapper.sh
 RUN chmod +x /usr/local/bin/resolve-url-wrapper.sh

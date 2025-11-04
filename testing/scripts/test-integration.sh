@@ -31,7 +31,6 @@ test_compose_structure() {
     # Check volumes are defined
     assert_true "grep -q '^volumes:' '$compose_file'" "Volumes section exists"
     assert_true "grep -q 'borgmatic-data:' '$compose_file'" "borgmatic-data volume defined"
-    assert_true "grep -q 'shared-scripts:' '$compose_file'" "shared-scripts volume defined"
 }
 
 test_compose_structure
@@ -60,21 +59,6 @@ test_build_compose() {
 }
 
 test_build_compose
-
-test_suite "Integration - Shared Scripts Volume"
-
-# Test shared scripts volume integration
-test_shared_scripts_volume() {
-    local compose_file="$PROJECT_ROOT/docker-compose.yml"
-    
-    # Check setup service populates shared-scripts
-    assert_true "grep -A 10 'setup:' '$compose_file' | grep -q 'shared-scripts:/opt/shared'" "Setup service mounts shared-scripts"
-    
-    # Check minecraft-modpack service uses shared-scripts
-    assert_true "grep -A 20 'minecraft-modpack:' '$compose_file' | grep -q 'shared-scripts:/opt/shared:ro'" "Minecraft service reads shared-scripts"
-}
-
-test_shared_scripts_volume
 
 test_suite "Integration - Data Directory Structure"
 
