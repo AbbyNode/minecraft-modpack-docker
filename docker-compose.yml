@@ -17,27 +17,15 @@ services:
     env_file:
       - .env
     environment:
-      # Core settings
       EULA: "TRUE"
-      
-      # MODPACK_URL is set in .env and processed by the hybrid image
-      # The image resolves CurseForge page URLs automatically without API key
-      
-      # Server properties loaded from .env file
-      
-      # Performance
       MEMORY: "4G"
       USE_AIKAR_FLAGS: "TRUE"
-      
-      # Additional settings
       ENABLE_ROLLING_LOGS: "TRUE"
       TZ: "America/New_York"
     ports:
       - "25565:25565"
     volumes:
-      # Persistent folders (bind mount folders only, no individual files)
       - ./data:/data
-      # Shared scripts volume (read-only)
       - shared-scripts:/opt/shared:ro
     restart: unless-stopped
     stdin_open: true
@@ -59,13 +47,9 @@ services:
     env_file:
       - .env
     volumes:
-      # Source data to backup (read-only)
       - ./data:/mnt/source:ro
-      # Borg repository storage
       - ./data/backups/borg-repository:/mnt/borg-repository
-      # Borgmatic configuration
       - ./data/config/borgmatic:/etc/borgmatic.d
-      # Borg state directory
       - borgmatic-data:/root
     restart: unless-stopped
 
@@ -102,11 +86,8 @@ services:
     entrypoint: ["/setup-scripts/ofelia-entrypoint.sh"]
     command: daemon --config=/etc/ofelia/config.ini
     volumes:
-      # Docker socket for managing containers
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      # Ofelia configuration
       - ./data/config/ofelia:/config:ro
-      # Entrypoint wrapper (extracted from setup image)
       - ./data/setup-scripts/ofelia-entrypoint.sh:/setup-scripts/ofelia-entrypoint.sh:ro
     restart: unless-stopped
     depends_on:

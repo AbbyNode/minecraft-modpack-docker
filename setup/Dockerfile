@@ -1,13 +1,12 @@
 FROM alpine:latest
+RUN apk add --no-cache bash
 
-# Copy setup scripts and templates (from repo root)
-COPY setup/scripts/ /scripts/
-COPY setup/templates/ /templates/
+COPY ./templates /templates
+
+COPY ./scripts /scripts
 RUN chmod +x /scripts/*.sh
 
-# Include shared libraries source, which will be copied into a named volume at runtime
-COPY setup/shared/ /shared-src/
-
-WORKDIR /workspace
+COPY lib /opt/shared
+RUN chmod +x /opt/shared/*.sh
 
 ENTRYPOINT ["/scripts/init.sh"]
