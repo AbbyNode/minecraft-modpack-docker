@@ -46,6 +46,16 @@ services:
       - borgmatic-data:/root
     restart: unless-stopped
 
+  unmined:
+    image: eclarift/unmined:latest
+    container_name: unmined
+    env_file:
+      - .env
+    volumes:
+      - ./data/world:/world:ro
+      - ./data/unmined-map:/output
+    restart: unless-stopped
+
   ofelia:
     image: mcuadros/ofelia:latest
     container_name: ofelia
@@ -59,6 +69,7 @@ services:
     depends_on:
       - borgmatic
       - mcaselector
+      - unmined
 
 volumes:
   minecraft-data:
