@@ -9,11 +9,6 @@ services:
     build:
       context: ./minecraft-modpack
       dockerfile: Dockerfile
-  minecraft-modpack-itzg:
-    image: eclarift/minecraft-modpack-itzg:latest
-    build:
-      context: ./minecraft-modpack-itzg
-      dockerfile: Dockerfile
   mcaselector:
     image: eclarift/mcaselector:latest
     build:

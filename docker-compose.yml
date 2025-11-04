@@ -12,7 +12,7 @@ services:
 
   minecraft-modpack:
     build:
-      context: ./minecraft-modpack-itzg
+      context: ./minecraft-modpack
     container_name: minecraft-modpack
     env_file:
       - .env
