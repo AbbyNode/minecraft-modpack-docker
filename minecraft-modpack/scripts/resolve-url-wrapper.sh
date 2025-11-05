@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Wrapper entrypoint for hybrid itzg image
-# Resolves CurseForge page URLs to direct server file URLs, then calls itzg entrypoint
+# Wrapper entrypoint for itzg/minecraft-server
+# Validates MODPACK_URL and sets up the GENERIC_PACK environment variable
 
 # Source logging library
 # shellcheck disable=SC1091
