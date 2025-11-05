@@ -34,17 +34,13 @@ The setup container will:
 
 Edit `.env` to configure your modpack and server properties:
 
-**Modpack URL - Direct server file URL** (recommended):
+**Modpack URL - Direct server file URL** (required):
 
 ```bash
 MODPACK_URL=https://mediafilez.forgecdn.net/files/7121/795/ServerFiles-4.14.zip
 ```
 
-**Modpack URL - CurseForge page URL** (automatic resolution):
-
-```bash
-MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
-```
+Find the direct URL on your modpack's CurseForge page under Files → Server Pack.
 
 Edit `.secrets` to set your backup passphrase and other credentials:
 
@@ -59,7 +55,7 @@ BORG_PASSPHRASE=your-strong-passphrase
 This setup uses a hybrid approach:
 
 - **Base**: [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) (community-maintained, 1000+ contributors)
-- **Added**: CurseForge page URL resolution without API key
+- **Supports**: Direct server file URLs from CurseForge or other sources
 - **Supports**: Custom start scripts if present in modpack
 - **Fallback**: itzg's optimized launcher with Aikar flags
 
