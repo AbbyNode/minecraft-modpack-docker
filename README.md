@@ -25,6 +25,7 @@ docker compose up -d
 The setup container will:
 
 - Create `.env` with default configuration
+- Create `.secrets` with placeholder credentials
 - Create required directory structure
 - Create default `data/config/ofelia/config.ini`
 - Extract version-controlled scripts to `data/setup-scripts/`
@@ -45,20 +46,9 @@ MODPACK_URL=https://mediafilez.forgecdn.net/files/7121/795/ServerFiles-4.14.zip
 MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
 ```
 
-**Set backup passphrase** (required for encryption):
-
-```bash
-BORG_PASSPHRASE=your-strong-passphrase
-```
-
-```bash
-MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
-```
+Edit `.secrets` to set your backup passphrase and other credentials:
 
 **Set backup passphrase** (required for encryption):
-
-```bash
-BORG_PASSPHRASE=your-strong-passphrase
 
 ```bash
 BORG_PASSPHRASE=your-strong-passphrase

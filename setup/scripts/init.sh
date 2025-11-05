@@ -23,6 +23,16 @@ else
     echo "✓ .env already exists"
 fi
 
+# Create .secrets file if it doesn't exist
+if [[ ! -f /workspace/.secrets ]]; then
+    echo "Creating .secrets from template..."
+    cp /templates/.secrets.example /workspace/.secrets
+    echo "✓ .secrets created"
+    echo "⚠ Remember to update .secrets with your actual credentials!"
+else
+    echo "✓ .secrets already exists"
+fi
+
 # Create ofelia config if it doesn't exist
 if [[ ! -f /workspace/data/config/ofelia/config.ini ]]; then
     echo ""
