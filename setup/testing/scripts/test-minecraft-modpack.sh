@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Tests for minecraft-modpack service with URL resolution
+# Tests for minecraft-modpack service
 
 set -euo pipefail
 

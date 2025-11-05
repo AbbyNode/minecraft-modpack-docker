@@ -13,9 +13,8 @@ chmod +x scripts/*.sh
 ## Test Coverage
 
 This test suite validates:
-- ✅ Shared library functions (logging, URL resolution)
 - ✅ Setup service initialization
-- ✅ Minecraft modpack with CurseForge URL resolution
+- ✅ Minecraft modpack server
 - ✅ Borgmatic backup configuration and scripts
 - ✅ MCASelector chunk cleanup functionality
 - ✅ Unmined map generation
@@ -27,7 +26,7 @@ This test suite validates:
 | Test Suite | Description |
 |------------|-------------|
 | `test-setup-service.sh` | Tests environment initialization |
-| `test-minecraft-modpack.sh` | Tests Minecraft server with URL resolution |
+| `test-minecraft-modpack.sh` | Tests Minecraft server setup |
 | `test-borgmatic.sh` | Tests backup service |
 | `test-mcaselector.sh` | Tests chunk cleanup service |
 | `test-unmined.sh` | Tests map generation service |

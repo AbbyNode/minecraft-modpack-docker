@@ -20,15 +20,14 @@
 - ✅ init.sh script structure and execution
 - ✅ Directory creation (setup-scripts, config, world, mods, backups)
 - ✅ .env file handling
-- ✅ Template files (.env.example, ofelia-config.ini)
+- ✅ .secrets file handling
+- ✅ Template files (.env.example, .secrets.example, ofelia-config.ini)
 - ✅ Template content validation (MODPACK_URL, BORG_PASSPHRASE, job definitions)
-- ✅ Shared libraries structure
 - ✅ Dockerfile configuration
-- ✅ Shared scripts volume population
 
 ### 3. Minecraft Modpack Service (29 tests)
-- ✅ URL resolution wrapper script
-- ✅ CurseForge URL detection and resolution
+- ✅ URL wrapper script
+- ✅ MODPACK_URL validation
 - ✅ GENERIC_PACK environment variable setting
 - ✅ Integration with itzg/minecraft-server base
 - ✅ Dockerfile extends correct base image

@@ -5,9 +5,8 @@ This testing submodule provides comprehensive tests for all features in the Mine
 ## Overview
 
 The test suite validates:
-- **Shared Libraries** - Log functions and CurseForge URL resolver
 - **Setup Service** - Environment initialization and directory structure
-- **Minecraft Modpack** - Server with URL resolution
+- **Minecraft Modpack** - Server setup and configuration
 - **Borgmatic** - Backup service configuration and scripts
 - **MCASelector** - Chunk cleanup functionality
 - **Unmined** - Map generation service
@@ -114,9 +113,8 @@ print_summary
 - Dockerfile uses correct base image and copies all files
 
 ### test-minecraft-modpack.sh
-- URL resolution wrapper script exists and is executable
-- Wrapper detects CurseForge URLs and calls resolver
-- Wrapper sets GENERIC_PACK for itzg base image
+- Wrapper script exists and is executable
+- Wrapper validates MODPACK_URL and sets GENERIC_PACK for itzg base image
 - Dockerfile extends itzg/minecraft-server
 - Docker compose service configured with correct volumes and ports
 - Environment variables properly configured
