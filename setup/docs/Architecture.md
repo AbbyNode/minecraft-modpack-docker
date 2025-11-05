@@ -28,7 +28,6 @@ graph TB
 | Borgmatic | `eclarift/borgmatic:latest` | `./data/config/borgmatic/config.yaml` |
 | MCASelector | `eclarift/mcaselector:latest` | `./data/config/mcaselector-options.yaml` |
 | Setup | `eclarift/minecraft-setup:latest` | N/A (one-time setup) |
-| Shared libs | (mounted volume) | `/opt/shared` |
 
 ## Setup Container
 

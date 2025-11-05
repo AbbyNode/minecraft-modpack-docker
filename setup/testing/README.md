@@ -26,7 +26,6 @@ This test suite validates:
 
 | Test Suite | Description |
 |------------|-------------|
-| `test-shared-libs.sh` | Tests shared library functions |
 | `test-setup-service.sh` | Tests environment initialization |
 | `test-minecraft-modpack.sh` | Tests Minecraft server with URL resolution |
 | `test-borgmatic.sh` | Tests backup service |

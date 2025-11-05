@@ -27,9 +27,6 @@ chmod +x scripts/*.sh
 ### Run Individual Test Suites
 
 ```bash
-# Test shared libraries
-./scripts/test-shared-libs.sh
-
 # Test setup service
 ./scripts/test-setup-service.sh
 
@@ -58,7 +55,6 @@ chmod +x scripts/*.sh
 testing/
 ├── scripts/           # Test scripts
 │   ├── run-all-tests.sh           # Main test runner
-│   ├── test-shared-libs.sh        # Shared library tests
 │   ├── test-setup-service.sh      # Setup service tests
 │   ├── test-minecraft-modpack.sh  # Minecraft service tests
 │   ├── test-borgmatic.sh          # Borgmatic tests
@@ -109,20 +105,12 @@ print_summary
 
 ## What Each Test Suite Validates
 
-### test-shared-libs.sh
-- Log functions (log_info, log_warn, log_error) are defined and work
-- Log output format includes timestamps and prefixes
-- Log file writing works when LOG_FILE is set
-- CurseForge URL resolver script exists and is executable
-- URL slug extraction pattern works correctly
-
 ### test-setup-service.sh
 - init.sh script exists and is executable
 - Script creates required directories (data/setup-scripts, config, etc.)
 - Script handles .env file creation
 - Templates exist (.env.example, ofelia-config.ini)
 - Template content includes required variables and job definitions
-- Shared libraries are properly structured
 - Dockerfile uses correct base image and copies all files
 
 ### test-minecraft-modpack.sh

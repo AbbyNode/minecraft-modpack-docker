@@ -51,10 +51,8 @@ echo -e "${YELLOW}Discovering test scripts...${NC}"
 echo ""
 
 # Array of test scripts in execution order
-# Order is intentional: shared libs first, then services, then integration
 # To add new tests: add the script path here in the appropriate position
 TEST_SCRIPTS=(
-    "$TESTING_ROOT/scripts/test-shared-libs.sh"
     "$TESTING_ROOT/scripts/test-setup-service.sh"
     "$TESTING_ROOT/scripts/test-minecraft-modpack.sh"
     "$TESTING_ROOT/scripts/test-borgmatic.sh"

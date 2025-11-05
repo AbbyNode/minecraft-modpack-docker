@@ -28,7 +28,6 @@ The setup container will:
 - Create required directory structure
 - Create default `data/config/ofelia/config.ini`
 - Extract version-controlled scripts to `data/setup-scripts/`
-- Populate the shared scripts volume mounted at `/opt/shared`
 
 ## Configuration
 
@@ -150,4 +149,3 @@ docker compose restart ofelia
 - **[MCASelector CLI](modules/mcaselector/docs/CLI-Mode.md)** - Command-line reference
 - **[Chunk Filters](modules/mcaselector/docs/Chunk-Filter.md)** - Chunk filtering options
 - **[Testing](testing/README.md)** - Test suite for all features
-- Shared libs: `setup/shared/lib/log.sh`, URL resolver: `setup/shared/url/resolve-curseforge-url.sh`
