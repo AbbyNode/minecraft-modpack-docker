@@ -5,8 +5,8 @@ services:
   # To rerun setup, use `docker compose --profile setup run --pull always --rm setup`
   # This will update all submodules to the latest images as well.
   setup:
-    image: eclarift/minecraft-setup:latest
-    container_name: minecraft-setup
+    image: eclarift/setup:latest
+    container_name: setup
     volumes:
       - .:/workspace
     profiles:
@@ -14,9 +14,9 @@ services:
     restart: no
   
   # The core Minecraft server container
-  minecraft-modpack:
+  server:
     image: itzg/minecraft-server:latest
-    container_name: minecraft-modpack
+    container_name: server
     ports:
       - '25565:25565'
     env_file:
@@ -27,6 +27,23 @@ services:
     tty: true
     restart: unless-stopped
 
+  # ========== Backups ==========
+
+  # Application to handle backups using BorgBackup
+  borgmatic:
+    image: rmohr/borgmatic:latest
+    container_name: borgmatic
+    profiles:
+      - backup
+    env_file:
+      - .secrets
+    volumes:
+      - ./data:/data:ro
+      - borgmatic-data:/var/lib/borgmatic
+    restart: no
+
+  # ========== World Maintenance ==========
+
   # Application to manage chunk cleanup
   mcaselector:
     image: eclipse-temurin:25-jre-alpine
@@ -36,37 +53,44 @@ services:
       - ./data/config:/config
     restart: no
 
+  # ========== Web Map Generation ==========
+
   # Application to generate web-based maps of the Minecraft world
-  unmined-map-generator:
+  unmined-generator:
     image: mcr.microsoft.com/dotnet/runtime:9.0-alpine
-    container_name: unmined-map-generator
+    container_name: unmined-generator
     volumes:
       - ./data/world:/world:ro
-      - ./data/unmined-map:/output
+      - unmined-data:/output
     restart: no
 
   # Webserver to serve the generated maps
-  unmined-map-webserver:
+  unmined-webserver:
     image: nginx:alpine
-    container_name: unmined-map-webserver
+    container_name: unmined-webserver
     volumes:
-      - ./data/unmined-map:/usr/share/nginx/html:ro
+      - unmined-data:/usr/share/nginx/html:ro
     restart: unless-stopped
 
   # Reverse proxy for web services
-  cloudflared:
+  unmined-cloudflared:
     image: cloudflare/cloudflared:latest
-    container_name: cloudflared
+    container_name: unmined-cloudflared
     env_file:
-      - .env
       - .secrets
     depends_on:
-      - unmined-map-webserver
+      - unmined-webserver
     command: tunnel run
     restart: unless-stopped
+
+  # ==========
 
 volumes:
   scripts:
     driver: local
-  # borgmatic-data:
-  #   driver: local
+  minecraft-data:
+    driver: local
+  unmined-data:
+    driver: local
+  borgmatic-data:
+    driver: local
