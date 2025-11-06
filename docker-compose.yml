@@ -34,7 +34,7 @@ services:
     restart: unless-stopped
 
   borgmatic:
-    image: eclarift/borgmatic:latest
+    image: eclarift/auto-borgmatic:latest
     container_name: borgmatic
     env_file:
       - .env

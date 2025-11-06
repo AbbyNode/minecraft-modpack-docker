@@ -17,12 +17,6 @@ services:
       context: ./modules/mcaselector
       dockerfile: Dockerfile
 
-  borgmatic:
-    image: eclarift/borgmatic:latest
-    build:
-      context: ./modules/borgmatic
-      dockerfile: Dockerfile
-
   unmined:
     image: eclarift/unmined:latest
     build:
