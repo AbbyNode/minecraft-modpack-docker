@@ -7,7 +7,7 @@ Run a Minecraft modded server with automated backups and chunk cleanup. Uses [it
 Download compose file
 
 ```bash
-curl -O "https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
+curl -O "https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml"
 ```
 
 Run setup container (creates .env, directories, and extracts scripts)
@@ -56,15 +56,6 @@ BORG_PASSPHRASE=your-strong-passphrase
 MODPACK_URL=https://www.curseforge.com/minecraft/modpacks/all-the-mods-10
 ```
 
-**Set backup passphrase** (required for encryption):
-
-```bash
-BORG_PASSPHRASE=your-strong-passphrase
-
-```bash
-BORG_PASSPHRASE=your-strong-passphrase
-```
-
 ## How It Works
 
 This setup uses a hybrid approach:
@@ -99,24 +90,6 @@ docker compose up --pull missing -d
 
 ## Automated Tasks
 
-### Backups (Daily 7:00 AM)
-
-Backs up world, config, mods, and logs to `./data/backups/borg-repository` with retention of 7 daily, 4 weekly, 6 monthly backups.
-
-```bash
-# Manual backup
-docker exec borgmatic /scripts/backup.sh
-
-# List backups
-docker exec borgmatic borgmatic list
-
-# Restore
-docker exec borgmatic borgmatic extract --archive <name> --destination /tmp/restore
-docker cp borgmatic:/tmp/restore ./restore/
-```
-
-**Configuration:** `./data/config/borgmatic/config.yaml` (auto-created on first run)
-
 ### Chunk Cleanup (Daily 7:00 AM)
 
 Deletes old chunks based on age and player activity to save disk space.
@@ -145,9 +118,8 @@ docker compose restart ofelia
 
 ## Additional Documentation
 
-- **[Architecture](docs/Architecture.md)** - System design and component overview
-- **[Bind Mounts](docs/bind-mounts.md)** - Host-container path mappings
+- **[Architecture](setup/docs/Architecture.md)** - System design and component overview
+- **[Bind Mounts](setup/docs/bind-mounts.md)** - Host-container path mappings
 - **[MCASelector CLI](modules/mcaselector/docs/CLI-Mode.md)** - Command-line reference
 - **[Chunk Filters](modules/mcaselector/docs/Chunk-Filter.md)** - Chunk filtering options
-- **[Testing](testing/README.md)** - Test suite for all features
-- Shared libs: `setup/shared/lib/log.sh`, URL resolver: `setup/shared/url/resolve-curseforge-url.sh`
+- **[Testing](setup/testing/README.md)** - Test suite for all features
