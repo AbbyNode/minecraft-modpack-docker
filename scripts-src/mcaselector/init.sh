@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 # https://github.com/Querz/mcaselector
 
 echo "========== MCSelector Setup =========="
 
+mkdir -p /mcaselector
 cd /mcaselector
 
 echo "Fetching latest MCSelector release URL"

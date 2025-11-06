@@ -4,7 +4,8 @@ set -e
 # If the MCASelector jar does not exist, run the init script to download it
 if [ ! -f /mcaselector/mcaselector.jar ]; then
     echo "MCASelector jar not found. Running initialization script."
-    /scripts/init.sh
+    /scripts/common/install-basics.sh
+    /scripts/mcaselector/init.sh
 fi
 
 # If a command was provided, execute it

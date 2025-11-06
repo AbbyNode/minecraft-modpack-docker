@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 # https://unmined.net/
 
 echo "========== Unmined CLI Setup =========="
 
+mkdir -p /unmined
 cd /unmined
 
 echo "Downloading Unmined CLI"
