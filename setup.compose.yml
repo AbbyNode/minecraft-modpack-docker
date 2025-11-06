@@ -1,0 +1,11 @@
+
+services:
+  setup:
+    image: eclarift/minecraft-setup:latest
+    container_name: minecraft-setup
+    volumes:
+      - .:/workspace
+    profiles:
+      - setup
+    restart: 'no'
+

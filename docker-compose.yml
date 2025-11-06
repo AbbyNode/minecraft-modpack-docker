@@ -2,15 +2,6 @@
 # For ovwerrides, use docker-compose.override.yml file.
 
 services:
-  setup:
-    image: eclarift/minecraft-setup:latest
-    container_name: minecraft-setup
-    volumes:
-      - .:/workspace
-    profiles:
-      - setup
-    restart: 'no'
-
   minecraft-modpack:
     image: eclarift/minecraft-modpack:latest
     container_name: minecraft-modpack
