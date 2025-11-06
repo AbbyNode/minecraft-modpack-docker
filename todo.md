@@ -1,6 +1,7 @@
 
 # What to do
 
+* minecraft overrides in config
 * Make the tools run automatically on schedule
   * borgmatic
   * mcaselector
