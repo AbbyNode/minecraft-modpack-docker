@@ -84,8 +84,8 @@ services:
     image: nginx:alpine
     container_name: unmined-webserver
     volumes:
-      - unmined-data/html:/usr/share/nginx/html:ro
-      - unmined-data/conf.d:/etc/nginx/conf.d:ro
+      - unmined-data:/usr/share/nginx/html:ro
+      - ./config/nginx:/etc/nginx/conf.d:ro
     restart: unless-stopped
 
   # Tunnel for web services
