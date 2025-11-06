@@ -7,13 +7,19 @@ Run a Minecraft modded server with automated backups and chunk cleanup. Uses [it
 Download compose file
 
 ```bash
-curl -O "https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml"
+curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
 ```
 
 Run setup container (creates .env, directories, and extracts scripts)
 
 ```bash
 docker compose --profile setup run --rm setup
+```
+
+Edit `.secrets` file with your credentials
+
+```bash
+nano .secrets
 ```
 
 Start the services
@@ -43,13 +49,13 @@ MODPACK_URL=https://mediafilez.forgecdn.net/files/7121/795/ServerFiles-4.14.zip
 ### View Logs
 
 ```bash
-docker compose logs -f minecraft-modpack
+docker compose logs -f server
 ```
 
 ### Interactive Console
 
 ```bash
-docker attach minecraft-modpack  # Ctrl+P, Ctrl+Q to detach
+docker attach server  # Ctrl+P, Ctrl+Q to detach
 ```
 
 ### Start/Stop
