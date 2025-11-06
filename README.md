@@ -10,10 +10,21 @@ Download compose file
 curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
 ```
 
-Pull images and start services
+Run setup container (creates .env, directories, and extracts scripts)
 
 ```bash
-docker compose pull
+docker compose --profile setup run --rm setup
+```
+
+Edit `.secrets` file with your credentials
+
+```bash
+nano .secrets
+```
+
+Start the services
+
+```bash
 docker compose up -d
 ```
 
