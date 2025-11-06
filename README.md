@@ -12,23 +12,35 @@ Easy all-in-one Docker setup for hosting a modded Minecraft server.
 
 ## Quick Start
 
-Download compose file
+### Download compose file
 
 ```bash
 curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
 ```
 
-Run setup container (creates .env, directories, and extracts scripts)  
+###  Run setup container
+
+Creates .env, directories, scripts, and secrets templates.  
 
 ```bash
 docker compose --profile setup run --rm -it --pull always setup
 ```
 
-(Optional) Edit `.secrets` to add 
+### (Optional) Edit `.env`
 
-(Optional) Edit `.env` to configure your modpack and server properties.
+To configure your modpack and server properties.
 
-Start the services
+### (Optional) Add secret values
+
+Put raw values (no KEY= prefix) into files under `.secrets/` created from templates:
+
+```shell
+cf_api_key          # CurseForge API key string
+borg_passphrase     # encryption passphrase 
+cloudflared_token   # tunnel token
+```
+
+### Start the services
 
 ```bash
 docker compose up -d

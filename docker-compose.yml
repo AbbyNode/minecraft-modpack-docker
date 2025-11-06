@@ -23,7 +23,10 @@ services:
       - '25565:25565'
     env_file:
       - .env
-      - .secrets
+    environment:
+      CF_API_KEY_FILE: /run/secrets/cf_api_key
+    secrets:
+      - cf_api_key
     volumes:
       - minecraft-data:/data
       - scripts:/scripts:ro
@@ -44,13 +47,15 @@ services:
     container_name: borgmatic
     profiles:
       - backup
-    env_file:
-      - .secrets
+    environment:
+      BORG_PASSCOMMAND: cat /run/secrets/borg_passphrase
     volumes:
       - borgmatic-data:/var/lib/borgmatic
       - scripts:/scripts:ro
       - ./data/world:/source:ro
       - ./data/logs/borgmatic:/var/log/borgmatic
+    secrets:
+      - borg_passphrase
     entrypoint: ["/scripts/borgmatic/entrypoint.sh"]
     restart: no
 
@@ -93,11 +98,13 @@ services:
   unmined-cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: unmined-cloudflared
-    env_file:
-      - .secrets
+    environment:
+      CLOUDFLARED_TOKEN_FILE: /run/secrets/cloudflared_token
+    secrets:
+      - cloudflared_token
     depends_on:
       - unmined-webserver
-    command: tunnel run
+    command: /bin/sh -c "cloudflared tunnel run --token \$(cat \"$CLOUDFLARED_TOKEN_FILE\")"
     restart: unless-stopped
 
   # ==========
@@ -111,3 +118,11 @@ volumes:
     driver: local
   borgmatic-data:
     driver: local
+
+secrets:
+  borg_passphrase:
+    file: ./.secrets/borg_passphrase
+  cloudflared_token:
+    file: ./.secrets/cloudflared_token
+  cf_api_key:
+    file: ./.secrets/cf_api_key
