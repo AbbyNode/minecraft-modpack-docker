@@ -25,7 +25,7 @@ if [ $# -eq 0 ] && [ -n "${MODPACK_URL:-}" ]; then
     if echo "${MODPACK_URL}" | grep -qE '^https?://(www\.)?curseforge\.com/minecraft/modpacks/[a-zA-Z0-9_-]+/?$'; then
         log_info "Detected CurseForge modpack page URL, resolving to server files..."
         # Recursively call self in resolver mode
-        RESOLVED_URL="$($0 "${MODPACK_URL}")"
+        RESOLVED_URL="$("${BASH_SOURCE[0]}" "${MODPACK_URL}")"
         log_info "Resolved to: ${RESOLVED_URL}"
         export GENERIC_PACK="${RESOLVED_URL}"
     else

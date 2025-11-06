@@ -9,9 +9,9 @@ log__ts() {
 log_info() {
     local line="[INFO] $(log__ts) - $*"
     if [ -n "${LOG_FILE:-}" ]; then
-        echo "$line" | tee -a "$LOG_FILE"
+        echo "$line" | tee -a "$LOG_FILE" >&2
     else
-        echo "$line"
+        echo "$line" >&2
     fi
 }
 
