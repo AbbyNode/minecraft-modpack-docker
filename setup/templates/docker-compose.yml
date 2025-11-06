@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   mcaselector:
-    image: eclarift/mcaselector:latest
+    image: eclipse-temurin:25-jre-alpine
     container_name: mcaselector
     volumes:
       - ./data/world:/world
@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
 
   unmined:
-    image: eclarift/unmined:latest
+    image: mcr.microsoft.com/dotnet/runtime:9.0-alpine
     container_name: unmined
     volumes:
       - ./data/world:/world:ro
