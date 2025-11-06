@@ -3,7 +3,7 @@
 
 services:
   minecraft-modpack:
-    image: eclarift/minecraft-modpack:latest
+    image: itzg/minecraft-server:latest
     container_name: minecraft-modpack
     ports:
       - '25565:25565'
