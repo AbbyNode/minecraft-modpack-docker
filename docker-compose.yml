@@ -62,7 +62,7 @@ services:
     volumes:
       - scripts:/scripts:ro
       - ./data/world:/world
-      - ./data/config/mcaselector:/config
+      - ./data/config:/config
     entrypoint: ["/bin/bash", "/scripts/mcaselector/entrypoint.sh"]
     restart: no
 
