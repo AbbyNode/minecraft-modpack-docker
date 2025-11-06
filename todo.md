@@ -1,10 +1,13 @@
 
 # What to do
 
+* Make the tools run automatically on schedule
+  * borgmatic
+  * mcaselector
 * Auto push backups to Athena
 * get mods distant horizons <https://www.curseforge.com/minecraft/mc-mods/distant-horizons>
-* unmined server alongside <https://github.com/ich777/docker-unmined>
-* fix the unmined dockerfile
+
+Work on borgmatic project ... ?
 * move borgmatic to separate project entirely
 
 # example links
