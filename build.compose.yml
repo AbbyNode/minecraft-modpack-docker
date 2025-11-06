@@ -1,24 +1,4 @@
 services:
   setup:
     image: eclarift/minecraft-setup:latest
-    build:
-      context: ./setup
-      dockerfile: Dockerfile
-
-  minecraft-modpack:
-    image: eclarift/minecraft-modpack:latest
-    build:
-      context: ./minecraft-modpack
-      dockerfile: Dockerfile
-
-  mcaselector:
-    image: eclarift/mcaselector:latest
-    build:
-      context: ./modules/mcaselector
-      dockerfile: Dockerfile
-
-  unmined:
-    image: eclarift/unmined:latest
-    build:
-      context: ./modules/unmined
-      dockerfile: Dockerfile
+    build: .
