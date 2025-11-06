@@ -4,6 +4,15 @@ set -e
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 echo ""
 
+# Create docker-compose.yml if it doesn't exist
+if [[ ! -f /workspace/docker-compose.yml ]]; then
+    echo "Creating docker-compose.yml from template..."
+    cp /templates/docker-compose.example.yml /workspace/docker-compose.yml
+    echo "✓ docker-compose.yml created"
+else
+    echo "✓ docker-compose.yml already exists"
+fi
+
 # Create .env file if it doesn't exist
 if [[ ! -f /workspace/.env ]]; then
     echo "Creating .env from template..."
