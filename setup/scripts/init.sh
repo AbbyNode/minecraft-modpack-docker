@@ -50,8 +50,6 @@ dirs=(
     /workspace/data/config
     /workspace/data/mods/jars
     /workspace/data/mods/config
-    /workspace/data/backups/borg-repository
-    /workspace/data/config/borgmatic
 )
 for dir in "${dirs[@]}"; do
     mkdir -p "$dir"
