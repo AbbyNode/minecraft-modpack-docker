@@ -34,6 +34,7 @@ services:
       - ./data/logs/minecraft:/data/logs
       - ./data/mods/jars:/data/mods
       - ./data/mods/config:/data/config
+      - ./config/minecraft:/config:ro
     entrypoint: ["/scripts/minecraft-server/entrypoint.sh"]
     stdin_open: true
     tty: true
