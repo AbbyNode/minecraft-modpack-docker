@@ -14,37 +14,14 @@ SCRIPTS_SRC="/scripts-src"
 SCRIPTS_VOL="/scripts"
 
 
-# =========== Helper Functions ==========
-
-function ask_replace() {
-    local src_file="$1"
-    local dest_file="$2"
-
-    echo "Updating $(basename "$dest_file")..."
-    if [[ -f "$dest_file" ]]; then
-        read -p "$dest_file already exists. Overwrite? (y/n): " choice
-        if [[ $choice == "y" ]]; then
-            cp "$src_file" "$dest_file"
-            echo "✓ Replaced $(basename "$dest_file")"
-        else
-            echo "✓ Skipped $(basename "$dest_file")"
-        fi
-    else
-        mkdir -p "$(dirname "$dest_file")"
-        cp "$src_file" "$dest_file"
-        echo "✓ Created $(basename "$dest_file")"
-    fi
-}
-
-
 # ========== Docker compose ==========
 
 cp "$SETUP/docker-compose.yml" "$WORKSPACE/docker-compose.yml"
+echo "✓ Docker Compose file updated"
 
 
 # ========== Scripts Volume ==========
 
-echo "Updating scripts volume..."
 mkdir -p "$SCRIPTS_VOL"
 cp -r "$SCRIPTS_SRC/"* "$SCRIPTS_VOL/"
 chmod +x "$SCRIPTS_VOL/"**/*.sh
@@ -54,6 +31,7 @@ echo "✓ Scripts volume updated"
 # ========== Configuration Files ==========
 
 # Ensure all files from $TEMPLATES exist in $WORKSPACE
+echo ""
 echo "Adding missing templates..."
 if [[ ! -d $TEMPLATES ]]; then
 	echo "ERROR: No templates found!"
@@ -63,7 +41,14 @@ for template_file in $(find "$TEMPLATES" -type f); do
     relative_path="${template_file#$TEMPLATES/}" # Remove the templates base path
     relative_path="${relative_path%.example}" # Remove the .example suffix
     target_file="${WORKSPACE}/${relative_path}"
-    ask_replace "$template_file" "$target_file"
+    
+    if [[ ! -f "$target_file" ]]; then
+        mkdir -p "$(dirname "$target_file")"
+        cp "$template_file" "$target_file"
+        echo "✓ Created ${relative_path}"
+    else
+        echo "• ${relative_path} already exists"
+    fi
 done
 
 
