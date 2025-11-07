@@ -32,6 +32,7 @@ services:
       - scripts:/scripts:ro
       - ./data/world:/data/world
       - ./data/logs/minecraft:/data/logs
+      - ./data/mods/downloads:/downloads
       - ./data/mods/jars:/data/mods
       - ./data/mods/config:/data/config
       - ./config/minecraft:/config:ro
