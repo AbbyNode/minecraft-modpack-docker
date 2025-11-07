@@ -98,13 +98,11 @@ services:
   unmined-cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: unmined-cloudflared
-    environment:
-      CLOUDFLARED_TOKEN_FILE: /run/secrets/cloudflared_token
     secrets:
       - cloudflared_token
     depends_on:
       - unmined-webserver
-    command: /bin/sh -c "cloudflared tunnel run --token \$(cat \"$CLOUDFLARED_TOKEN_FILE\")"
+    command: /bin/sh -c "cloudflared tunnel run --token $(cat /run/secrets/cloudflared_token)"
     restart: unless-stopped
 
   # ==========
