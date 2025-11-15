@@ -1,0 +1,15 @@
+location:
+  source_directories:
+    - /source
+
+  repositories:
+    - path: /var/lib/borgmatic/repository
+      label: local
+
+storage:
+  encryption_passcommand: cat /run/secrets/borg_passphrase
+
+retention:
+  keep_daily: 7
+  keep_weekly: 4
+  keep_monthly: 6
