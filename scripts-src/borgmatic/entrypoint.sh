@@ -23,7 +23,7 @@ if [ -f "$BORGMATIC_CONFIG" ]; then
 fi
 
 # Check if repository exists, if not run init script
-if [ ! -d "$REPO_PATH" ] || [ ! -f "$REPO_PATH/README" ]; then
+if [ ! -d "$REPO_PATH" ]; then
     echo "Repository not found. Running initialization..."
     /scripts/borgmatic/init.sh
 fi

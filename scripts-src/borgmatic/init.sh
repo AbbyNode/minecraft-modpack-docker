@@ -22,7 +22,7 @@ if [ -f /etc/borgmatic.d/config.yaml ]; then
 fi
 
 # Check if repository already exists
-if [ ! -d "$REPO_PATH" ] || [ ! -f "$REPO_PATH/README" ]; then
+if [ ! -d "$REPO_PATH" ]; then
     echo "Repository does not exist at $REPO_PATH. Creating..."
     
     # Create directory if needed
