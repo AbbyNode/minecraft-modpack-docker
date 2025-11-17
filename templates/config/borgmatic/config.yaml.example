@@ -1,15 +1,13 @@
-location:
-  source_directories:
-    - /source
+source_directories:
+  - /source
 
-  repositories:
-    - path: /var/lib/borgmatic/repository/default
-      label: local
+repositories:
+  - path: /mnt/borg-repository
+    label: local
 
-retention:
-  keep_within: 2H
-  keep_hourly: 24
-  keep_daily: 14
-  keep_weekly: 12
-  keep_monthly: 12
-  keep_yearly: 999
+keep_within: 2H
+keep_hourly: 24
+keep_daily: 14
+keep_weekly: 12
+keep_monthly: 12
+keep_yearly: 999
