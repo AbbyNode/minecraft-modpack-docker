@@ -9,26 +9,23 @@ REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
 SHARED_CONFIG_DIR="/config"
 BORGMATIC_CONFIG_SOURCE="${SHARED_CONFIG_DIR}/config.yaml"
 BORG_PASSPHRASE_FILE="/run/secrets/borg_passphrase"
-DEFAULT_PASSPHRASE="minecraft-modpack-docker-default-passphrase"
 
 echo "========== Borgmatic Container Starting =========="
 echo "Using modpack slug: $CF_SLUG"
 echo "Repository path: $REPO_PATH"
 
 # Check if borg passphrase file has valid content (not just comments)
-# If no passphrase is provided, use a default predefined passphrase for encryption
 if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
     echo "WARNING: Borg passphrase file is missing, empty, or only contains comments"
-    echo "Using default predefined passphrase for 'repokey' encryption"
-    # Set BORG_PASSCOMMAND to use the default passphrase
-    export BORG_PASSCOMMAND="echo $DEFAULT_PASSPHRASE"
+    echo "Will use 'none' encryption mode (no encryption)"
+    # Unset BORG_PASSCOMMAND to avoid errors when using 'none' encryption
+    unset BORG_PASSCOMMAND
+    : "${BORG_ENCRYPTION:=none}"
 else
-    echo "Valid passphrase found. Using provided passphrase for 'repokey' encryption."
+    echo "Valid passphrase found. Will use 'repokey' encryption mode."
     # BORG_PASSCOMMAND is already set in docker-compose.yml to read from the secret file
+    : "${BORG_ENCRYPTION:=repokey}"
 fi
-
-# Always use repokey encryption (with either provided or default passphrase)
-: "${BORG_ENCRYPTION:=repokey}"
 
 # Ensure borgmatic config directory exists
 mkdir -p "$BORGMATIC_CONFIG_DIR"
