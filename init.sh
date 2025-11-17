@@ -55,7 +55,7 @@ done
 # ========== Minecraft Data Directories ==========
 
 mkdir -p "$WORKSPACE/data/world"
-mkdir -p "$WORKSPACE/data/logs"
+mkdir -p "$WORKSPACE/data/logs/minecraft"
 mkdir -p "$WORKSPACE/data/mods/downloads"
 mkdir -p "$WORKSPACE/data/mods/jars"
 mkdir -p "$WORKSPACE/data/mods/config"
