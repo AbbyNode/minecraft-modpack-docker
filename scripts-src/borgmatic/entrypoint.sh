@@ -15,10 +15,16 @@ echo "Using modpack slug: $CF_SLUG"
 echo "Repository path: $REPO_PATH"
 
 # Check if borg passphrase file has valid content (not just comments)
+# If no passphrase is provided, use 'none' encryption mode (no encryption)
 if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
-    echo "ERROR: Borg passphrase file is missing, empty, or only contains comments"
-    echo "Please add a valid passphrase to .secrets/borg_passphrase"
-    exit 1
+    echo "WARNING: Borg passphrase file is missing, empty, or only contains comments"
+    echo "Will use 'none' encryption mode (no encryption)"
+    # Unset BORG_PASSCOMMAND to avoid errors when using 'none' encryption
+    unset BORG_PASSCOMMAND
+    USE_ENCRYPTION="none"
+else
+    echo "Valid passphrase found. Will use 'repokey' encryption mode."
+    USE_ENCRYPTION="repokey"
 fi
 
 # Ensure borgmatic config directory exists
@@ -46,8 +52,8 @@ if [ ! -d "$REPO_PATH" ]; then
     # Create directory if needed
     mkdir -p "$REPO_PATH"
     
-    # Determine encryption mode - use BORG_ENCRYPTION env var if provided, otherwise default to repokey
-    ENCRYPTION="${BORG_ENCRYPTION:-repokey}"
+    # Determine encryption mode - use BORG_ENCRYPTION env var if provided, otherwise use the determined mode
+    ENCRYPTION="${BORG_ENCRYPTION:-$USE_ENCRYPTION}"
     echo "Using encryption mode: $ENCRYPTION"
     
     # Initialize the repository
