@@ -21,10 +21,12 @@ if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
     echo "Will use 'none' encryption mode (no encryption)"
     # Unset BORG_PASSCOMMAND to avoid errors when using 'none' encryption
     unset BORG_PASSCOMMAND
-    USE_ENCRYPTION="none"
+    # Set default encryption to none if no BORG_ENCRYPTION override
+    : "${BORG_ENCRYPTION:=none}"
 else
     echo "Valid passphrase found. Will use 'repokey' encryption mode."
-    USE_ENCRYPTION="repokey"
+    # Set default encryption to repokey if no BORG_ENCRYPTION override
+    : "${BORG_ENCRYPTION:=repokey}"
 fi
 
 # Ensure borgmatic config directory exists
@@ -52,12 +54,10 @@ if [ ! -d "$REPO_PATH" ]; then
     # Create directory if needed
     mkdir -p "$REPO_PATH"
     
-    # Determine encryption mode - use BORG_ENCRYPTION env var if provided, otherwise use the determined mode
-    ENCRYPTION="${BORG_ENCRYPTION:-$USE_ENCRYPTION}"
-    echo "Using encryption mode: $ENCRYPTION"
+    echo "Using encryption mode: $BORG_ENCRYPTION"
     
     # Initialize the repository
-    borgmatic init --encryption "$ENCRYPTION" --repository "$REPO_PATH"
+    borgmatic init --encryption "$BORG_ENCRYPTION" --repository "$REPO_PATH"
     
     echo "Repository initialized successfully"
 else
