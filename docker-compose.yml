@@ -44,7 +44,7 @@ services:
 
   # Application to handle backups using BorgBackup
   borgmatic:
-    image: rmohr/borgmatic:latest
+    image: ghcr.io/borgmatic-collective/borgmatic:latest
     container_name: borgmatic
     profiles:
       - backup
@@ -56,7 +56,7 @@ services:
       - borgmatic-data:/mnt/borg-repository
       - scripts:/scripts:ro
       - ./data/world:/mnt/source:ro
-      - ./data/config:/config
+      - ./config/borgmatic:/config
       - ./data/logs/borgmatic:/var/log/borgmatic
     secrets:
       - borg_passphrase
@@ -72,7 +72,7 @@ services:
     volumes:
       - scripts:/scripts:ro
       - ./data/world:/world
-      - ./data/config:/config
+      - ./config/mcaselector:/config
     entrypoint: ["/scripts/mcaselector/entrypoint.sh"]
     restart: no
 

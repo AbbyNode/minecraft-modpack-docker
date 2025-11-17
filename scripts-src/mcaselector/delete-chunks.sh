@@ -5,7 +5,7 @@
 # InhabitedTime
 
 # Load configuration from YAML file
-OPTIONS_FILE=/config/mcaselector/mcaselector-options.yaml
+OPTIONS_FILE=/config/mcaselector-options.yaml
 
 if [[ ! -f "$OPTIONS_FILE" ]]; then
     echo "Error: Configuration file not found: $OPTIONS_FILE"

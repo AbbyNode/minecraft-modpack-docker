@@ -3,7 +3,7 @@ location:
     - /source
 
   repositories:
-    - path: /var/lib/borgmatic/repository/default
+    - path: /mnt/borg-repository
       label: local
 
 retention:
