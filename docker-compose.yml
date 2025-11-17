@@ -57,7 +57,6 @@ services:
       - scripts:/scripts:ro
       - ./data/world:/mnt/source:ro
       - ./config/borgmatic:/config
-      - ./data/logs/borgmatic:/var/log/borgmatic
     secrets:
       - borg_passphrase
     entrypoint: ["/scripts/borgmatic/entrypoint.sh"]
