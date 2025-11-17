@@ -35,7 +35,7 @@ services:
       - ./data/mods/downloads:/downloads
       - ./data/mods/jars:/data/mods
       - ./data/mods/config:/data/config
-      - ./config/minecraft:/config:ro
+      - ./config/minecraft:/config
     stdin_open: true
     tty: true
     restart: unless-stopped
@@ -53,11 +53,11 @@ services:
     environment:
       BORG_PASSCOMMAND: cat /run/secrets/borg_passphrase
     volumes:
-      - borgmatic-data:/var/lib/borgmatic
+      - borgmatic-data:/mnt/borg-repository
       - scripts:/scripts:ro
-      - ./data/world:/source:ro
-      - ./data/logs/borgmatic:/var/log/borgmatic
+      - ./data/world:/mnt/source:ro
       - ./data/config:/config
+      - ./data/logs/borgmatic:/var/log/borgmatic
     secrets:
       - borg_passphrase
     entrypoint: ["/scripts/borgmatic/entrypoint.sh"]
@@ -109,7 +109,7 @@ services:
     command: /bin/sh -c "cloudflared tunnel run --token $(cat /run/secrets/cloudflared_token)"
     restart: unless-stopped
 
-  # ==========
+# ==========
 
 volumes:
   scripts:
