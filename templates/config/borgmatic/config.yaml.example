@@ -6,16 +6,10 @@ location:
     - path: /var/lib/borgmatic/repository/default
       label: local
 
-  exclude_patterns:
-      - /opt/minecraft/server/logs
-      - /opt/minecraft/server/crash-reports
-      - /opt/minecraft/server/backups
-      - /opt/minecraft/server/world/playerdata/session.lock
-      - /opt/minecraft/server/world/session.lock
-      - /opt/minecraft/server/world_nether/session.lock
-      - /opt/minecraft/server/world_the_end/session.lock
-
 retention:
-  keep_daily: 7
-  keep_weekly: 4
-  keep_monthly: 6
+  keep_within: 2H
+  keep_hourly: 24
+  keep_daily: 14
+  keep_weekly: 12
+  keep_monthly: 12
+  keep_yearly: 999
