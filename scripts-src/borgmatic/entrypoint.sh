@@ -23,7 +23,8 @@ if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
     : "${BORG_ENCRYPTION:=none}"
 else
     echo "Valid passphrase found. Will use 'repokey' encryption mode."
-    # BORG_PASSCOMMAND is already set in docker-compose.yml to read from the secret file
+    # Set BORG_PASSCOMMAND to read from the secret file
+    export BORG_PASSCOMMAND="cat $BORG_PASSPHRASE_FILE"
     : "${BORG_ENCRYPTION:=repokey}"
 fi
 
