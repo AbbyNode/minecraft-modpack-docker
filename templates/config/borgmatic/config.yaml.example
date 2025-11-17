@@ -3,11 +3,17 @@ location:
     - /source
 
   repositories:
-    - path: /var/lib/borgmatic/repository
+    - path: /var/lib/borgmatic/repository/default
       label: local
 
-storage:
-  encryption_passcommand: cat /run/secrets/borg_passphrase
+  exclude_patterns:
+      - /opt/minecraft/server/logs
+      - /opt/minecraft/server/crash-reports
+      - /opt/minecraft/server/backups
+      - /opt/minecraft/server/world/playerdata/session.lock
+      - /opt/minecraft/server/world/session.lock
+      - /opt/minecraft/server/world_nether/session.lock
+      - /opt/minecraft/server/world_the_end/session.lock
 
 retention:
   keep_daily: 7

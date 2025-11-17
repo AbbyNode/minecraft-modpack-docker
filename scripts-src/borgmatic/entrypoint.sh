@@ -1,36 +1,36 @@
 #!/bin/bash
 set -e
 
-echo "========== Borgmatic Container Starting =========="
-
-# Get the modpack slug from environment variable, default to 'default' if not set
+# Variables
 CF_SLUG="${CF_SLUG:-default}"
-echo "Using modpack slug: $CF_SLUG"
-
-# Define repository path using the CF_SLUG
+BORGMATIC_CONFIG_DIR="/etc/borgmatic.d"
+BORGMATIC_CONFIG="${BORGMATIC_CONFIG_DIR}/config.yaml"
 REPO_PATH="/var/lib/borgmatic/repository/${CF_SLUG}"
+SHARED_CONFIG_DIR="/config/"
+BORGMATIC_CONFIG_LINK="${SHARED_CONFIG_DIR}/borgmatic-config.yaml"
+
+echo "========== Borgmatic Container Starting =========="
+echo "Using modpack slug: $CF_SLUG"
 echo "Repository path: $REPO_PATH"
 
 # Ensure borgmatic config directory exists
-mkdir -p /etc/borgmatic.d
+mkdir -p "$BORGMATIC_CONFIG_DIR"
 
 # Update borgmatic config with correct repository path
-if [ -f /etc/borgmatic.d/config.yaml ]; then
+if [ -f "$BORGMATIC_CONFIG" ]; then
     # Update the repository path in the config to use the CF_SLUG-based path
-    sed -i "s|path: /var/lib/borgmatic/repository|path: ${REPO_PATH}|g" /etc/borgmatic.d/config.yaml
+    sed -i "s|^path:.*|path: ${REPO_PATH}|g" "$BORGMATIC_CONFIG"
     echo "Updated borgmatic config with repository path: $REPO_PATH"
 fi
 
 # Create shared config directory if it doesn't exist
-SHARED_CONFIG_DIR="/config/borgmatic"
 mkdir -p "$SHARED_CONFIG_DIR"
 
 # Link borgmatic config into shared config folder
-BORGMATIC_CONFIG="/etc/borgmatic.d/config.yaml"
 if [ -f "$BORGMATIC_CONFIG" ]; then
     echo "Linking borgmatic config to shared config folder..."
-    ln -sf "$BORGMATIC_CONFIG" "$SHARED_CONFIG_DIR/config.yaml"
-    echo "Config linked at $SHARED_CONFIG_DIR/config.yaml"
+    ln -sf "$BORGMATIC_CONFIG" "$BORGMATIC_CONFIG_LINK"
+    echo "Config linked at $BORGMATIC_CONFIG_LINK"
 fi
 
 # Check if repository exists, if not initialize it
