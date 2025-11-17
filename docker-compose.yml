@@ -66,9 +66,12 @@ services:
   # ========== World Maintenance ==========
 
   # Application to manage chunk cleanup
+  # Run with: docker compose run --rm mcaselector
   mcaselector:
     image: eclipse-temurin:25-jre-noble
     container_name: mcaselector
+    profiles:
+      - mcaselector
     volumes:
       - scripts:/scripts:ro
       - ./data/world:/world
