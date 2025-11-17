@@ -70,3 +70,11 @@ To run commands on the Minecraft server console:
 ```bash
 docker attach server  # Ctrl+P, Ctrl+Q to detach
 ```
+
+### Chunk Cleanup
+
+To delete old chunks based on configured rules in `data/config/mcaselector/mcaselector-options.yaml`:
+
+```bash
+docker compose run --rm mcaselector
+```

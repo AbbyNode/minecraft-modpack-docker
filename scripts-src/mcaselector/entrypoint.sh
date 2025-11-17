@@ -12,9 +12,7 @@ fi
 if [ $# -gt 0 ]; then
     exec "$@"
 else
-    # Keep container running for manual or external triggers
-    # However, allow docker compose down to stop the container gracefully
-    echo "MCASelector is ready. Trigger jobs manually as needed."
-    echo "Manual run: docker exec mcaselector /scripts/delete-chunks.sh"
-    tail -f /dev/null
+    # Run delete-chunks.sh script by default
+    echo "Running chunk deletion script..."
+    exec /scripts/mcaselector/delete-chunks.sh
 fi
