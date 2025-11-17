@@ -104,11 +104,13 @@ services:
   unmined-cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: unmined-cloudflared
+    volumes:
+      - scripts:/scripts:ro
     secrets:
       - cloudflared_token
     depends_on:
       - unmined-webserver
-    command: /bin/sh -c "cloudflared tunnel run --token $(cat /run/secrets/cloudflared_token)"
+    entrypoint: ["/scripts/cloudflared/entrypoint.sh"]
     restart: unless-stopped
 
 # ==========
