@@ -26,19 +26,22 @@ Creates .env, directories, scripts, and secrets templates.
 docker compose --profile setup run --rm -it --pull always setup
 ```
 
-### (Optional) Edit `.env`
-
-To configure your modpack and server properties.
-
-### (Optional) Add secret values
+### Add secret values
 
 Put raw values (no KEY= prefix) into files under `.secrets/` created from templates:
 
 ```shell
-cf_api_key          # CurseForge API key string
-borg_passphrase     # encryption passphrase 
+# Required
+cf_api_key          # CurseForge API key
+
+# Optional
+borg_passphrase     # encryption passphrase
 cloudflared_token   # tunnel token
 ```
+
+### (Optional) Edit `.env`
+
+To configure your modpack and server properties.
 
 ### Start the services
 
