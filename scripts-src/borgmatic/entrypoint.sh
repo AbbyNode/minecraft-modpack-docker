@@ -8,10 +8,25 @@ BORGMATIC_CONFIG="${BORGMATIC_CONFIG_DIR}/config.yaml"
 REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
 SHARED_CONFIG_DIR="/config"
 BORGMATIC_CONFIG_SOURCE="${SHARED_CONFIG_DIR}/config.yaml"
+BORG_PASSPHRASE_FILE="/run/secrets/borg_passphrase"
 
 echo "========== Borgmatic Container Starting =========="
 echo "Using modpack slug: $CF_SLUG"
 echo "Repository path: $REPO_PATH"
+
+# Check if borg passphrase file has valid content (not just comments)
+if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
+    echo "WARNING: Borg passphrase file is missing, empty, or only contains comments"
+    echo "Will use 'none' encryption mode (no encryption)"
+    # Unset BORG_PASSCOMMAND to avoid errors when using 'none' encryption
+    unset BORG_PASSCOMMAND
+    : "${BORG_ENCRYPTION:=none}"
+else
+    echo "Valid passphrase found. Will use 'repokey' encryption mode."
+    # Set BORG_PASSCOMMAND to read from the secret file
+    export BORG_PASSCOMMAND="cat $BORG_PASSPHRASE_FILE"
+    : "${BORG_ENCRYPTION:=repokey}"
+fi
 
 # Ensure borgmatic config directory exists
 mkdir -p "$BORGMATIC_CONFIG_DIR"
@@ -38,12 +53,10 @@ if [ ! -d "$REPO_PATH" ]; then
     # Create directory if needed
     mkdir -p "$REPO_PATH"
     
-    # Determine encryption mode - use BORG_ENCRYPTION env var if provided, otherwise default to repokey
-    ENCRYPTION="${BORG_ENCRYPTION:-repokey}"
-    echo "Using encryption mode: $ENCRYPTION"
+    echo "Using encryption mode: $BORG_ENCRYPTION"
     
     # Initialize the repository
-    borgmatic init --encryption "$ENCRYPTION" --repository "$REPO_PATH"
+    borgmatic init --encryption "$BORG_ENCRYPTION" --repository "$REPO_PATH"
     
     echo "Repository initialized successfully"
 else
