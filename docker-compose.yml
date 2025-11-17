@@ -48,6 +48,8 @@ services:
     container_name: borgmatic
     profiles:
       - backup
+    env_file:
+      - .env
     environment:
       BORG_PASSCOMMAND: cat /run/secrets/borg_passphrase
     volumes:
@@ -55,6 +57,7 @@ services:
       - scripts:/scripts:ro
       - ./data/world:/source:ro
       - ./data/logs/borgmatic:/var/log/borgmatic
+      - ./data/config:/config
     secrets:
       - borg_passphrase
     entrypoint: ["/scripts/borgmatic/entrypoint.sh"]
