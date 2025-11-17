@@ -8,10 +8,18 @@ BORGMATIC_CONFIG="${BORGMATIC_CONFIG_DIR}/config.yaml"
 REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
 SHARED_CONFIG_DIR="/config"
 BORGMATIC_CONFIG_SOURCE="${SHARED_CONFIG_DIR}/config.yaml"
+BORG_PASSPHRASE_FILE="/run/secrets/borg_passphrase"
 
 echo "========== Borgmatic Container Starting =========="
 echo "Using modpack slug: $CF_SLUG"
 echo "Repository path: $REPO_PATH"
+
+# Check if borg passphrase file has valid content (not just comments)
+if ! /scripts/common/check-secret-file.sh "$BORG_PASSPHRASE_FILE"; then
+    echo "ERROR: Borg passphrase file is missing, empty, or only contains comments"
+    echo "Please add a valid passphrase to .secrets/borg_passphrase"
+    exit 1
+fi
 
 # Ensure borgmatic config directory exists
 mkdir -p "$BORGMATIC_CONFIG_DIR"
