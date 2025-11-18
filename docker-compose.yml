@@ -108,7 +108,7 @@ services:
 
   # Tunnel for web services
   unmined-cloudflared:
-    image: eclarift/cloudflared-easy:latest
+    image: eclarift/cloudflared-dev:latest
     container_name: unmined-cloudflared
     volumes:
       - scripts:/scripts:ro
