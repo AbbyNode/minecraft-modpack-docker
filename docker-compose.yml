@@ -24,9 +24,9 @@ services:
     restart: no
 
   # ========== Core Minecraft server ==========
-  server:
+  minecraft-server:
     image: itzg/minecraft-server:latest
-    container_name: server
+    container_name: minecraft-server
     ports:
       - '25565:25565'
     env_file:
