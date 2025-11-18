@@ -1,6 +1,8 @@
 
 # What to do
 
+* make a genericized docker image of borgmatic
+
 * Make the tools run automatically on schedule
   * borgmatic
   * mcaselector

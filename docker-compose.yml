@@ -108,7 +108,7 @@ services:
 
   # Tunnel for web services
   unmined-cloudflared:
-    image: eclarift/debian-trixie-dev:latest
+    image: eclarift/cloudflared-easy:latest
     container_name: unmined-cloudflared
     volumes:
       - scripts:/scripts:ro
