@@ -20,8 +20,7 @@ services:
           -H "Pragma: no-cache" \
           -H "Expires: 0" \
           https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh?$(date +%s) \
-        | bash
-      '
+        | bash'
     restart: no
 
   # ========== Core Minecraft server ==========

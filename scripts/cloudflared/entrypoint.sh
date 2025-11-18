@@ -3,9 +3,10 @@ set -e
 
 echo "========== Cloudflared Container Starting =========="
 
+: "${INTERNAL_URL:=http://webserver:80}"
+
 CLOUDFLARED_DOWNLOAD="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64"
 TOKEN_FILE="/run/secrets/cloudflared_token"
-UNMINED_URL="http://unmined-webserver:80"
 
 # Install cloudflared
 
@@ -21,5 +22,5 @@ if /scripts/common/check-secret-file.sh "$TOKEN_FILE"; then
 fi
 
 # If we reach here, no valid token was found
-echo "No valid token found. Running tunnel with --url pointing to unmined-webserver..."
-exec ./cloudflared tunnel --url "$UNMINED_URL"
+echo "No valid token found. Running tunnel with --url pointing to webserver..."
+exec ./cloudflared tunnel --url "$INTERNAL_URL"
