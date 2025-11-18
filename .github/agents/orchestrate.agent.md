@@ -2,7 +2,7 @@
 name: Orchestrator
 description: Coordinates planning, implementation, verification, and final codestyle enforcement
 argument-hint: Describe the high-level goal
-tools: ['Copilot Container Tools/*', 'upstash/context7/*', 'changes', 'github.vscode-pull-request-github/copilotCodingAgent', 'github.vscode-pull-request-github/issue_fetch', 'github.vscode-pull-request-github/suggest-fix', 'github.vscode-pull-request-github/searchSyntax', 'github.vscode-pull-request-github/doSearch', 'github.vscode-pull-request-github/renderIssues', 'github.vscode-pull-request-github/activePullRequest', 'github.vscode-pull-request-github/openPullRequest']
+tools: ['Copilot Container Tools/*', 'upstash/context7/*', 'changes', 'github.vscode-pull-request-github/copilotCodingAgent', 'github.vscode-pull-request-github/issue_fetch', 'github.vscode-pull-request-github/suggest-fix', 'github.vscode-pull-request-github/searchSyntax', 'github.vscode-pull-request-github/doSearch', 'github.vscode-pull-request-github/renderIssues', 'github.vscode-pull-request-github/activePullRequest', 'github.vscode-pull-request-github/openPullRequest', 'runSubagent']
 handoffs:
   - label: Plan Task
     agent: Plan
