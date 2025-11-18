@@ -54,8 +54,6 @@ services:
       - backup
     env_file:
       - .env
-    environment:
-      BORG_PASSCOMMAND: cat /run/secrets/borg_passphrase
     volumes:
       - borgmatic-data:/mnt/borg-repository
       - scripts:/scripts:ro
