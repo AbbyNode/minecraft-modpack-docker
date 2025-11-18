@@ -6,6 +6,7 @@ echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 
 # ========== Update ==========
 
+echo ""
 echo "Fetching latest templates and scripts..."
 REPO="https://github.com/AbbyNode/minecraft-modpack-docker"
 SOURCE=$(mktemp -d)
@@ -22,12 +23,14 @@ SCRIPTS_VOL="/scripts"
 
 # ========== Docker compose ==========
 
+echo ""
 cp "$SOURCE/docker-compose.yml" "$WORKSPACE/docker-compose.yml"
 echo "✓ Docker Compose file updated"
 
 
 # ========== Scripts Volume ==========
 
+echo ""
 mkdir -p "$SCRIPTS_VOL"
 cp -r "$SCRIPTS_SRC/"* "$SCRIPTS_VOL/"
 chmod +x "$SCRIPTS_VOL/"**/*.sh
@@ -73,6 +76,7 @@ mkdir -p "$WORKSPACE/data/mods/config"
 chown -R 1000:1000 "$WORKSPACE/data"
 
 
+echo ""
 echo "=== Setup Complete ==="
 echo "You can now start the services with: docker compose up -d"
 echo "To rerun setup or update scripts, use: docker compose --profile setup run --rm setup"
