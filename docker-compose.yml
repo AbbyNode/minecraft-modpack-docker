@@ -15,8 +15,10 @@ services:
       - setup
     entrypoint: |
       /bin/bash -c '
-      curl -fsSL --header "Cache-Control: no-cache" https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh | bash'
-    tty: true
+        curl -fsSL \
+          https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh?$(date +%s) \
+        | bash
+      '
     restart: no
 
   # ========== Core Minecraft server ==========
