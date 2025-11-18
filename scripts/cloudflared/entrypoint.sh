@@ -9,7 +9,8 @@ UNMINED_URL="http://unmined-webserver:80"
 
 # Install cloudflared
 
-curl -fsSL -o cloudflared "$CLOUDFLARED_DOWNLOAD"
+echo "Downloading cloudflared client..."
+curl -fL --progress-bar -o cloudflared "$CLOUDFLARED_DOWNLOAD"
 chmod +x cloudflared
 
 # Check if token file has valid content (not just comments)

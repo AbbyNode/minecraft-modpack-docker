@@ -15,7 +15,7 @@ latest_url=$(
 )
 
 echo "Downloading MCSelector from $latest_url"
-curl -fsSL -o mcaselector.jar "$latest_url"
+curl -fL --progress-bar -o mcaselector.jar "$latest_url"
 
 echo "Setting execute permissions"
 chmod +x mcaselector.jar
