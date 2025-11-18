@@ -14,8 +14,8 @@ services:
     profiles:
       - setup
     entrypoint: |
-      /bin/bash -c "
-      curl -fsSL https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh | bash"
+      /bin/bash -c '
+      curl -fsSL --header "Cache-Control: no-cache" https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh | bash'
     tty: true
     restart: no
 
