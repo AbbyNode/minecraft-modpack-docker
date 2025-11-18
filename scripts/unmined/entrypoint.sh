@@ -12,13 +12,6 @@ fi
 if (( $# > 0 )); then
     exec "$@"
 else
-    # Install cron if not present
-    if ! command -v cron &> /dev/null; then
-        echo "Installing cron..."
-        apt-get update -qq
-        apt-get install -y -qq cron
-    fi
-
     # Set up cron job to run map generation every hour
     echo "Setting up cron job for hourly map generation..."
     echo "0 * * * * /scripts/unmined/generate-map.sh >> /var/log/unmined-cron.log 2>&1" > /etc/cron.d/unmined-map-gen
@@ -30,9 +23,13 @@ else
     # Load the cron job
     crontab /etc/cron.d/unmined-map-gen
     
+    echo "Starting nginx web server..."
+    nginx
+    
     echo "Unmined is ready. Map generation will run every hour."
-    echo "Manual run: docker exec unmined-generator /scripts/unmined/generate-map.sh"
-    echo "Cron log: docker exec unmined-generator cat /var/log/unmined-cron.log"
+    echo "Map is served on port 80"
+    echo "Manual run: docker exec unmined /scripts/unmined/generate-map.sh"
+    echo "Cron log: docker exec unmined cat /var/log/unmined-cron.log"
     
     # Start cron in foreground mode to keep container running
     cron -f

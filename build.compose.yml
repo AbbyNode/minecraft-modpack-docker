@@ -1,0 +1,6 @@
+services:
+  unmined:
+    build:
+      context: .
+      dockerfile: dockerfiles/unmined/Dockerfile
+    image: eclarift/unmined:latest

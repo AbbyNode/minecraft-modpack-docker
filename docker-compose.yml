@@ -85,25 +85,19 @@ services:
 
   # ========== Web Map Generation ==========
 
-  # Application to generate web-based maps of the Minecraft world
-  unmined-generator:
-    image: mcr.microsoft.com/dotnet/runtime:9.0-bookworm-slim
-    container_name: unmined-generator
+  # Combined application to generate and serve web-based maps of the Minecraft world
+  # Runs unmined CLI with cron for hourly generation + nginx to serve the maps
+  unmined:
+    image: eclarift/unmined:latest
+    container_name: unmined
+    ports:
+      - '8080:80'
     volumes:
       - scripts:/scripts:ro
       - ./data/world:/world:ro
-      - unmined-data:/output
+      - ./config/nginx:/etc/nginx/conf.d:ro
     entrypoint: ["/scripts/unmined/entrypoint.sh"]
     stop_grace_period: 1s
-    restart: no
-
-  # Webserver to serve the generated maps
-  unmined-webserver:
-    image: nginx:alpine
-    container_name: unmined-webserver
-    volumes:
-      - unmined-data:/usr/share/nginx/html:ro
-      - ./config/nginx:/etc/nginx/conf.d:ro
     restart: unless-stopped
 
   # Tunnel for web services
@@ -115,7 +109,7 @@ services:
     secrets:
       - cloudflared_token
     depends_on:
-      - unmined-webserver
+      - unmined
     entrypoint: ["/scripts/cloudflared/entrypoint.sh"]
     restart: unless-stopped
 
@@ -125,8 +119,6 @@ volumes:
   scripts:
     driver: local
   minecraft-data:
-    driver: local
-  unmined-data:
     driver: local
   borgmatic-data:
     driver: local

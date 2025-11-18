@@ -7,7 +7,7 @@ Easy all-in-one Docker setup for hosting a modded Minecraft server.
 * Uses [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server) as base image
 * Auto resolve custom server files from modpack CurseForge URL
 * Chunk cleanup with mcaselector
-* Web based map with unmined, hosted and tunneled for ease of use
+* Web based map with unmined, served and tunneled for ease of use
 * Coming soon: Automated backup with borgmatic
 
 ## Quick Start
