@@ -46,6 +46,7 @@ services:
       - ./config/minecraft:/config
     stdin_open: true
     tty: true
+    stop_grace_period: 60s
     restart: unless-stopped
 
   # ========== Backups ==========
@@ -93,6 +94,7 @@ services:
       - ./data/world:/world:ro
       - unmined-data:/output
     entrypoint: ["/scripts/unmined/entrypoint.sh"]
+    stop_grace_period: 1s
     restart: no
 
   # Webserver to serve the generated maps
