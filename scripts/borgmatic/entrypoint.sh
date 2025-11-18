@@ -34,27 +34,17 @@ fi
 # Ensure borgmatic config directory exists
 mkdir -p "$BORGMATIC_CONFIG_DIR"
 
-# Check if config exists in shared folder
-if [ ! -f "$BORGMATIC_CONFIG_SOURCE" ]; then
-    echo "ERROR: Borgmatic config not found at $BORGMATIC_CONFIG_SOURCE"
-    exit 1
-fi
+# Create the borgmatic config
+echo "Creating borgmatic config..."
+cat > "$BORGMATIC_CONFIG" <<EOF
+source_directories:
+  - /mnt/source
 
-# Copy the config from shared folder into borgmatic config directory
-# Note: We copy instead of symlink because we need to modify the repository path
-echo "Copying borgmatic config from shared folder..."
-cp "$BORGMATIC_CONFIG_SOURCE" "$BORGMATIC_CONFIG"
-echo "Config copied: $BORGMATIC_CONFIG_SOURCE -> $BORGMATIC_CONFIG"
-
-# Update the repository path in the config to CF_SLUG
-sed -i 's|^[[:space:]]*path:.*|path: '"$REPO_PATH"'|' "$BORGMATIC_CONFIG"
-
-echo "Final borgmatic config:"
-echo "----------------------------------------"
-cat "$BORGMATIC_CONFIG"
-echo "----------------------------------------"
-
-echo "Updated borgmatic config with repository path: $REPO_PATH"
+repositories:
+  - path: $REPO_PATH
+    label: local
+EOF
+echo "Borgmatic config created at $BORGMATIC_CONFIG"
 
 # Check if repository exists, if not initialize it
 if [ ! -d "$REPO_PATH" ]; then
