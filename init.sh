@@ -4,27 +4,20 @@ set -e
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 
 
-# ========== Paths ==========
-
-SOURCE="/source"
-WORKSPACE="/workspace"
-TEMPLATES="$SOURCE/templates"
-SCRIPTS_SRC="$SOURCE/scripts-src"
-SCRIPTS_VOL="/scripts"
-
-
 # ========== Update ==========
 
 echo "Fetching latest templates and scripts..."
-
-# Clone full repo to a temp directory
 REPO="https://github.com/AbbyNode/minecraft-modpack-docker"
-TEMP=$(mktemp -d)
-git clone --depth 1 "$REPO" "$TEMP"
+SOURCE=$(mktemp -d)
+git clone --depth 1 "$REPO" "$SOURCE"
 
-# Copy only the directories/files we care about to current directory
-cp -r "$TEMP"/{templates,scripts-src,docker-compose.yml} "$SOURCE"
-rm -rf "$TEMP"
+
+# ========== Paths ==========
+
+TEMPLATES_SRC="$SOURCE/templates"
+SCRIPTS_SRC="$SOURCE/scripts-src"
+WORKSPACE="/workspace"
+SCRIPTS_VOL="/scripts"
 
 
 # ========== Docker compose ==========
@@ -43,15 +36,15 @@ echo "✓ Scripts volume updated"
 
 # ========== Configuration Files ==========
 
-# Ensure all files from $TEMPLATES exist in $WORKSPACE
+# Ensure all files from $TEMPLATES_SRC exist in $WORKSPACE
 echo ""
 echo "Adding missing templates..."
-if [[ ! -d $TEMPLATES ]]; then
+if [[ ! -d $TEMPLATES_SRC ]]; then
 	echo "ERROR: No templates found!"
 fi
 
-for template_file in $(find "$TEMPLATES" -type f); do
-    relative_path="${template_file#$TEMPLATES/}" # Remove the templates base path
+for template_file in $(find "$TEMPLATES_SRC" -type f); do
+    relative_path="${template_file#$TEMPLATES_SRC/}" # Remove the templates base path
     relative_path="${relative_path%.example}" # Remove the .example suffix
     target_file="${WORKSPACE}/${relative_path}"
     
@@ -65,6 +58,11 @@ for template_file in $(find "$TEMPLATES" -type f); do
 done
 
 
+# ========== Cleanup ==========
+
+rm -rf "$SOURCE"
+
+
 # ========== Minecraft Data Directories ==========
 
 mkdir -p "$WORKSPACE/data/world"
@@ -73,6 +71,7 @@ mkdir -p "$WORKSPACE/data/mods/downloads"
 mkdir -p "$WORKSPACE/data/mods/jars"
 mkdir -p "$WORKSPACE/data/mods/config"
 chown -R 1000:1000 "$WORKSPACE/data"
+
 
 echo "=== Setup Complete ==="
 echo "You can now start the services with: docker compose up -d"
