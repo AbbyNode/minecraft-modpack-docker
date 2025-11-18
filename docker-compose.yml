@@ -16,6 +16,9 @@ services:
     entrypoint: |
       /bin/bash -c '
         curl -fsSL \
+          -H "Cache-Control: no-cache, no-store, must-revalidate" \
+          -H "Pragma: no-cache" \
+          -H "Expires: 0" \
           https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/init.sh?$(date +%s) \
         | bash
       '
