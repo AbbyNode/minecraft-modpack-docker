@@ -3,7 +3,7 @@ set -e
 
 echo "========== Cloudflared Container Starting =========="
 
-: "${INTERNAL_URL:=http://webserver:80}"
+: "${INTERNAL_URL:=http://unmined-webserver:80}"
 TOKEN_FILE="/run/secrets/cloudflared_token"
 
 # Check if token file has valid content (not just comments)
