@@ -54,8 +54,6 @@ services:
   borgmatic:
     image: ghcr.io/borgmatic-collective/borgmatic:latest
     container_name: borgmatic
-    profiles:
-      - backup
     env_file:
       - .env
     volumes:

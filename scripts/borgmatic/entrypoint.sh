@@ -3,12 +3,15 @@ set -e
 
 # Variables
 CF_SLUG="${CF_SLUG:-default}"
+REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
+
+BORGMATIC_CONFIG_SOURCE="/config/config.yaml"
+
 BORGMATIC_CONFIG_DIR="/etc/borgmatic.d"
 BORGMATIC_CONFIG="${BORGMATIC_CONFIG_DIR}/config.yaml"
-REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
-SHARED_CONFIG_DIR="/config"
-BORGMATIC_CONFIG_SOURCE="${SHARED_CONFIG_DIR}/config.yaml"
+
 BORG_PASSPHRASE_FILE="/run/secrets/borg_passphrase"
+
 
 echo "========== Borgmatic Container Starting =========="
 echo "Using modpack slug: $CF_SLUG"
@@ -42,8 +45,8 @@ echo "Linking borgmatic config from shared folder..."
 ln -sf "$BORGMATIC_CONFIG_SOURCE" "$BORGMATIC_CONFIG"
 echo "Config linked: $BORGMATIC_CONFIG_SOURCE -> $BORGMATIC_CONFIG"
 
-# Update borgmatic config with correct repository path based on CF_SLUG
-sed -i "s|/mnt/borg-repository/SLUG_PLACEHOLDER|${REPO_PATH}|g" "$BORGMATIC_CONFIG"
+# Update the repository path in the config to CF_SLUG
+sed -i 's|^[[:space:]]*path:.*|path: '"$REPO_PATH"'|' "$BORGMATIC_CONFIG"
 echo "Updated borgmatic config with repository path: $REPO_PATH"
 
 # Check if repository exists, if not initialize it
