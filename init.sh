@@ -3,6 +3,7 @@ set -e
 
 echo ""
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
+echo "Script version: 2025-11-17.1"
 
 
 # ========== Update ==========
