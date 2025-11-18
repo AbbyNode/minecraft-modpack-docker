@@ -40,13 +40,20 @@ if [ ! -f "$BORGMATIC_CONFIG_SOURCE" ]; then
     exit 1
 fi
 
-# Link the config from shared folder into borgmatic config directory
-echo "Linking borgmatic config from shared folder..."
-ln -sf "$BORGMATIC_CONFIG_SOURCE" "$BORGMATIC_CONFIG"
-echo "Config linked: $BORGMATIC_CONFIG_SOURCE -> $BORGMATIC_CONFIG"
+# Copy the config from shared folder into borgmatic config directory
+# Note: We copy instead of symlink because we need to modify the repository path
+echo "Copying borgmatic config from shared folder..."
+cp "$BORGMATIC_CONFIG_SOURCE" "$BORGMATIC_CONFIG"
+echo "Config copied: $BORGMATIC_CONFIG_SOURCE -> $BORGMATIC_CONFIG"
 
 # Update the repository path in the config to CF_SLUG
 sed -i 's|^[[:space:]]*path:.*|path: '"$REPO_PATH"'|' "$BORGMATIC_CONFIG"
+
+echo "Final borgmatic config:"
+echo "----------------------------------------"
+cat "$BORGMATIC_CONFIG"
+echo "----------------------------------------"
+
 echo "Updated borgmatic config with repository path: $REPO_PATH"
 
 # Check if repository exists, if not initialize it
