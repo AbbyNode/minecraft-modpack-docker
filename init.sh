@@ -4,6 +4,15 @@ set -e
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 
 
+# ========== Paths ==========
+
+SOURCE="/source"
+WORKSPACE="/workspace"
+TEMPLATES="$SOURCE/templates"
+SCRIPTS_SRC="$SOURCE/scripts-src"
+SCRIPTS_VOL="/scripts"
+
+
 # ========== Update ==========
 
 echo "Fetching latest templates and scripts..."
@@ -14,22 +23,13 @@ TEMP=$(mktemp -d)
 git clone --depth 1 "$REPO" "$TEMP"
 
 # Copy only the directories/files we care about to current directory
-cp -r "$TEMP"/{templates,scripts-src,docker-compose.yml} .
+cp -r "$TEMP"/{templates,scripts-src,docker-compose.yml} "$SOURCE"
 rm -rf "$TEMP"
-
-
-# ========== Paths ==========
-
-WORKSPACE="/workspace"
-SETUP="/setup"
-TEMPLATES="/templates"
-SCRIPTS_SRC="/scripts-src"
-SCRIPTS_VOL="/scripts"
 
 
 # ========== Docker compose ==========
 
-cp "$SETUP/docker-compose.yml" "$WORKSPACE/docker-compose.yml"
+cp "$SOURCE/docker-compose.yml" "$WORKSPACE/docker-compose.yml"
 echo "✓ Docker Compose file updated"
 
 
