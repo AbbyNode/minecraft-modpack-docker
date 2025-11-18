@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+echo ""
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
 
 
@@ -16,7 +17,7 @@ git clone --depth 1 "$REPO" "$SOURCE"
 # ========== Paths ==========
 
 TEMPLATES_SRC="$SOURCE/templates"
-SCRIPTS_SRC="$SOURCE/scripts-src"
+SCRIPTS_SRC="$SOURCE/scripts"
 WORKSPACE="/workspace"
 SCRIPTS_VOL="/scripts"
 
