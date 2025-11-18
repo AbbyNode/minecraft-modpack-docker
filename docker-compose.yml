@@ -110,7 +110,7 @@ services:
       - cloudflared_token
     depends_on:
       - unmined-webserver
-    entrypoint: ["/scripts/cloudflared/entrypoint.sh"]
+    entrypoint: ["/scripts/common/alpine-entry.sh", "/scripts/cloudflared/entrypoint.sh"]
     restart: unless-stopped
 
 # ==========

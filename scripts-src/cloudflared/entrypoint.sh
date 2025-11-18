@@ -4,6 +4,15 @@ set -e
 TOKEN_FILE="/run/secrets/cloudflared_token"
 UNMINED_URL="http://unmined-webserver:80"
 
+# Install cloudflared
+
+URL="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64"
+
+wget -q -O cloudflared "$URL" || curl -fsSL -o cloudflared "$URL"
+chmod +x cloudflared
+
+exec ./cloudflared "$@"
+
 echo "========== Cloudflared Container Starting =========="
 
 # Check if token file has valid content (not just comments)
