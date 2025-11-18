@@ -2,7 +2,20 @@
 set -e
 
 echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
-echo ""
+
+
+# ========== Update ==========
+
+echo "Fetching latest templates and scripts..."
+
+# Clone full repo to a temp directory
+REPO="https://github.com/AbbyNode/minecraft-modpack-docker"
+TEMP=$(mktemp -d)
+git clone --depth 1 "$REPO" "$TEMP"
+
+# Copy only the directories/files we care about to current directory
+cp -r "$TEMP"/{templates,scripts-src,docker-compose.yml} .
+rm -rf "$TEMP"
 
 
 # ========== Paths ==========
@@ -61,7 +74,6 @@ mkdir -p "$WORKSPACE/data/mods/jars"
 mkdir -p "$WORKSPACE/data/mods/config"
 chown -R 1000:1000 "$WORKSPACE/data"
 
-echo ""
 echo "=== Setup Complete ==="
-echo ""
 echo "You can now start the services with: docker compose up -d"
+echo "To rerun setup or update scripts, use: docker compose --profile setup run --rm setup"
