@@ -9,7 +9,7 @@ mkdir -p /unmined
 cd /unmined
 
 echo "Downloading Unmined CLI"
-curl -fL --progress-bar -o unmined-cli.tar.gz "https://unmined.net/download/unmined-cli-linux-musl-x64-dev/"
+curl -fL --progress-bar -o unmined-cli.tar.gz "https://unmined.net/download/unmined-cli-linux-x64-dev/"
 
 echo "Extracting Unmined CLI"
 tar -xzf unmined-cli.tar.gz
