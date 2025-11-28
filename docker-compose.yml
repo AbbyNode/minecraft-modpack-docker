@@ -9,8 +9,8 @@ services:
     image: eclarift/debian-trixie-dev:latest
     container_name: setup
     volumes:
-      - .:/workspace
       - scripts:/scripts
+      - .:/workspace
     profiles:
       - setup
     entrypoint: |
@@ -36,8 +36,8 @@ services:
     secrets:
       - cf_api_key
     volumes:
-      - minecraft-data:/data
       - scripts:/scripts:ro
+      - ./data/server:/data
       - ./data/world:/data/world
       - ./data/logs/minecraft:/data/logs
       - ./data/mods/downloads:/downloads
@@ -58,8 +58,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./backup:/mnt/borg-repository
       - scripts:/scripts:ro
+      - ./backup:/mnt/borg-repository
       - ./data/world:/mnt/source:ro
       - ./config/borgmatic:/config
     secrets:
@@ -92,7 +92,7 @@ services:
     volumes:
       - scripts:/scripts:ro
       - ./data/world:/world:ro
-      - unmined-data:/output
+      - ./data/map:/output
     entrypoint: ["/scripts/unmined/entrypoint.sh"]
     stop_grace_period: 1s
     restart: no
@@ -123,10 +123,6 @@ services:
 
 volumes:
   scripts:
-    driver: local
-  minecraft-data:
-    driver: local
-  unmined-data:
     driver: local
 
 secrets:
