@@ -58,7 +58,7 @@ services:
     env_file:
       - .env
     volumes:
-      - borgmatic-data:/mnt/borg-repository
+      - ./backup:/mnt/borg-repository
       - scripts:/scripts:ro
       - ./data/world:/mnt/source:ro
       - ./config/borgmatic:/config
@@ -127,8 +127,6 @@ volumes:
   minecraft-data:
     driver: local
   unmined-data:
-    driver: local
-  borgmatic-data:
     driver: local
 
 secrets:
