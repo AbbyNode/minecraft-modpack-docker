@@ -102,7 +102,7 @@ services:
     image: nginx:alpine
     container_name: unmined-webserver
     volumes:
-      - unmined-data:/usr/share/nginx/html:ro
+      - ./data/map:/usr/share/nginx/html:ro
       - ./config/nginx:/etc/nginx/conf.d:ro
     restart: unless-stopped
 
