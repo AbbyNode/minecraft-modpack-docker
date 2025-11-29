@@ -15,7 +15,13 @@ mkdir -p /output
 
 # Run unmined-cli to generate web-based map
 echo "Generating web-based map from /world to /output..."
-/unmined/unmined-cli web render --world=/world --output=/output "$@"
+/unmined/unmined-cli web render --world=/world --output=/output \
+ --zoomin="4"\
+ --zoomout="6"\
+ --shadows="true"\
+ --background="#aaaaaa"\
+ --players
+
 
 echo "Map generation completed at $(date)"
 echo "===== End of Unmined Map Generation ====="
