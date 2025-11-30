@@ -70,8 +70,11 @@ rm -rf "$SOURCE"
 
 # ========== Setup Directories ==========
 
-mkdir -p "$WORKSPACE/config/minecraft/"
-mkdir -p "$WORKSPACE/config/mods/"
+mkdir -p "$WORKSPACE/config/minecraft"
+mkdir -p "$WORKSPACE/config/mods"
+mkdir -p "$WORKSPACE/config/borgmatic"
+mkdir -p "$WORKSPACE/config/mcaselector"
+mkdir -p "$WORKSPACE/config/nginx"
 chown -R 1000:1000 "$WORKSPACE/config"
 
 mkdir -p "$WORKSPACE/data/server"
