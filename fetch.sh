@@ -5,8 +5,6 @@ echo ""
 echo "=== Eclariftn | Minecraft Modpack Docker | Setup ==="
 echo "Script version: 2025-11-30.1"
 
-REPO_URL="https://github.com/AbbyNode/minecraft-modpack-docker.git"
-
 echo ""
 echo "Fetching latest templates and scripts..."
 REPO="https://github.com/AbbyNode/minecraft-modpack-docker"
