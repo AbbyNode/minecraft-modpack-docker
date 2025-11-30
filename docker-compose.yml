@@ -73,7 +73,9 @@ services:
     volumes:
       - scripts:/scripts:ro
       - ./backups:/mnt/borg-repository
-      - ./data/world:/mnt/source:ro
+      - ./data/server:/mnt/source/server:ro
+      - ./data/world:/mnt/source/world:ro
+      - ./config:/mnt/source/config:ro
       - ./config/borgmatic:/etc/borgmatic.d
     secrets:
       - borg_passphrase

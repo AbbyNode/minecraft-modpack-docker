@@ -2,7 +2,9 @@
 # See: https://torsion.org/borgmatic/docs/reference/configuration/
 
 source_directories:
-  - /mnt/source
+  - /mnt/source/server
+  - /mnt/source/world
+  - /mnt/source/config
 
 repositories:
   - path: /mnt/borg-repository/${CF_SLUG}

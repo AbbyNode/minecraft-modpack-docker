@@ -88,17 +88,18 @@ Run borgmatic commands in the container to manage backups.
 docker compose exec borgmatic-minecraft borgmatic <command>
 ```
 
-Make manual backup
-
 ```bash
+# Make manual backup
 docker compose exec borgmatic-minecraft borgmatic create --verbosity 1 --list --stats
-```
 
-Restore from backup
-
-```bash
+# List repositories
 docker compose exec borgmatic-minecraft borgmatic repo-list
+
+# Restore from backup
 docker compose exec borgmatic-minecraft borgmatic restore
+
+# Extract to specific location
+docker compose exec borgmatic-minecraft borgmatic extract --archive latest --destination /mnt/borg-repository/tmp
 ```
 
 For more information on available commands, see [borgmatic documentation](https://torsion.org/borgmatic/).
