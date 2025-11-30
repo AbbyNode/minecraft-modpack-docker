@@ -1,18 +1,12 @@
 #!/bin/bash
 set -e
 
-echo ""
-echo "=== Minecraft Modpack Docker - Setup & Initialization ==="
-echo "Script version: 2025-11-17.10"
-
-
-# ========== Update ==========
-
-echo ""
-echo "Fetching latest templates and scripts..."
-REPO="https://github.com/AbbyNode/minecraft-modpack-docker"
-SOURCE=$(mktemp -d)
-git clone --depth 1 "$REPO" "$SOURCE"
+# The fetch.sh script passes the cloned repository path as the first argument.
+if [[ -z "${1:-}" ]]; then
+    echo "ERROR: No source directory provided!"
+    exit 1
+fi
+SOURCE="$1"
 
 
 # ========== Paths ==========
