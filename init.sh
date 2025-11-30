@@ -69,7 +69,7 @@ rm -rf "$SOURCE"
 # ========== Setup Directories ==========
 
 echo ""
-echo "Setting up necessary directories..."
+echo "Setting up directories..."
 
 mkdir -p "$WORKSPACE/config/minecraft"
 mkdir -p "$WORKSPACE/config/mods"
@@ -85,9 +85,6 @@ mkdir -p "$WORKSPACE/data/mods/jars"
 mkdir -p "$WORKSPACE/data/logs/minecraft"
 mkdir -p "$WORKSPACE/data/map"
 chown -R 1000:1000 "$WORKSPACE/data"
-
-mkdir -p "$WORKSPACE/backups"
-chown -R 1000:1000 "$WORKSPACE/backups"
 
 echo ""
 echo "=== Setup Complete ==="
