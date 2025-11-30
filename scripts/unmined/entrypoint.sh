@@ -21,7 +21,7 @@ else
 
     # Set up cron job to run map generation every hour
     echo "Setting up cron job for hourly map generation..."
-    echo "0 * * * * /scripts/unmined/generate-map.sh --zoomin=4 >> /var/log/unmined-cron.log 2>&1" > /etc/cron.d/unmined-map-gen
+    echo "0 * * * * /scripts/unmined/generate-map.sh >> /var/log/unmined-cron.log 2>&1" > /etc/cron.d/unmined-map-gen
     chmod 0644 /etc/cron.d/unmined-map-gen
     
     # Create log file
@@ -31,7 +31,7 @@ else
     crontab /etc/cron.d/unmined-map-gen
     
     echo "Unmined is ready. Map generation will run every hour."
-    echo "Manual run: docker exec unmined-generator /scripts/unmined/generate-map.sh --zoomin=4"
+    echo "Manual run: docker exec unmined-generator /scripts/unmined/generate-map.sh"
     echo "Cron log: docker exec unmined-generator cat /var/log/unmined-cron.log"
     
     # Start cron in foreground mode to keep container running

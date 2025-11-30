@@ -97,3 +97,11 @@ docker compose run --rm borgmatic-minecraft borgmatic create --verbosity 1
 ```bash
 docker compose run --rm borgmatic-minecraft borgmatic extract --archive latest
 ```
+
+### Generate Map
+
+To generate the web map with unmined:
+
+```bash
+docker exec unmined-generator /scripts/unmined/generate-map.sh
+```
