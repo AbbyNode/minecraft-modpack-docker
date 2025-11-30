@@ -7,6 +7,9 @@ source_directories:
 repositories:
   - /mnt/borg-repository/${CF_SLUG}
 
+match_archives:
+  - '*'
+
 retention:
   keep_within: 2H
   keep_hourly: 24
