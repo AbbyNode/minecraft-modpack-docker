@@ -68,16 +68,22 @@ done
 rm -rf "$SOURCE"
 
 
-# ========== Minecraft Data Directories ==========
+# ========== Setup Directories ==========
+
+mkdir -p "$WORKSPACE/config/minecraft/"
+mkdir -p "$WORKSPACE/config/mods/"
+chown -R 1000:1000 "$WORKSPACE/config"
 
 mkdir -p "$WORKSPACE/data/server"
 mkdir -p "$WORKSPACE/data/world"
 mkdir -p "$WORKSPACE/data/mods/downloads"
 mkdir -p "$WORKSPACE/data/mods/jars"
-mkdir -p "$WORKSPACE/data/mods/config"
 mkdir -p "$WORKSPACE/data/logs/minecraft"
 mkdir -p "$WORKSPACE/data/map"
 chown -R 1000:1000 "$WORKSPACE/data"
+
+mkdir -p "$WORKSPACE/backups"
+chown -R 1000:1000 "$WORKSPACE/backups"
 
 echo ""
 echo "=== Setup Complete ==="
