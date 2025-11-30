@@ -70,6 +70,9 @@ rm -rf "$SOURCE"
 
 # ========== Setup Directories ==========
 
+echo ""
+echo "Setting up necessary directories..."
+
 mkdir -p "$WORKSPACE/config/minecraft"
 mkdir -p "$WORKSPACE/config/mods"
 mkdir -p "$WORKSPACE/config/borgmatic"
