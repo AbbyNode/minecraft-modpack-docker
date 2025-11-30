@@ -12,7 +12,7 @@
 #   - ./data/server
 #   - ./data/world
 #   - ./data/map
-# - ./backup
+# - ./backups
 
 services:
   # ========== Core Setup ==========
@@ -72,7 +72,7 @@ services:
       - .env
     volumes:
       - scripts:/scripts:ro
-      - ./backup:/mnt/borg-repository
+      - ./backups:/mnt/borg-repository
       - ./data/world:/mnt/source:ro
       - ./config/borgmatic:/etc/borgmatic.d
     secrets:
