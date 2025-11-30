@@ -5,13 +5,10 @@ set -e
 CF_SLUG="${CF_SLUG:-default}"
 REPO_PATH="/mnt/borg-repository/${CF_SLUG}"
 
-BORGMATIC_CONFIG_SOURCE="/config/config.yaml"
-
 BORGMATIC_CONFIG_DIR="/etc/borgmatic.d"
 BORGMATIC_CONFIG="${BORGMATIC_CONFIG_DIR}/config.yaml"
 
 BORG_PASSPHRASE_FILE="/run/secrets/borg_passphrase"
-
 
 echo "========== Borgmatic Container Starting =========="
 echo "Using modpack slug: $CF_SLUG"
@@ -30,21 +27,6 @@ else
     export BORG_PASSCOMMAND="cat $BORG_PASSPHRASE_FILE"
     : "${BORG_ENCRYPTION:=repokey}"
 fi
-
-# Ensure borgmatic config directory exists
-mkdir -p "$BORGMATIC_CONFIG_DIR"
-
-# Create the borgmatic config
-echo "Creating borgmatic config..."
-cat > "$BORGMATIC_CONFIG" <<EOF
-source_directories:
-  - /mnt/source
-
-repositories:
-  - path: $REPO_PATH
-    label: local
-EOF
-echo "Borgmatic config created at $BORGMATIC_CONFIG"
 
 # Check if repository exists, if not initialize it
 if [ ! -d "$REPO_PATH" ]; then

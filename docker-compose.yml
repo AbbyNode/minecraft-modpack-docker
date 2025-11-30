@@ -74,7 +74,7 @@ services:
       - scripts:/scripts:ro
       - ./backup:/mnt/borg-repository
       - ./data/world:/mnt/source:ro
-      - ./config/borgmatic:/config
+      - ./config/borgmatic:/etc/borgmatic.d
     secrets:
       - borg_passphrase
     entrypoint: ["/scripts/borgmatic/entrypoint.sh"]
