@@ -18,7 +18,7 @@ Easy all-in-one Docker setup for hosting a modded Minecraft server.
 curl -O https://raw.githubusercontent.com/AbbyNode/minecraft-modpack-docker/main/docker-compose.yml
 ```
 
-###  Run setup container
+### Run setup container
 
 Creates .env, directories, scripts, and secrets templates.  
 
@@ -51,8 +51,6 @@ docker compose up -d
 
 ## Server Management
 
-### Configuration
-
 ### Stop/Start
 
 ```bash
@@ -84,19 +82,26 @@ docker compose run --rm mcaselector
 
 ### Backups
 
-Run borgmatic commands to manage backups. For more information on available commands, see [borgmatic documentation](https://torsion.org/borgmatic/).
-
-#### Make manual backup now
+Run borgmatic commands in the container to manage backups.
 
 ```bash
-docker compose run --rm borgmatic-minecraft borgmatic create --verbosity 1
+docker compose exec borgmatic-minecraft borgmatic <command>
 ```
 
-#### Restore a backup
+Make manual backup
 
 ```bash
-docker compose run --rm borgmatic-minecraft borgmatic extract --archive latest
+docker compose exec borgmatic-minecraft borgmatic create --verbosity 1 --list --stats
 ```
+
+Restore from backup
+
+```bash
+docker compose exec borgmatic-minecraft borgmatic repo-list
+docker compose exec borgmatic-minecraft borgmatic restore
+```
+
+For more information on available commands, see [borgmatic documentation](https://torsion.org/borgmatic/).
 
 ### Generate Map
 
