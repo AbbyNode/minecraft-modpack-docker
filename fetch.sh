@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo ""
-echo "=== Eclariftn | Minecraft Modpack Docker | Setup ==="
+echo "=== Eclariftn | Minecraft Modpack Docker | Fetch ==="
 echo "Script version: 2025-11-30.1"
 
 echo ""

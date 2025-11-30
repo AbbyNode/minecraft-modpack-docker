@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+echo ""
+echo "=== Eclariftn | Minecraft Modpack Docker | Init ==="
+echo "Script version: 2025-11-30.1"
+
 # The fetch.sh script passes the cloned repository path as the first argument.
 if [[ -z "${1:-}" ]]; then
     echo "ERROR: No source directory provided!"
