@@ -81,3 +81,19 @@ To delete old chunks based on configured rules in `data/config/mcaselector/mcase
 ```bash
 docker compose run --rm mcaselector
 ```
+
+### Backups
+
+Run borgmatic commands to manage backups. For more information on available commands, see [borgmatic documentation](https://torsion.org/borgmatic/).
+
+#### Make manual backup now
+
+```bash
+docker compose run --rm borgmatic-minecraft borgmatic create --verbosity 1
+```
+
+#### Restore a backup
+
+```bash
+docker compose run --rm borgmatic-minecraft borgmatic extract --archive latest
+```
