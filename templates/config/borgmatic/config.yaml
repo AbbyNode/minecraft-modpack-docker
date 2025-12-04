@@ -19,4 +19,4 @@ keep_monthly: 12
 keep_yearly: 999
 
 exclude_patterns:
-  - '/mnt/source/world/data/DistantHorizons.sqlite*'
+  - '*DistantHorizons.sqlite*'
