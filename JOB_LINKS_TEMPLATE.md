@@ -3,7 +3,7 @@
 ## Week #: _____ 
 **Date Range:** _____________ to _____________
 
-**Instructions:** Log every job you apply to with the link, company name, position title, platform used, and date. Keep this updated daily.
+**Instructions:** Log every job you apply to with the link, company name, position title, platform used, and time applied. The date is captured in each daily section header below. Keep this updated throughout each day.
 
 ---
 

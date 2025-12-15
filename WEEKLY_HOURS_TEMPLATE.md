@@ -125,9 +125,8 @@
 **Was overtime worked this week?** [ ] Yes [ ] No
 
 **Reason for overtime (if any):**
-```
-[Explain if you needed to catch up on application quotas, personal choice to work extra, etc.]
-```
+
+_[Explain if you needed to catch up on application quotas, personal choice to work extra, etc.]_
 
 ---
 
@@ -138,9 +137,8 @@
 **Any work from home?** [ ] No (Correct) [ ] Yes (Violation)
 
 **If worked from home, explain reason:**
-```
-[This should be blank - working from home is NOT allowed]
-```
+
+_[This should be blank - working from home is NOT allowed]_
 
 ---
 
