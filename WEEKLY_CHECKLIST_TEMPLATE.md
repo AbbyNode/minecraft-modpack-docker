@@ -43,8 +43,8 @@ Target: 1-2 per day
 
 ---
 
-### Hardware/IT Jobs (Minimum: 20)
-Target: 2-3 per day
+### Hardware/IT Jobs (Minimum: 30)
+Target: 4-5 per day
 
 **Daily Progress:**
 - [ ] Monday: _____ applications | Running Total: _____
@@ -55,23 +55,7 @@ Target: 2-3 per day
 - [ ] Saturday: _____ applications | Running Total: _____
 - [ ] Sunday: _____ applications | Running Total: _____
 
-**Week Total: _____ / 20** ✓ Goal Met: [ ] Yes [ ] No
-
----
-
-### Retail Jobs (Minimum: 10)
-Target: 1-2 per day
-
-**Daily Progress:**
-- [ ] Monday: _____ applications | Running Total: _____
-- [ ] Tuesday: _____ applications | Running Total: _____
-- [ ] Wednesday: _____ applications | Running Total: _____
-- [ ] Thursday: _____ applications | Running Total: _____
-- [ ] Friday: _____ applications | Running Total: _____
-- [ ] Saturday: _____ applications | Running Total: _____
-- [ ] Sunday: _____ applications | Running Total: _____
-
-**Week Total: _____ / 10** ✓ Goal Met: [ ] Yes [ ] No
+**Week Total: _____ / 30** ✓ Goal Met: [ ] Yes [ ] No
 
 ---
 
@@ -81,15 +65,13 @@ Target: 1-2 per day
 - Software: _____
 - Teaching: _____
 - Hardware: _____
-- Retail: _____
 - **TOTAL: _____ / 140**
 
 ### Quota Achievement
 - [ ] Met minimum 140 applications
 - [ ] Met software quota (100+)
 - [ ] Met teaching quota (10+)
-- [ ] Met hardware quota (20+)
-- [ ] Met retail quota (10+)
+- [ ] Met hardware quota (30+)
 - [ ] All applications were full-time permanent positions
 
 ---
@@ -125,13 +107,13 @@ Target: 1-2 per day
 ## Weekly Milestones
 
 ### Daily Goals Achievement
-- [ ] Monday: 16-32 applications
-- [ ] Tuesday: 16-32 applications
-- [ ] Wednesday: 16-32 applications
-- [ ] Thursday: 16-32 applications
-- [ ] Friday: 16-32 applications
-- [ ] Saturday: 16-32 applications
-- [ ] Sunday: 16-32 applications
+- [ ] Monday: 20+ applications
+- [ ] Tuesday: 20+ applications
+- [ ] Wednesday: 20+ applications
+- [ ] Thursday: 20+ applications
+- [ ] Friday: 20+ applications
+- [ ] Saturday: 20+ applications
+- [ ] Sunday: 20+ applications
 
 ---
 

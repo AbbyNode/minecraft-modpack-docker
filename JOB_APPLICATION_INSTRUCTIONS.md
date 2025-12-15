@@ -39,12 +39,14 @@ Use these platforms and rotate through them each day to find fresh postings:
 1. **Indeed** (indeed.com)
 2. **Monster** (monster.com)
 3. **Magnet** (magnet.com or theMuse.com if Magnet unavailable)
+4. **Canada Job Bank** (jobbank.gc.ca)
 
 **Daily Rotation Example:**
 - Day 2 (Monday): Start with Indeed
 - Day 3 (Tuesday): Start with Monster
 - Day 4 (Wednesday): Start with Magnet
-- Day 5 (Thursday): Start with Indeed again
+- Day 5 (Thursday): Start with Canada Job Bank
+- Day 6 (Friday): Start with Indeed again
 - Continue rotating...
 
 ---
@@ -54,7 +56,7 @@ Use these platforms and rotate through them each day to find fresh postings:
 You MUST apply to AT LEAST these numbers every week:
 
 ### 1. Software Jobs (100+ per week) - PRIORITY #1
-**Where to search:** All platforms (Indeed, Monster, Magnet)
+**Where to search:** All platforms (Indeed, Monster, Magnet, Canada Job Bank)
 
 **Search terms to use:**
 - Software Developer
@@ -104,8 +106,8 @@ You MUST apply to AT LEAST these numbers every week:
 
 ---
 
-### 3. Hardware/IT Jobs (20+ per week) - PRIORITY #3
-**Where to search:** All platforms (Indeed, Monster, Magnet)
+### 3. Hardware/IT Jobs (30+ per week) - PRIORITY #3
+**Where to search:** All platforms (Indeed, Monster, Magnet, Canada Job Bank)
 
 **Search terms to use:**
 - IT Support Specialist
@@ -123,26 +125,7 @@ You MUST apply to AT LEAST these numbers every week:
 - Can be anywhere (location flexible)
 - Any hardware-related tech role
 
-**Time allocation:** ~14% of your applications (~1 hour daily)
-
----
-
-### 4. Retail Jobs (10+ per week) - PRIORITY #4
-**Where to search:** All platforms (Indeed, Monster, Magnet)
-
-**Search terms to use:**
-- Retail Sales Associate
-- Store Manager
-- Assistant Manager
-- Sales Associate
-- Customer Service Representative
-- Retail Supervisor
-
-**Requirements:**
-- MUST be full-time permanent positions
-- Backup option if other categories are running low
-
-**Time allocation:** ~7% of your applications (~30-45 minutes daily)
+**Time allocation:** ~21% of your applications (~1.5-2 hours daily)
 
 ---
 
@@ -174,7 +157,7 @@ You MUST apply to AT LEAST these numbers every week:
 6. Repeat with different search terms every hour
 7. **Goal:** Apply to 14-16 software jobs in these 5 hours
 
-#### STEP 2: Teaching Jobs (Hour 5-6)
+#### STEP 2: Teaching Jobs (Hour 6)
 1. Switch to a different platform than you used for software
 2. Search for "Computer Science Instructor" or "Professor"
 3. Apply filters:
@@ -187,7 +170,7 @@ You MUST apply to AT LEAST these numbers every week:
    - Copy job link to your JOB_LINKS_TEMPLATE
 5. **Goal:** Apply to 2 teaching jobs in this hour
 
-#### STEP 3: Hardware/IT Jobs (Hour 6-7)
+#### STEP 3: Hardware/IT Jobs (Hours 7-8)
 1. Switch platforms again
 2. Search for "IT Support" or "Hardware Technician"
 3. Apply filters:
@@ -196,44 +179,26 @@ You MUST apply to AT LEAST these numbers every week:
    - Quick skim of requirements
    - Apply if it's full-time
    - Copy job link to your JOB_LINKS_TEMPLATE
-5. **Goal:** Apply to 3 hardware jobs in this hour
-
-#### STEP 4: More Software Jobs (Hour 7-8)
-1. Return to software job searches
-2. Use different search terms than morning
-3. Try second or third platform
-4. **Goal:** Apply to 4-5 more software jobs
-
-#### STEP 5: Retail Jobs (Last 30 min)
-1. Search for "Retail Sales" or "Store Manager"
-2. Apply filters:
-   - Job Type: Full-time
-3. **Goal:** Apply to 2 retail jobs
+5. **Goal:** Apply to 4-5 hardware jobs in these two hours
 
 ### End of Day (15 minutes)
 1. Update your DAILY_CHECKLIST with final counts
 2. Update your WEEKLY_CHECKLIST with progress
 3. Save all job links in JOB_LINKS_TEMPLATE
-4. Fill out your WEEKLY_HOURS_TEMPLATE with today's hours
-5. Review tomorrow's platform rotation
+4. Review tomorrow's platform rotation
 
 ---
 
 ## Weekly Check-In Process
 
 ### End of Each Week
-1. Complete your WEEKLY_HOURS_TEMPLATE
-   - Total all hours worked
-   - Calculate any overtime
-2. Complete your WEEKLY_CHECKLIST
+1. Complete your WEEKLY_CHECKLIST
    - Verify you hit 140+ applications
    - Verify job type quotas:
      - ✓ 100+ Software jobs
      - ✓ 10+ Teaching jobs
-     - ✓ 20+ Hardware jobs
-     - ✓ 10+ Retail jobs
-3. Submit to manager:
-   - Weekly hours report
+     - ✓ 30+ Hardware jobs
+2. Submit to manager:
    - Weekly checklist
    - Job links document
 4. Meet with manager for review
@@ -251,7 +216,7 @@ You MUST apply to AT LEAST these numbers every week:
 ### DO:
 - ✓ Work at the library ALWAYS
 - ✓ Apply to FULL-TIME PERMANENT positions only
-- ✓ Keep detailed records of every application
+- ✓ Keep job links of every application
 - ✓ Apply even if you're not 100% qualified
 - ✓ Track your hours accurately
 - ✓ Hit your daily quotas
@@ -274,7 +239,6 @@ You MUST apply to AT LEAST these numbers every week:
 3. **Don't overthink** - Apply quickly, perfect is the enemy of good
 4. **Take short breaks** - 5 minutes every hour
 5. **Stay focused** - No social media during work hours
-6. **Ask for help** - Contact manager if you're stuck
 
 ---
 
@@ -295,9 +259,9 @@ You MUST apply to AT LEAST these numbers every week:
 ---
 
 ## Questions?
-Contact your manager immediately if:
+Contact your manager at the end of each week or daily if:
 - You're falling behind on quotas
-- You can't find enough jobs in a category
+- You can't find enough jobs in a category - look through another platform
 - Technical issues prevent applications
 - You need clarification on requirements
 

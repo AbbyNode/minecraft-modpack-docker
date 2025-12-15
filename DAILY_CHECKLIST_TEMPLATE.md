@@ -147,6 +147,15 @@
 
 ---
 
+## LUNCH BREAK (1 hour)
+
+**Start Time:** ________ **End Time:** ________
+
+- [ ] Take a proper lunch break away from work
+- [ ] Relax and recharge
+
+---
+
 ## HOUR 6: Teaching Jobs (Priority Switch)
 
 **Start Time:** ________ **End Time:** ________
@@ -175,7 +184,7 @@
 
 ---
 
-## HOUR 7: Hardware/IT Jobs
+## HOUR 7-8: Hardware/IT Jobs
 
 **Start Time:** ________ **End Time:** ________
 
@@ -192,35 +201,11 @@
 ### Tasks:
 - [ ] Apply filters: Full-time
 - [ ] Quick skim of requirements
-- [ ] Applied to jobs (target: 2-4 hardware applications)
+- [ ] Applied to jobs (target: 4-5 hardware applications)
 - [ ] Logged all applications
 - [ ] Updated running count
 
-**Applications This Hour:** _____ | **Running Total:** _____
-
----
-
-## HOUR 8: Software Jobs (Return) + Retail
-
-**Start Time:** ________ **End Time:** ________
-
-### First 30 minutes - Software:
-- [ ] Return to software searches
-- [ ] New search terms
-- [ ] Applied to 2-3 more software jobs
-- [ ] Logged applications
-
-**Software Applications:** _____
-
-### Last 30 minutes - Retail:
-- [ ] Search for "Retail Sales" or "Store Manager"
-- [ ] Apply filters: Full-time
-- [ ] Applied to 1-2 retail jobs
-- [ ] Logged applications
-
-**Retail Applications:** _____
-
-**Applications This Hour:** _____ | **Running Total:** _____
+**Applications These Hours:** _____ | **Running Total:** _____
 
 ---
 
@@ -231,13 +216,11 @@
 ### Daily Application Count By Category:
 - Software Jobs: _____ (target: 14-16)
 - Teaching Jobs: _____ (target: 1-2)
-- Hardware Jobs: _____ (target: 2-3)
-- Retail Jobs: _____ (target: 1-2)
-- **TOTAL APPLICATIONS TODAY:** _____ (target: 16-32)
+- Hardware Jobs: _____ (target: 4-5)
+- **TOTAL APPLICATIONS TODAY:** _____ (target: 20-23)
 
 ### Checklist:
 - [ ] All applications logged in JOB_LINKS_TEMPLATE
-- [ ] Hours logged in WEEKLY_HOURS_TEMPLATE
 - [ ] WEEKLY_CHECKLIST updated with today's progress
 - [ ] Tomorrow's platform rotation identified: _____________
 - [ ] All job categories on track for weekly quota?
@@ -245,7 +228,7 @@
 ### Goal Achievement:
 - [ ] Worked at library (required): Yes
 - [ ] Worked minimum 8 hours: [ ] Yes [ ] No (worked _____ hours)
-- [ ] Applied to 16-32 jobs: [ ] Yes [ ] No (applied to _____ jobs)
+- [ ] Applied to 20+ jobs: [ ] Yes [ ] No (applied to _____ jobs)
 - [ ] All applications full-time permanent: [ ] Yes [ ] No
 
 ---
@@ -278,8 +261,7 @@ Focus areas: _____________
 |----------|-------|------------------|-------------|-----------|
 | Software | _____ | _____ | 100 | [ ] Yes [ ] No |
 | Teaching | _____ | _____ | 10 | [ ] Yes [ ] No |
-| Hardware | _____ | _____ | 20 | [ ] Yes [ ] No |
-| Retail   | _____ | _____ | 10 | [ ] Yes [ ] No |
+| Hardware | _____ | _____ | 30 | [ ] Yes [ ] No |
 | **TOTAL** | _____ | _____ | 140 | [ ] Yes [ ] No |
 
 **If behind:** Plan to work overtime or increase application rate tomorrow
